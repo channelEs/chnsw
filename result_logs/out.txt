@@ -1,0 +1,842 @@
+-- Running vcpkg install
+Detecting compiler hash for triplet x64-linux...
+Compiler found: /usr/bin/c++
+The following packages are already installed:
+    eigen3:x64-linux@5.0.1
+    hdf5[core,zlib,szip]:x64-linux@2.1.1
+  * libaec:x64-linux@1.1.6
+  * vcpkg-cmake:x64-linux@2024-04-23
+  * vcpkg-cmake-config:x64-linux@2024-05-23
+  * zlib:x64-linux@1.3.2
+eigen3 provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(Eigen3 CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE Eigen3::Eigen)
+
+eigen3 provides pkg-config modules:
+
+  # A C++ template library for linear algebra: vectors, matrices, and related algorithms
+  eigen3
+
+hdf5 provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(hdf5 CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE hdf5::hdf5-static)
+
+hdf5 provides pkg-config modules:
+
+  # HDF5 (Hierarchical Data Format 5) Software Library
+  hdf5
+
+All requested installations completed successfully in: 57.5 us
+-- Running vcpkg install - done
+-- Configuring done (4.5s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/roger/ADS_MIRI/chnsw/build
+[100%] Built target main
+loading data...
+train: 57638 x 30522
+query: 6648 x 30522
+[PROFILER] loading_data: 525 ms
+Initializing 128 clusters... with 57638 documents with 30522 dimensions
+Iteration 1/5...
+Assigning documents to clusters...
+Updating centroids...
+Centroids updated. Sample centroid norms: 
+cluster 0 with num of documents: 243 with centroid non-zero elements: 8918
+cluster 1 with num of documents: 126 with centroid non-zero elements: 7804
+cluster 2 with num of documents: 322 with centroid non-zero elements: 10284
+cluster 3 with num of documents: 282 with centroid non-zero elements: 9715
+cluster 4 with num of documents: 917 with centroid non-zero elements: 15737
+cluster 5 with num of documents: 267 with centroid non-zero elements: 9361
+cluster 6 with num of documents: 164 with centroid non-zero elements: 10544
+cluster 7 with num of documents: 452 with centroid non-zero elements: 12094
+cluster 8 with num of documents: 72 with centroid non-zero elements: 4893
+cluster 9 with num of documents: 158 with centroid non-zero elements: 8136
+cluster 10 with num of documents: 365 with centroid non-zero elements: 11583
+cluster 11 with num of documents: 183 with centroid non-zero elements: 8843
+cluster 12 with num of documents: 700 with centroid non-zero elements: 12551
+cluster 13 with num of documents: 221 with centroid non-zero elements: 8417
+cluster 14 with num of documents: 342 with centroid non-zero elements: 10224
+cluster 15 with num of documents: 49 with centroid non-zero elements: 3937
+cluster 16 with num of documents: 257 with centroid non-zero elements: 9457
+cluster 17 with num of documents: 267 with centroid non-zero elements: 8783
+cluster 18 with num of documents: 1283 with centroid non-zero elements: 13562
+cluster 19 with num of documents: 1038 with centroid non-zero elements: 15226
+cluster 20 with num of documents: 143 with centroid non-zero elements: 8189
+cluster 21 with num of documents: 310 with centroid non-zero elements: 10172
+cluster 22 with num of documents: 646 with centroid non-zero elements: 11900
+cluster 23 with num of documents: 329 with centroid non-zero elements: 10525
+cluster 24 with num of documents: 105 with centroid non-zero elements: 7032
+cluster 25 with num of documents: 1261 with centroid non-zero elements: 13315
+cluster 26 with num of documents: 201 with centroid non-zero elements: 10636
+cluster 27 with num of documents: 64 with centroid non-zero elements: 5442
+cluster 28 with num of documents: 62 with centroid non-zero elements: 4502
+cluster 29 with num of documents: 29 with centroid non-zero elements: 4126
+cluster 30 with num of documents: 820 with centroid non-zero elements: 12013
+cluster 31 with num of documents: 440 with centroid non-zero elements: 11901
+cluster 32 with num of documents: 134 with centroid non-zero elements: 7968
+cluster 33 with num of documents: 217 with centroid non-zero elements: 8354
+cluster 34 with num of documents: 579 with centroid non-zero elements: 11718
+cluster 35 with num of documents: 342 with centroid non-zero elements: 10768
+cluster 36 with num of documents: 207 with centroid non-zero elements: 8799
+cluster 37 with num of documents: 61 with centroid non-zero elements: 4988
+cluster 38 with num of documents: 568 with centroid non-zero elements: 10742
+cluster 39 with num of documents: 170 with centroid non-zero elements: 10454
+cluster 40 with num of documents: 103 with centroid non-zero elements: 6860
+cluster 41 with num of documents: 844 with centroid non-zero elements: 12448
+cluster 42 with num of documents: 429 with centroid non-zero elements: 12967
+cluster 43 with num of documents: 369 with centroid non-zero elements: 12133
+cluster 44 with num of documents: 503 with centroid non-zero elements: 12466
+cluster 45 with num of documents: 280 with centroid non-zero elements: 8134
+cluster 46 with num of documents: 147 with centroid non-zero elements: 9007
+cluster 47 with num of documents: 1383 with centroid non-zero elements: 11447
+cluster 48 with num of documents: 146 with centroid non-zero elements: 7901
+cluster 49 with num of documents: 219 with centroid non-zero elements: 8987
+cluster 50 with num of documents: 320 with centroid non-zero elements: 8709
+cluster 51 with num of documents: 779 with centroid non-zero elements: 13743
+cluster 52 with num of documents: 316 with centroid non-zero elements: 11097
+cluster 53 with num of documents: 226 with centroid non-zero elements: 9505
+cluster 54 with num of documents: 388 with centroid non-zero elements: 11630
+cluster 55 with num of documents: 1180 with centroid non-zero elements: 16017
+cluster 56 with num of documents: 749 with centroid non-zero elements: 13094
+cluster 57 with num of documents: 263 with centroid non-zero elements: 8483
+cluster 58 with num of documents: 1741 with centroid non-zero elements: 14479
+cluster 59 with num of documents: 581 with centroid non-zero elements: 14032
+cluster 60 with num of documents: 939 with centroid non-zero elements: 12911
+cluster 61 with num of documents: 154 with centroid non-zero elements: 7939
+cluster 62 with num of documents: 774 with centroid non-zero elements: 12140
+cluster 63 with num of documents: 446 with centroid non-zero elements: 11241
+cluster 64 with num of documents: 266 with centroid non-zero elements: 9829
+cluster 65 with num of documents: 1481 with centroid non-zero elements: 15872
+cluster 66 with num of documents: 182 with centroid non-zero elements: 7107
+cluster 67 with num of documents: 88 with centroid non-zero elements: 7747
+cluster 68 with num of documents: 132 with centroid non-zero elements: 7003
+cluster 69 with num of documents: 416 with centroid non-zero elements: 10583
+cluster 70 with num of documents: 82 with centroid non-zero elements: 6847
+cluster 71 with num of documents: 224 with centroid non-zero elements: 7030
+cluster 72 with num of documents: 145 with centroid non-zero elements: 8291
+cluster 73 with num of documents: 67 with centroid non-zero elements: 4326
+cluster 74 with num of documents: 138 with centroid non-zero elements: 7811
+cluster 75 with num of documents: 639 with centroid non-zero elements: 12443
+cluster 76 with num of documents: 537 with centroid non-zero elements: 11602
+cluster 77 with num of documents: 471 with centroid non-zero elements: 13001
+cluster 78 with num of documents: 416 with centroid non-zero elements: 12333
+cluster 79 with num of documents: 289 with centroid non-zero elements: 11492
+cluster 80 with num of documents: 548 with centroid non-zero elements: 14464
+cluster 81 with num of documents: 192 with centroid non-zero elements: 10293
+cluster 82 with num of documents: 352 with centroid non-zero elements: 10382
+cluster 83 with num of documents: 384 with centroid non-zero elements: 12237
+cluster 84 with num of documents: 131 with centroid non-zero elements: 8935
+cluster 85 with num of documents: 446 with centroid non-zero elements: 13478
+cluster 86 with num of documents: 424 with centroid non-zero elements: 13829
+cluster 87 with num of documents: 349 with centroid non-zero elements: 11712
+cluster 88 with num of documents: 1079 with centroid non-zero elements: 14202
+cluster 89 with num of documents: 556 with centroid non-zero elements: 12794
+cluster 90 with num of documents: 706 with centroid non-zero elements: 13081
+cluster 91 with num of documents: 405 with centroid non-zero elements: 8668
+cluster 92 with num of documents: 122 with centroid non-zero elements: 7207
+cluster 93 with num of documents: 167 with centroid non-zero elements: 8484
+cluster 94 with num of documents: 445 with centroid non-zero elements: 14292
+cluster 95 with num of documents: 192 with centroid non-zero elements: 9349
+cluster 96 with num of documents: 686 with centroid non-zero elements: 12841
+cluster 97 with num of documents: 580 with centroid non-zero elements: 15252
+cluster 98 with num of documents: 461 with centroid non-zero elements: 11173
+cluster 99 with num of documents: 72 with centroid non-zero elements: 6622
+cluster 100 with num of documents: 655 with centroid non-zero elements: 11718
+cluster 101 with num of documents: 615 with centroid non-zero elements: 10610
+cluster 102 with num of documents: 364 with centroid non-zero elements: 11836
+cluster 103 with num of documents: 1261 with centroid non-zero elements: 14690
+cluster 104 with num of documents: 180 with centroid non-zero elements: 6955
+cluster 105 with num of documents: 314 with centroid non-zero elements: 11134
+cluster 106 with num of documents: 2053 with centroid non-zero elements: 14986
+cluster 107 with num of documents: 528 with centroid non-zero elements: 12600
+cluster 108 with num of documents: 185 with centroid non-zero elements: 7555
+cluster 109 with num of documents: 276 with centroid non-zero elements: 10216
+cluster 110 with num of documents: 1311 with centroid non-zero elements: 16160
+cluster 111 with num of documents: 272 with centroid non-zero elements: 10090
+cluster 112 with num of documents: 727 with centroid non-zero elements: 13808
+cluster 113 with num of documents: 40 with centroid non-zero elements: 3900
+cluster 114 with num of documents: 587 with centroid non-zero elements: 13729
+cluster 115 with num of documents: 465 with centroid non-zero elements: 12884
+cluster 116 with num of documents: 157 with centroid non-zero elements: 8371
+cluster 117 with num of documents: 711 with centroid non-zero elements: 12466
+cluster 118 with num of documents: 146 with centroid non-zero elements: 8463
+cluster 119 with num of documents: 83 with centroid non-zero elements: 5720
+cluster 120 with num of documents: 259 with centroid non-zero elements: 10420
+cluster 121 with num of documents: 236 with centroid non-zero elements: 10512
+cluster 122 with num of documents: 1422 with centroid non-zero elements: 12700
+cluster 123 with num of documents: 623 with centroid non-zero elements: 14613
+cluster 124 with num of documents: 1658 with centroid non-zero elements: 15627
+cluster 125 with num of documents: 538 with centroid non-zero elements: 10259
+cluster 126 with num of documents: 50 with centroid non-zero elements: 4568
+cluster 127 with num of documents: 377 with centroid non-zero elements: 9080
+
+Iteration 2/5...
+Assigning documents to clusters...
+Updating centroids...
+Centroids updated. Sample centroid norms: 
+cluster 0 with num of documents: 358 with centroid non-zero elements: 10275
+cluster 1 with num of documents: 194 with centroid non-zero elements: 7939
+cluster 2 with num of documents: 436 with centroid non-zero elements: 10998
+cluster 3 with num of documents: 307 with centroid non-zero elements: 9300
+cluster 4 with num of documents: 662 with centroid non-zero elements: 13976
+cluster 5 with num of documents: 286 with centroid non-zero elements: 9324
+cluster 6 with num of documents: 115 with centroid non-zero elements: 9131
+cluster 7 with num of documents: 386 with centroid non-zero elements: 10950
+cluster 8 with num of documents: 109 with centroid non-zero elements: 5625
+cluster 9 with num of documents: 261 with centroid non-zero elements: 9966
+cluster 10 with num of documents: 581 with centroid non-zero elements: 12849
+cluster 11 with num of documents: 256 with centroid non-zero elements: 9874
+cluster 12 with num of documents: 609 with centroid non-zero elements: 11093
+cluster 13 with num of documents: 270 with centroid non-zero elements: 9039
+cluster 14 with num of documents: 452 with centroid non-zero elements: 11127
+cluster 15 with num of documents: 110 with centroid non-zero elements: 5588
+cluster 16 with num of documents: 579 with centroid non-zero elements: 12040
+cluster 17 with num of documents: 336 with centroid non-zero elements: 8712
+cluster 18 with num of documents: 1048 with centroid non-zero elements: 11642
+cluster 19 with num of documents: 528 with centroid non-zero elements: 12378
+cluster 20 with num of documents: 342 with centroid non-zero elements: 10581
+cluster 21 with num of documents: 362 with centroid non-zero elements: 10627
+cluster 22 with num of documents: 499 with centroid non-zero elements: 9575
+cluster 23 with num of documents: 303 with centroid non-zero elements: 9621
+cluster 24 with num of documents: 189 with centroid non-zero elements: 8122
+cluster 25 with num of documents: 833 with centroid non-zero elements: 11285
+cluster 26 with num of documents: 265 with centroid non-zero elements: 11365
+cluster 27 with num of documents: 110 with centroid non-zero elements: 7543
+cluster 28 with num of documents: 80 with centroid non-zero elements: 4734
+cluster 29 with num of documents: 34 with centroid non-zero elements: 4437
+cluster 30 with num of documents: 662 with centroid non-zero elements: 10618
+cluster 31 with num of documents: 410 with centroid non-zero elements: 11327
+cluster 32 with num of documents: 173 with centroid non-zero elements: 8240
+cluster 33 with num of documents: 257 with centroid non-zero elements: 8864
+cluster 34 with num of documents: 797 with centroid non-zero elements: 12563
+cluster 35 with num of documents: 349 with centroid non-zero elements: 10250
+cluster 36 with num of documents: 273 with centroid non-zero elements: 10284
+cluster 37 with num of documents: 149 with centroid non-zero elements: 7211
+cluster 38 with num of documents: 645 with centroid non-zero elements: 10654
+cluster 39 with num of documents: 286 with centroid non-zero elements: 11960
+cluster 40 with num of documents: 262 with centroid non-zero elements: 8773
+cluster 41 with num of documents: 821 with centroid non-zero elements: 11789
+cluster 42 with num of documents: 524 with centroid non-zero elements: 13651
+cluster 43 with num of documents: 512 with centroid non-zero elements: 13692
+cluster 44 with num of documents: 424 with centroid non-zero elements: 10647
+cluster 45 with num of documents: 382 with centroid non-zero elements: 9337
+cluster 46 with num of documents: 216 with centroid non-zero elements: 9832
+cluster 47 with num of documents: 1295 with centroid non-zero elements: 10484
+cluster 48 with num of documents: 186 with centroid non-zero elements: 8468
+cluster 49 with num of documents: 383 with centroid non-zero elements: 10769
+cluster 50 with num of documents: 580 with centroid non-zero elements: 9937
+cluster 51 with num of documents: 459 with centroid non-zero elements: 11482
+cluster 52 with num of documents: 385 with centroid non-zero elements: 11463
+cluster 53 with num of documents: 271 with centroid non-zero elements: 9783
+cluster 54 with num of documents: 524 with centroid non-zero elements: 11979
+cluster 55 with num of documents: 586 with centroid non-zero elements: 12881
+cluster 56 with num of documents: 565 with centroid non-zero elements: 11315
+cluster 57 with num of documents: 309 with centroid non-zero elements: 8873
+cluster 58 with num of documents: 1430 with centroid non-zero elements: 12954
+cluster 59 with num of documents: 522 with centroid non-zero elements: 12815
+cluster 60 with num of documents: 1132 with centroid non-zero elements: 12025
+cluster 61 with num of documents: 301 with centroid non-zero elements: 9716
+cluster 62 with num of documents: 618 with centroid non-zero elements: 10097
+cluster 63 with num of documents: 617 with centroid non-zero elements: 11920
+cluster 64 with num of documents: 334 with centroid non-zero elements: 9587
+cluster 65 with num of documents: 463 with centroid non-zero elements: 10777
+cluster 66 with num of documents: 348 with centroid non-zero elements: 7899
+cluster 67 with num of documents: 119 with centroid non-zero elements: 8685
+cluster 68 with num of documents: 194 with centroid non-zero elements: 7460
+cluster 69 with num of documents: 454 with centroid non-zero elements: 9926
+cluster 70 with num of documents: 151 with centroid non-zero elements: 8816
+cluster 71 with num of documents: 368 with centroid non-zero elements: 8302
+cluster 72 with num of documents: 150 with centroid non-zero elements: 8242
+cluster 73 with num of documents: 107 with centroid non-zero elements: 5672
+cluster 74 with num of documents: 202 with centroid non-zero elements: 9228
+cluster 75 with num of documents: 485 with centroid non-zero elements: 11372
+cluster 76 with num of documents: 593 with centroid non-zero elements: 11332
+cluster 77 with num of documents: 345 with centroid non-zero elements: 10877
+cluster 78 with num of documents: 359 with centroid non-zero elements: 11288
+cluster 79 with num of documents: 290 with centroid non-zero elements: 10394
+cluster 80 with num of documents: 1039 with centroid non-zero elements: 17048
+cluster 81 with num of documents: 317 with centroid non-zero elements: 12436
+cluster 82 with num of documents: 315 with centroid non-zero elements: 9159
+cluster 83 with num of documents: 398 with centroid non-zero elements: 12114
+cluster 84 with num of documents: 132 with centroid non-zero elements: 8644
+cluster 85 with num of documents: 130 with centroid non-zero elements: 7496
+cluster 86 with num of documents: 445 with centroid non-zero elements: 13641
+cluster 87 with num of documents: 253 with centroid non-zero elements: 10319
+cluster 88 with num of documents: 697 with centroid non-zero elements: 11792
+cluster 89 with num of documents: 357 with centroid non-zero elements: 10895
+cluster 90 with num of documents: 451 with centroid non-zero elements: 11053
+cluster 91 with num of documents: 672 with centroid non-zero elements: 10138
+cluster 92 with num of documents: 337 with centroid non-zero elements: 8904
+cluster 93 with num of documents: 366 with centroid non-zero elements: 11741
+cluster 94 with num of documents: 476 with centroid non-zero elements: 14467
+cluster 95 with num of documents: 223 with centroid non-zero elements: 9448
+cluster 96 with num of documents: 615 with centroid non-zero elements: 11680
+cluster 97 with num of documents: 461 with centroid non-zero elements: 14557
+cluster 98 with num of documents: 398 with centroid non-zero elements: 10477
+cluster 99 with num of documents: 327 with centroid non-zero elements: 11650
+cluster 100 with num of documents: 776 with centroid non-zero elements: 11905
+cluster 101 with num of documents: 1162 with centroid non-zero elements: 12495
+cluster 102 with num of documents: 407 with centroid non-zero elements: 12081
+cluster 103 with num of documents: 427 with centroid non-zero elements: 10383
+cluster 104 with num of documents: 317 with centroid non-zero elements: 8904
+cluster 105 with num of documents: 409 with centroid non-zero elements: 11884
+cluster 106 with num of documents: 1029 with centroid non-zero elements: 11834
+cluster 107 with num of documents: 634 with centroid non-zero elements: 11371
+cluster 108 with num of documents: 427 with centroid non-zero elements: 10272
+cluster 109 with num of documents: 570 with centroid non-zero elements: 11710
+cluster 110 with num of documents: 828 with centroid non-zero elements: 13724
+cluster 111 with num of documents: 485 with centroid non-zero elements: 11748
+cluster 112 with num of documents: 725 with centroid non-zero elements: 13520
+cluster 113 with num of documents: 97 with centroid non-zero elements: 5591
+cluster 114 with num of documents: 309 with centroid non-zero elements: 10702
+cluster 115 with num of documents: 484 with centroid non-zero elements: 12905
+cluster 116 with num of documents: 211 with centroid non-zero elements: 9326
+cluster 117 with num of documents: 662 with centroid non-zero elements: 11288
+cluster 118 with num of documents: 282 with centroid non-zero elements: 10804
+cluster 119 with num of documents: 238 with centroid non-zero elements: 8084
+cluster 120 with num of documents: 346 with centroid non-zero elements: 11169
+cluster 121 with num of documents: 220 with centroid non-zero elements: 9213
+cluster 122 with num of documents: 1630 with centroid non-zero elements: 12635
+cluster 123 with num of documents: 420 with centroid non-zero elements: 12445
+cluster 124 with num of documents: 1674 with centroid non-zero elements: 14499
+cluster 125 with num of documents: 613 with centroid non-zero elements: 9232
+cluster 126 with num of documents: 83 with centroid non-zero elements: 5867
+cluster 127 with num of documents: 597 with centroid non-zero elements: 10138
+
+Iteration 3/5...
+Assigning documents to clusters...
+Updating centroids...
+Centroids updated. Sample centroid norms: 
+cluster 0 with num of documents: 340 with centroid non-zero elements: 9947
+cluster 1 with num of documents: 262 with centroid non-zero elements: 8650
+cluster 2 with num of documents: 490 with centroid non-zero elements: 11431
+cluster 3 with num of documents: 335 with centroid non-zero elements: 9619
+cluster 4 with num of documents: 527 with centroid non-zero elements: 13046
+cluster 5 with num of documents: 234 with centroid non-zero elements: 8595
+cluster 6 with num of documents: 109 with centroid non-zero elements: 8708
+cluster 7 with num of documents: 394 with centroid non-zero elements: 11096
+cluster 8 with num of documents: 133 with centroid non-zero elements: 6342
+cluster 9 with num of documents: 314 with centroid non-zero elements: 10477
+cluster 10 with num of documents: 605 with centroid non-zero elements: 13046
+cluster 11 with num of documents: 288 with centroid non-zero elements: 10386
+cluster 12 with num of documents: 581 with centroid non-zero elements: 10734
+cluster 13 with num of documents: 279 with centroid non-zero elements: 9074
+cluster 14 with num of documents: 561 with centroid non-zero elements: 12145
+cluster 15 with num of documents: 167 with centroid non-zero elements: 6612
+cluster 16 with num of documents: 596 with centroid non-zero elements: 12188
+cluster 17 with num of documents: 362 with centroid non-zero elements: 9158
+cluster 18 with num of documents: 843 with centroid non-zero elements: 10504
+cluster 19 with num of documents: 452 with centroid non-zero elements: 11876
+cluster 20 with num of documents: 359 with centroid non-zero elements: 10650
+cluster 21 with num of documents: 336 with centroid non-zero elements: 10400
+cluster 22 with num of documents: 478 with centroid non-zero elements: 8987
+cluster 23 with num of documents: 323 with centroid non-zero elements: 9511
+cluster 24 with num of documents: 220 with centroid non-zero elements: 8390
+cluster 25 with num of documents: 744 with centroid non-zero elements: 10749
+cluster 26 with num of documents: 324 with centroid non-zero elements: 11999
+cluster 27 with num of documents: 140 with centroid non-zero elements: 8548
+cluster 28 with num of documents: 112 with centroid non-zero elements: 5277
+cluster 29 with num of documents: 41 with centroid non-zero elements: 4895
+cluster 30 with num of documents: 572 with centroid non-zero elements: 9928
+cluster 31 with num of documents: 386 with centroid non-zero elements: 11010
+cluster 32 with num of documents: 208 with centroid non-zero elements: 8873
+cluster 33 with num of documents: 265 with centroid non-zero elements: 8681
+cluster 34 with num of documents: 683 with centroid non-zero elements: 11903
+cluster 35 with num of documents: 313 with centroid non-zero elements: 9451
+cluster 36 with num of documents: 294 with centroid non-zero elements: 10583
+cluster 37 with num of documents: 251 with centroid non-zero elements: 8977
+cluster 38 with num of documents: 618 with centroid non-zero elements: 10382
+cluster 39 with num of documents: 321 with centroid non-zero elements: 12096
+cluster 40 with num of documents: 398 with centroid non-zero elements: 9788
+cluster 41 with num of documents: 731 with centroid non-zero elements: 11349
+cluster 42 with num of documents: 479 with centroid non-zero elements: 13419
+cluster 43 with num of documents: 499 with centroid non-zero elements: 13662
+cluster 44 with num of documents: 476 with centroid non-zero elements: 10482
+cluster 45 with num of documents: 548 with centroid non-zero elements: 10386
+cluster 46 with num of documents: 287 with centroid non-zero elements: 10458
+cluster 47 with num of documents: 1232 with centroid non-zero elements: 10296
+cluster 48 with num of documents: 186 with centroid non-zero elements: 8528
+cluster 49 with num of documents: 503 with centroid non-zero elements: 11653
+cluster 50 with num of documents: 624 with centroid non-zero elements: 10307
+cluster 51 with num of documents: 428 with centroid non-zero elements: 11265
+cluster 52 with num of documents: 389 with centroid non-zero elements: 11379
+cluster 53 with num of documents: 317 with centroid non-zero elements: 10286
+cluster 54 with num of documents: 545 with centroid non-zero elements: 12068
+cluster 55 with num of documents: 481 with centroid non-zero elements: 12010
+cluster 56 with num of documents: 502 with centroid non-zero elements: 10511
+cluster 57 with num of documents: 349 with centroid non-zero elements: 9399
+cluster 58 with num of documents: 1225 with centroid non-zero elements: 12225
+cluster 59 with num of documents: 486 with centroid non-zero elements: 12327
+cluster 60 with num of documents: 1106 with centroid non-zero elements: 11445
+cluster 61 with num of documents: 319 with centroid non-zero elements: 9894
+cluster 62 with num of documents: 590 with centroid non-zero elements: 9285
+cluster 63 with num of documents: 657 with centroid non-zero elements: 12249
+cluster 64 with num of documents: 343 with centroid non-zero elements: 8628
+cluster 65 with num of documents: 456 with centroid non-zero elements: 10477
+cluster 66 with num of documents: 369 with centroid non-zero elements: 7716
+cluster 67 with num of documents: 145 with centroid non-zero elements: 9312
+cluster 68 with num of documents: 232 with centroid non-zero elements: 7622
+cluster 69 with num of documents: 505 with centroid non-zero elements: 9613
+cluster 70 with num of documents: 195 with centroid non-zero elements: 9591
+cluster 71 with num of documents: 374 with centroid non-zero elements: 8321
+cluster 72 with num of documents: 159 with centroid non-zero elements: 8375
+cluster 73 with num of documents: 135 with centroid non-zero elements: 6458
+cluster 74 with num of documents: 203 with centroid non-zero elements: 9114
+cluster 75 with num of documents: 445 with centroid non-zero elements: 10881
+cluster 76 with num of documents: 562 with centroid non-zero elements: 10864
+cluster 77 with num of documents: 407 with centroid non-zero elements: 11367
+cluster 78 with num of documents: 320 with centroid non-zero elements: 10603
+cluster 79 with num of documents: 295 with centroid non-zero elements: 9789
+cluster 80 with num of documents: 1149 with centroid non-zero elements: 17352
+cluster 81 with num of documents: 393 with centroid non-zero elements: 13348
+cluster 82 with num of documents: 303 with centroid non-zero elements: 8887
+cluster 83 with num of documents: 334 with centroid non-zero elements: 11396
+cluster 84 with num of documents: 121 with centroid non-zero elements: 8410
+cluster 85 with num of documents: 141 with centroid non-zero elements: 7589
+cluster 86 with num of documents: 406 with centroid non-zero elements: 13125
+cluster 87 with num of documents: 260 with centroid non-zero elements: 10487
+cluster 88 with num of documents: 602 with centroid non-zero elements: 10906
+cluster 89 with num of documents: 316 with centroid non-zero elements: 10334
+cluster 90 with num of documents: 454 with centroid non-zero elements: 11272
+cluster 91 with num of documents: 709 with centroid non-zero elements: 10187
+cluster 92 with num of documents: 449 with centroid non-zero elements: 9399
+cluster 93 with num of documents: 405 with centroid non-zero elements: 12218
+cluster 94 with num of documents: 464 with centroid non-zero elements: 14438
+cluster 95 with num of documents: 229 with centroid non-zero elements: 9058
+cluster 96 with num of documents: 542 with centroid non-zero elements: 11454
+cluster 97 with num of documents: 480 with centroid non-zero elements: 14716
+cluster 98 with num of documents: 332 with centroid non-zero elements: 9983
+cluster 99 with num of documents: 494 with centroid non-zero elements: 13166
+cluster 100 with num of documents: 721 with centroid non-zero elements: 11636
+cluster 101 with num of documents: 1124 with centroid non-zero elements: 12532
+cluster 102 with num of documents: 369 with centroid non-zero elements: 11708
+cluster 103 with num of documents: 337 with centroid non-zero elements: 9703
+cluster 104 with num of documents: 302 with centroid non-zero elements: 8767
+cluster 105 with num of documents: 355 with centroid non-zero elements: 11461
+cluster 106 with num of documents: 808 with centroid non-zero elements: 11050
+cluster 107 with num of documents: 681 with centroid non-zero elements: 11021
+cluster 108 with num of documents: 549 with centroid non-zero elements: 11123
+cluster 109 with num of documents: 654 with centroid non-zero elements: 12159
+cluster 110 with num of documents: 712 with centroid non-zero elements: 12997
+cluster 111 with num of documents: 505 with centroid non-zero elements: 11758
+cluster 112 with num of documents: 713 with centroid non-zero elements: 13455
+cluster 113 with num of documents: 166 with centroid non-zero elements: 7246
+cluster 114 with num of documents: 286 with centroid non-zero elements: 10162
+cluster 115 with num of documents: 451 with centroid non-zero elements: 12453
+cluster 116 with num of documents: 171 with centroid non-zero elements: 8643
+cluster 117 with num of documents: 619 with centroid non-zero elements: 10823
+cluster 118 with num of documents: 293 with centroid non-zero elements: 10857
+cluster 119 with num of documents: 344 with centroid non-zero elements: 9278
+cluster 120 with num of documents: 355 with centroid non-zero elements: 10873
+cluster 121 with num of documents: 276 with centroid non-zero elements: 9501
+cluster 122 with num of documents: 1403 with centroid non-zero elements: 12075
+cluster 123 with num of documents: 444 with centroid non-zero elements: 12437
+cluster 124 with num of documents: 1623 with centroid non-zero elements: 14140
+cluster 125 with num of documents: 641 with centroid non-zero elements: 9331
+cluster 126 with num of documents: 105 with centroid non-zero elements: 6753
+cluster 127 with num of documents: 686 with centroid non-zero elements: 10908
+
+Iteration 4/5...
+Assigning documents to clusters...
+Updating centroids...
+Centroids updated. Sample centroid norms: 
+cluster 0 with num of documents: 322 with centroid non-zero elements: 9773
+cluster 1 with num of documents: 295 with centroid non-zero elements: 9068
+cluster 2 with num of documents: 491 with centroid non-zero elements: 11543
+cluster 3 with num of documents: 335 with centroid non-zero elements: 9629
+cluster 4 with num of documents: 462 with centroid non-zero elements: 12385
+cluster 5 with num of documents: 216 with centroid non-zero elements: 8208
+cluster 6 with num of documents: 107 with centroid non-zero elements: 8626
+cluster 7 with num of documents: 387 with centroid non-zero elements: 11029
+cluster 8 with num of documents: 171 with centroid non-zero elements: 6996
+cluster 9 with num of documents: 358 with centroid non-zero elements: 10842
+cluster 10 with num of documents: 607 with centroid non-zero elements: 12882
+cluster 11 with num of documents: 331 with centroid non-zero elements: 10866
+cluster 12 with num of documents: 558 with centroid non-zero elements: 10699
+cluster 13 with num of documents: 255 with centroid non-zero elements: 8780
+cluster 14 with num of documents: 584 with centroid non-zero elements: 12433
+cluster 15 with num of documents: 221 with centroid non-zero elements: 7336
+cluster 16 with num of documents: 576 with centroid non-zero elements: 12045
+cluster 17 with num of documents: 396 with centroid non-zero elements: 9503
+cluster 18 with num of documents: 729 with centroid non-zero elements: 9849
+cluster 19 with num of documents: 416 with centroid non-zero elements: 11393
+cluster 20 with num of documents: 351 with centroid non-zero elements: 10631
+cluster 21 with num of documents: 312 with centroid non-zero elements: 9982
+cluster 22 with num of documents: 467 with centroid non-zero elements: 8682
+cluster 23 with num of documents: 353 with centroid non-zero elements: 9766
+cluster 24 with num of documents: 229 with centroid non-zero elements: 8194
+cluster 25 with num of documents: 697 with centroid non-zero elements: 10342
+cluster 26 with num of documents: 323 with centroid non-zero elements: 11752
+cluster 27 with num of documents: 157 with centroid non-zero elements: 8762
+cluster 28 with num of documents: 170 with centroid non-zero elements: 6462
+cluster 29 with num of documents: 59 with centroid non-zero elements: 5631
+cluster 30 with num of documents: 525 with centroid non-zero elements: 9511
+cluster 31 with num of documents: 370 with centroid non-zero elements: 10628
+cluster 32 with num of documents: 218 with centroid non-zero elements: 9025
+cluster 33 with num of documents: 281 with centroid non-zero elements: 8659
+cluster 34 with num of documents: 630 with centroid non-zero elements: 11542
+cluster 35 with num of documents: 275 with centroid non-zero elements: 8692
+cluster 36 with num of documents: 323 with centroid non-zero elements: 10859
+cluster 37 with num of documents: 269 with centroid non-zero elements: 9284
+cluster 38 with num of documents: 603 with centroid non-zero elements: 10200
+cluster 39 with num of documents: 344 with centroid non-zero elements: 12129
+cluster 40 with num of documents: 534 with centroid non-zero elements: 10462
+cluster 41 with num of documents: 678 with centroid non-zero elements: 10987
+cluster 42 with num of documents: 458 with centroid non-zero elements: 13129
+cluster 43 with num of documents: 463 with centroid non-zero elements: 13365
+cluster 44 with num of documents: 512 with centroid non-zero elements: 10302
+cluster 45 with num of documents: 652 with centroid non-zero elements: 10788
+cluster 46 with num of documents: 317 with centroid non-zero elements: 10738
+cluster 47 with num of documents: 1197 with centroid non-zero elements: 10080
+cluster 48 with num of documents: 176 with centroid non-zero elements: 8257
+cluster 49 with num of documents: 583 with centroid non-zero elements: 12208
+cluster 50 with num of documents: 612 with centroid non-zero elements: 10204
+cluster 51 with num of documents: 429 with centroid non-zero elements: 11258
+cluster 52 with num of documents: 394 with centroid non-zero elements: 11299
+cluster 53 with num of documents: 344 with centroid non-zero elements: 10489
+cluster 54 with num of documents: 540 with centroid non-zero elements: 11770
+cluster 55 with num of documents: 477 with centroid non-zero elements: 11830
+cluster 56 with num of documents: 482 with centroid non-zero elements: 10243
+cluster 57 with num of documents: 372 with centroid non-zero elements: 9785
+cluster 58 with num of documents: 1114 with centroid non-zero elements: 11953
+cluster 59 with num of documents: 462 with centroid non-zero elements: 12011
+cluster 60 with num of documents: 987 with centroid non-zero elements: 11022
+cluster 61 with num of documents: 332 with centroid non-zero elements: 10028
+cluster 62 with num of documents: 587 with centroid non-zero elements: 9057
+cluster 63 with num of documents: 705 with centroid non-zero elements: 12554
+cluster 64 with num of documents: 352 with centroid non-zero elements: 8301
+cluster 65 with num of documents: 462 with centroid non-zero elements: 10193
+cluster 66 with num of documents: 405 with centroid non-zero elements: 7772
+cluster 67 with num of documents: 158 with centroid non-zero elements: 9489
+cluster 68 with num of documents: 242 with centroid non-zero elements: 7516
+cluster 69 with num of documents: 614 with centroid non-zero elements: 9567
+cluster 70 with num of documents: 239 with centroid non-zero elements: 10090
+cluster 71 with num of documents: 381 with centroid non-zero elements: 8636
+cluster 72 with num of documents: 199 with centroid non-zero elements: 9467
+cluster 73 with num of documents: 156 with centroid non-zero elements: 6902
+cluster 74 with num of documents: 225 with centroid non-zero elements: 9035
+cluster 75 with num of documents: 419 with centroid non-zero elements: 10695
+cluster 76 with num of documents: 559 with centroid non-zero elements: 10769
+cluster 77 with num of documents: 419 with centroid non-zero elements: 11212
+cluster 78 with num of documents: 298 with centroid non-zero elements: 10221
+cluster 79 with num of documents: 348 with centroid non-zero elements: 10308
+cluster 80 with num of documents: 1138 with centroid non-zero elements: 17316
+cluster 81 with num of documents: 455 with centroid non-zero elements: 14066
+cluster 82 with num of documents: 309 with centroid non-zero elements: 8899
+cluster 83 with num of documents: 299 with centroid non-zero elements: 10753
+cluster 84 with num of documents: 121 with centroid non-zero elements: 8396
+cluster 85 with num of documents: 151 with centroid non-zero elements: 7748
+cluster 86 with num of documents: 369 with centroid non-zero elements: 12612
+cluster 87 with num of documents: 259 with centroid non-zero elements: 10596
+cluster 88 with num of documents: 565 with centroid non-zero elements: 10923
+cluster 89 with num of documents: 286 with centroid non-zero elements: 10003
+cluster 90 with num of documents: 463 with centroid non-zero elements: 11538
+cluster 91 with num of documents: 698 with centroid non-zero elements: 10183
+cluster 92 with num of documents: 480 with centroid non-zero elements: 9429
+cluster 93 with num of documents: 405 with centroid non-zero elements: 12305
+cluster 94 with num of documents: 454 with centroid non-zero elements: 14400
+cluster 95 with num of documents: 254 with centroid non-zero elements: 9693
+cluster 96 with num of documents: 551 with centroid non-zero elements: 11588
+cluster 97 with num of documents: 534 with centroid non-zero elements: 15066
+cluster 98 with num of documents: 322 with centroid non-zero elements: 10021
+cluster 99 with num of documents: 540 with centroid non-zero elements: 13483
+cluster 100 with num of documents: 677 with centroid non-zero elements: 11435
+cluster 101 with num of documents: 1067 with centroid non-zero elements: 12413
+cluster 102 with num of documents: 365 with centroid non-zero elements: 11632
+cluster 103 with num of documents: 321 with centroid non-zero elements: 9578
+cluster 104 with num of documents: 283 with centroid non-zero elements: 8466
+cluster 105 with num of documents: 339 with centroid non-zero elements: 11357
+cluster 106 with num of documents: 683 with centroid non-zero elements: 10561
+cluster 107 with num of documents: 708 with centroid non-zero elements: 10947
+cluster 108 with num of documents: 608 with centroid non-zero elements: 11733
+cluster 109 with num of documents: 674 with centroid non-zero elements: 12312
+cluster 110 with num of documents: 659 with centroid non-zero elements: 12704
+cluster 111 with num of documents: 499 with centroid non-zero elements: 11604
+cluster 112 with num of documents: 679 with centroid non-zero elements: 13414
+cluster 113 with num of documents: 220 with centroid non-zero elements: 8253
+cluster 114 with num of documents: 268 with centroid non-zero elements: 9784
+cluster 115 with num of documents: 427 with centroid non-zero elements: 12298
+cluster 116 with num of documents: 157 with centroid non-zero elements: 8475
+cluster 117 with num of documents: 585 with centroid non-zero elements: 10623
+cluster 118 with num of documents: 289 with centroid non-zero elements: 10892
+cluster 119 with num of documents: 403 with centroid non-zero elements: 9802
+cluster 120 with num of documents: 362 with centroid non-zero elements: 11086
+cluster 121 with num of documents: 304 with centroid non-zero elements: 9565
+cluster 122 with num of documents: 1229 with centroid non-zero elements: 11524
+cluster 123 with num of documents: 482 with centroid non-zero elements: 12379
+cluster 124 with num of documents: 1575 with centroid non-zero elements: 13891
+cluster 125 with num of documents: 618 with centroid non-zero elements: 9368
+cluster 126 with num of documents: 111 with centroid non-zero elements: 6989
+cluster 127 with num of documents: 737 with centroid non-zero elements: 11278
+
+Iteration 5/5...
+Assigning documents to clusters...
+Updating centroids...
+Centroids updated. Sample centroid norms: 
+cluster 0 with num of documents: 307 with centroid non-zero elements: 9562
+cluster 1 with num of documents: 328 with centroid non-zero elements: 9394
+cluster 2 with num of documents: 493 with centroid non-zero elements: 11526
+cluster 3 with num of documents: 331 with centroid non-zero elements: 9582
+cluster 4 with num of documents: 442 with centroid non-zero elements: 12219
+cluster 5 with num of documents: 226 with centroid non-zero elements: 8180
+cluster 6 with num of documents: 107 with centroid non-zero elements: 8626
+cluster 7 with num of documents: 390 with centroid non-zero elements: 11075
+cluster 8 with num of documents: 220 with centroid non-zero elements: 8034
+cluster 9 with num of documents: 360 with centroid non-zero elements: 10743
+cluster 10 with num of documents: 604 with centroid non-zero elements: 12844
+cluster 11 with num of documents: 346 with centroid non-zero elements: 10970
+cluster 12 with num of documents: 531 with centroid non-zero elements: 10564
+cluster 13 with num of documents: 232 with centroid non-zero elements: 8319
+cluster 14 with num of documents: 571 with centroid non-zero elements: 12448
+cluster 15 with num of documents: 252 with centroid non-zero elements: 7629
+cluster 16 with num of documents: 565 with centroid non-zero elements: 11927
+cluster 17 with num of documents: 407 with centroid non-zero elements: 9488
+cluster 18 with num of documents: 671 with centroid non-zero elements: 9514
+cluster 19 with num of documents: 406 with centroid non-zero elements: 11218
+cluster 20 with num of documents: 350 with centroid non-zero elements: 10674
+cluster 21 with num of documents: 308 with centroid non-zero elements: 9981
+cluster 22 with num of documents: 464 with centroid non-zero elements: 8517
+cluster 23 with num of documents: 388 with centroid non-zero elements: 9969
+cluster 24 with num of documents: 227 with centroid non-zero elements: 8113
+cluster 25 with num of documents: 661 with centroid non-zero elements: 9984
+cluster 26 with num of documents: 299 with centroid non-zero elements: 11083
+cluster 27 with num of documents: 199 with centroid non-zero elements: 8954
+cluster 28 with num of documents: 238 with centroid non-zero elements: 7701
+cluster 29 with num of documents: 87 with centroid non-zero elements: 6584
+cluster 30 with num of documents: 478 with centroid non-zero elements: 9169
+cluster 31 with num of documents: 366 with centroid non-zero elements: 10508
+cluster 32 with num of documents: 223 with centroid non-zero elements: 9086
+cluster 33 with num of documents: 307 with centroid non-zero elements: 9106
+cluster 34 with num of documents: 617 with centroid non-zero elements: 11535
+cluster 35 with num of documents: 256 with centroid non-zero elements: 8336
+cluster 36 with num of documents: 326 with centroid non-zero elements: 10753
+cluster 37 with num of documents: 259 with centroid non-zero elements: 9220
+cluster 38 with num of documents: 613 with centroid non-zero elements: 10081
+cluster 39 with num of documents: 360 with centroid non-zero elements: 12372
+cluster 40 with num of documents: 632 with centroid non-zero elements: 10645
+cluster 41 with num of documents: 662 with centroid non-zero elements: 10990
+cluster 42 with num of documents: 475 with centroid non-zero elements: 13206
+cluster 43 with num of documents: 436 with centroid non-zero elements: 13360
+cluster 44 with num of documents: 539 with centroid non-zero elements: 10167
+cluster 45 with num of documents: 730 with centroid non-zero elements: 11087
+cluster 46 with num of documents: 329 with centroid non-zero elements: 10809
+cluster 47 with num of documents: 1181 with centroid non-zero elements: 10029
+cluster 48 with num of documents: 182 with centroid non-zero elements: 8286
+cluster 49 with num of documents: 601 with centroid non-zero elements: 12243
+cluster 50 with num of documents: 611 with centroid non-zero elements: 10123
+cluster 51 with num of documents: 423 with centroid non-zero elements: 11183
+cluster 52 with num of documents: 396 with centroid non-zero elements: 11220
+cluster 53 with num of documents: 349 with centroid non-zero elements: 10513
+cluster 54 with num of documents: 544 with centroid non-zero elements: 11779
+cluster 55 with num of documents: 489 with centroid non-zero elements: 11664
+cluster 56 with num of documents: 455 with centroid non-zero elements: 10033
+cluster 57 with num of documents: 368 with centroid non-zero elements: 9781
+cluster 58 with num of documents: 1062 with centroid non-zero elements: 11808
+cluster 59 with num of documents: 448 with centroid non-zero elements: 11897
+cluster 60 with num of documents: 878 with centroid non-zero elements: 10638
+cluster 61 with num of documents: 337 with centroid non-zero elements: 10114
+cluster 62 with num of documents: 567 with centroid non-zero elements: 8875
+cluster 63 with num of documents: 680 with centroid non-zero elements: 12435
+cluster 64 with num of documents: 365 with centroid non-zero elements: 8347
+cluster 65 with num of documents: 470 with centroid non-zero elements: 10091
+cluster 66 with num of documents: 423 with centroid non-zero elements: 7911
+cluster 67 with num of documents: 155 with centroid non-zero elements: 9256
+cluster 68 with num of documents: 266 with centroid non-zero elements: 7520
+cluster 69 with num of documents: 709 with centroid non-zero elements: 9954
+cluster 70 with num of documents: 268 with centroid non-zero elements: 10395
+cluster 71 with num of documents: 394 with centroid non-zero elements: 8847
+cluster 72 with num of documents: 223 with centroid non-zero elements: 10003
+cluster 73 with num of documents: 185 with centroid non-zero elements: 7105
+cluster 74 with num of documents: 234 with centroid non-zero elements: 9167
+cluster 75 with num of documents: 404 with centroid non-zero elements: 10591
+cluster 76 with num of documents: 565 with centroid non-zero elements: 10859
+cluster 77 with num of documents: 391 with centroid non-zero elements: 10796
+cluster 78 with num of documents: 284 with centroid non-zero elements: 10065
+cluster 79 with num of documents: 371 with centroid non-zero elements: 10453
+cluster 80 with num of documents: 1096 with centroid non-zero elements: 17174
+cluster 81 with num of documents: 500 with centroid non-zero elements: 14494
+cluster 82 with num of documents: 352 with centroid non-zero elements: 9658
+cluster 83 with num of documents: 257 with centroid non-zero elements: 9936
+cluster 84 with num of documents: 119 with centroid non-zero elements: 8354
+cluster 85 with num of documents: 153 with centroid non-zero elements: 7795
+cluster 86 with num of documents: 345 with centroid non-zero elements: 12260
+cluster 87 with num of documents: 248 with centroid non-zero elements: 10324
+cluster 88 with num of documents: 544 with centroid non-zero elements: 11062
+cluster 89 with num of documents: 271 with centroid non-zero elements: 9704
+cluster 90 with num of documents: 500 with centroid non-zero elements: 11940
+cluster 91 with num of documents: 684 with centroid non-zero elements: 10128
+cluster 92 with num of documents: 479 with centroid non-zero elements: 9336
+cluster 93 with num of documents: 401 with centroid non-zero elements: 12333
+cluster 94 with num of documents: 451 with centroid non-zero elements: 14400
+cluster 95 with num of documents: 263 with centroid non-zero elements: 9775
+cluster 96 with num of documents: 551 with centroid non-zero elements: 11618
+cluster 97 with num of documents: 559 with centroid non-zero elements: 15182
+cluster 98 with num of documents: 300 with centroid non-zero elements: 9811
+cluster 99 with num of documents: 556 with centroid non-zero elements: 13663
+cluster 100 with num of documents: 664 with centroid non-zero elements: 11381
+cluster 101 with num of documents: 1004 with centroid non-zero elements: 12215
+cluster 102 with num of documents: 370 with centroid non-zero elements: 11647
+cluster 103 with num of documents: 321 with centroid non-zero elements: 9613
+cluster 104 with num of documents: 270 with centroid non-zero elements: 8320
+cluster 105 with num of documents: 320 with centroid non-zero elements: 11352
+cluster 106 with num of documents: 625 with centroid non-zero elements: 10328
+cluster 107 with num of documents: 717 with centroid non-zero elements: 10974
+cluster 108 with num of documents: 646 with centroid non-zero elements: 12070
+cluster 109 with num of documents: 678 with centroid non-zero elements: 12229
+cluster 110 with num of documents: 624 with centroid non-zero elements: 12564
+cluster 111 with num of documents: 505 with centroid non-zero elements: 11585
+cluster 112 with num of documents: 664 with centroid non-zero elements: 13316
+cluster 113 with num of documents: 274 with centroid non-zero elements: 8991
+cluster 114 with num of documents: 264 with centroid non-zero elements: 9482
+cluster 115 with num of documents: 435 with centroid non-zero elements: 12310
+cluster 116 with num of documents: 148 with centroid non-zero elements: 8310
+cluster 117 with num of documents: 550 with centroid non-zero elements: 10336
+cluster 118 with num of documents: 284 with centroid non-zero elements: 10872
+cluster 119 with num of documents: 460 with centroid non-zero elements: 10167
+cluster 120 with num of documents: 355 with centroid non-zero elements: 10958
+cluster 121 with num of documents: 319 with centroid non-zero elements: 9604
+cluster 122 with num of documents: 1131 with centroid non-zero elements: 11204
+cluster 123 with num of documents: 500 with centroid non-zero elements: 12217
+cluster 124 with num of documents: 1527 with centroid non-zero elements: 13600
+cluster 125 with num of documents: 590 with centroid non-zero elements: 9328
+cluster 126 with num of documents: 128 with centroid non-zero elements: 7468
+cluster 127 with num of documents: 740 with centroid non-zero elements: 11291
+
+[PROFILER] clustering: 217202 ms
+
+Clustering complete. Sample cluster sizes:
+Cluster 0: 307 docs
+Cluster 1: 328 docs
+Cluster 2: 493 docs
+Cluster 3: 331 docs
+Cluster 4: 442 docs
+Cluster 5: 226 docs
+Cluster 6: 107 docs
+Cluster 7: 390 docs
+Cluster 8: 220 docs
+Cluster 9: 360 docs
+Cluster 10: 604 docs
+Cluster 11: 346 docs
+Cluster 12: 531 docs
+Cluster 13: 232 docs
+Cluster 14: 571 docs
+Cluster 15: 252 docs
+Cluster 16: 565 docs
+Cluster 17: 407 docs
+Cluster 18: 671 docs
+Cluster 19: 406 docs
+Cluster 20: 350 docs
+Cluster 21: 308 docs
+Cluster 22: 464 docs
+Cluster 23: 388 docs
+Cluster 24: 227 docs
+Cluster 25: 661 docs
+Cluster 26: 299 docs
+Cluster 27: 199 docs
+Cluster 28: 238 docs
+Cluster 29: 87 docs
+Cluster 30: 478 docs
+Cluster 31: 366 docs
+Cluster 32: 223 docs
+Cluster 33: 307 docs
+Cluster 34: 617 docs
+Cluster 35: 256 docs
+Cluster 36: 326 docs
+Cluster 37: 259 docs
+Cluster 38: 613 docs
+Cluster 39: 360 docs
+Cluster 40: 632 docs
+Cluster 41: 662 docs
+Cluster 42: 475 docs
+Cluster 43: 436 docs
+Cluster 44: 539 docs
+Cluster 45: 730 docs
+Cluster 46: 329 docs
+Cluster 47: 1181 docs
+Cluster 48: 182 docs
+Cluster 49: 601 docs
+Cluster 50: 611 docs
+Cluster 51: 423 docs
+Cluster 52: 396 docs
+Cluster 53: 349 docs
+Cluster 54: 544 docs
+Cluster 55: 489 docs
+Cluster 56: 455 docs
+Cluster 57: 368 docs
+Cluster 58: 1062 docs
+Cluster 59: 448 docs
+Cluster 60: 878 docs
+Cluster 61: 337 docs
+Cluster 62: 567 docs
+Cluster 63: 680 docs
+Cluster 64: 365 docs
+Cluster 65: 470 docs
+Cluster 66: 423 docs
+Cluster 67: 155 docs
+Cluster 68: 266 docs
+Cluster 69: 709 docs
+Cluster 70: 268 docs
+Cluster 71: 394 docs
+Cluster 72: 223 docs
+Cluster 73: 185 docs
+Cluster 74: 234 docs
+Cluster 75: 404 docs
+Cluster 76: 565 docs
+Cluster 77: 391 docs
+Cluster 78: 284 docs
+Cluster 79: 371 docs
+Cluster 80: 1096 docs
+Cluster 81: 500 docs
+Cluster 82: 352 docs
+Cluster 83: 257 docs
+Cluster 84: 119 docs
+Cluster 85: 153 docs
+Cluster 86: 345 docs
+Cluster 87: 248 docs
+Cluster 88: 544 docs
+Cluster 89: 271 docs
+Cluster 90: 500 docs
+Cluster 91: 684 docs
+Cluster 92: 479 docs
+Cluster 93: 401 docs
+Cluster 94: 451 docs
+Cluster 95: 263 docs
+Cluster 96: 551 docs
+Cluster 97: 559 docs
+Cluster 98: 300 docs
+Cluster 99: 556 docs
+Cluster 100: 664 docs
+Cluster 101: 1004 docs
+Cluster 102: 370 docs
+Cluster 103: 321 docs
+Cluster 104: 270 docs
+Cluster 105: 320 docs
+Cluster 106: 625 docs
+Cluster 107: 717 docs
+Cluster 108: 646 docs
+Cluster 109: 678 docs
+Cluster 110: 624 docs
+Cluster 111: 505 docs
+Cluster 112: 664 docs
+Cluster 113: 274 docs
+Cluster 114: 264 docs
+Cluster 115: 435 docs
+Cluster 116: 148 docs
+Cluster 117: 550 docs
+Cluster 118: 284 docs
+Cluster 119: 460 docs
+Cluster 120: 355 docs
+Cluster 121: 319 docs
+Cluster 122: 1131 docs
+Cluster 123: 500 docs
+Cluster 124: 1527 docs
+Cluster 125: 590 docs
+Cluster 126: 128 docs
+Cluster 127: 740 docs
+Avg Similarity: 5.04528
+Balance Score: 229.311
+[PROFILER] total_execution: 218105 ms
