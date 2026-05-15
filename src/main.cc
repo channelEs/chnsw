@@ -3,6 +3,7 @@
 #include "utils/types.h"
 #include "clustering_engine.h"
 #include "metrics_utils.h"
+#include "index_manager.h"
 
 int main() {
     try {
@@ -41,6 +42,25 @@ int main() {
         auto metrics = ClusterEvaluator::evaluate(train, result);
         std::cout << "Avg Similarity: " << metrics.avg_intra_cluster_similarity << std::endl;
         std::cout << "Balance Score: " << metrics.cluster_balance_score << std::endl;
+
+        // 4. Build Inverted Index
+        IndexManager index_manager;
+
+        profiler.start("computing_summaries");
+        std::vector<Eigen::VectorXf> summaries = index_manager.computeSummaryVectors(train, result.assignments, k_clusters);
+        profiler.stop("computing_summaries");
+
+        profiler.start("building_index");
+        auto inverted_index = index_manager.buildInvertedIndex(train, result.assignments, k_clusters);
+        profiler.stop("building_index");
+        
+        std::cout << "Total Summary Vectors: " << summaries.size() << std::endl;
+        std::cout << "Total Concepts indexed: " << inverted_index.size() << std::endl;
+
+        // Quick check on a sample concept (e.g., Concept ID 500)
+        if (!inverted_index[500].empty()) {
+            std::cout << "Sample Concept [500] is present in " << inverted_index[500].size() << " different clusters/blocks.\n";
+        }
 
         profiler.stop("total_execution");
 
