@@ -1,0 +1,147 @@
+# CHNSW – Setup and Build Guide
+
+## Project Structure
+
+```text
+chnsw/
+├── build/               # Generated build files
+├── data/                # HDF5 datasets
+├── include/             # Header files (.h)
+├── src/                 # Source files (.cpp) + main
+├── build.sh             # Build script
+├── run.sh               # Build + execute script
+├── CMakeLists.txt
+└── vcpkg.json
+```
+
+---
+
+# Requirements
+
+This project uses:
+
+* C++20
+* CMake
+* vcpkg
+* Eigen3
+* HDF5
+* WSL/Linux environment
+
+---
+
+# Install System Dependencies
+
+```bash
+sudo apt update
+sudo apt install -y \
+    build-essential \
+    cmake \
+    git \
+    curl \
+    zip \
+    unzip \
+    tar
+```
+
+Verify installation:
+
+```bash
+cmake --version
+g++ --version
+```
+
+---
+
+# Install vcpkg
+
+Clone and bootstrap vcpkg:
+
+```bash
+cd ~
+git clone https://github.com/microsoft/vcpkg.git
+cd vcpkg
+./bootstrap-vcpkg.sh
+```
+
+---
+
+# Build the Project
+
+The project uses vcpkg manifest mode through `vcpkg.json`.
+
+Dependencies are installed automatically when configuring CMake.
+
+Run:
+
+```bash
+./build.sh
+```
+
+Or manually:
+
+```bash
+cmake -B build \
+      -S . \
+      -DCMAKE_TOOLCHAIN_FILE=$HOME/vcpkg/scripts/buildsystems/vcpkg.cmake
+
+cmake --build build
+```
+
+---
+
+# Run the Project
+
+```bash
+./build/main
+```
+
+Or:
+
+```bash
+./run.sh
+```
+
+---
+
+# Cleaning the Build
+
+To remove generated build files:
+
+```bash
+rm -rf build
+```
+
+Then rebuild:
+
+```bash
+./build.sh
+```
+
+---
+
+# Dependency Management
+
+Dependencies are declared in:
+
+```text
+vcpkg.json
+```
+
+Example:
+
+```json
+{
+  "name": "chnsw",
+  "version": "0.1.0",
+  "dependencies": [
+    "eigen3",
+    "hdf5"
+  ]
+}
+```
+
+You normally do NOT need to manually install dependencies.
+
+vcpkg installs them automatically during CMake configuration.
+
+---
