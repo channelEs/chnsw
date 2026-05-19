@@ -13,13 +13,14 @@ class ExecutionProfiler {
 public:
     void start(const std::string& tag) {
         start_times[tag] = std::chrono::high_resolution_clock::now();
+        std::cout << "[PROFILER_START] " << tag << std::endl;
     }
 
     void stop(const std::string& tag) {
         auto end = std::chrono::high_resolution_clock::now();
         auto start = start_times[tag];
         auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-        std::cout << "[PROFILER] " << tag << ": " << duration << " ms" << std::endl;
+        std::cout << "[PROFILER_STOP] " << tag << ": " << duration << " ms (" << duration / 60000.0 << " minutes)" << std::endl;
     }
 
 private:

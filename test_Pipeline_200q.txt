@@ -1,0 +1,837 @@
+-- Running vcpkg install
+Detecting compiler hash for triplet x64-linux...
+Compiler found: /usr/bin/c++
+The following packages are already installed:
+    eigen3:x64-linux@5.0.1
+    hdf5[core,zlib,szip]:x64-linux@2.1.1
+  * libaec:x64-linux@1.1.6
+  * vcpkg-cmake:x64-linux@2024-04-23
+  * vcpkg-cmake-config:x64-linux@2024-05-23
+  * zlib:x64-linux@1.3.2
+eigen3 provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(Eigen3 CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE Eigen3::Eigen)
+
+eigen3 provides pkg-config modules:
+
+  # A C++ template library for linear algebra: vectors, matrices, and related algorithms
+  eigen3
+
+hdf5 provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(hdf5 CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE hdf5::hdf5-static)
+
+hdf5 provides pkg-config modules:
+
+  # HDF5 (Hierarchical Data Format 5) Software Library
+  hdf5
+
+All requested installations completed successfully in: 55.4 us
+-- Running vcpkg install - done
+-- Configuring done (4.7s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/roger/ADS_MIRI/chnsw/build
+[100%] Built target main
+
+--- Read data (data/fiqa-dev.h5) ---
+loading data...
+train: 57638 x 30522
+query: 6648 x 30522
+[PROFILER] loading_data: 959 ms (0.0159833 minutes)
+
+--- Clustering | k = 128 | iterations = 5 ---
+Initializing 128 clusters... with 57638 documents with 30522 dimensions
+Iteration 1/5...
+Assigning documents to clusters...
+Updating centroids...
+Centroids updated!
+Iteration 2/5...
+Assigning documents to clusters...
+Updating centroids...
+Centroids updated!
+Iteration 3/5...
+Assigning documents to clusters...
+Updating centroids...
+Centroids updated!
+Iteration 4/5...
+Assigning documents to clusters...
+Updating centroids...
+Centroids updated!
+Iteration 5/5...
+Assigning documents to clusters...
+Updating centroids...
+Centroids updated!
+[PROFILER] clustering: 301899 ms (5.03165 minutes)
+
+Clustering complete. Sample cluster sizes:
+Cluster 0: 353 docs
+Cluster 1: 414 docs
+Cluster 2: 105 docs
+Cluster 3: 847 docs
+Cluster 4: 453 docs
+Cluster 5: 167 docs
+Cluster 6: 762 docs
+Cluster 7: 349 docs
+Cluster 8: 503 docs
+Cluster 9: 367 docs
+Cluster 10: 481 docs
+Cluster 11: 455 docs
+Cluster 12: 749 docs
+Cluster 13: 329 docs
+Cluster 14: 233 docs
+Cluster 15: 703 docs
+Cluster 16: 527 docs
+Cluster 17: 456 docs
+Cluster 18: 678 docs
+Cluster 19: 517 docs
+Cluster 20: 277 docs
+Cluster 21: 604 docs
+Cluster 22: 561 docs
+Cluster 23: 362 docs
+Cluster 24: 502 docs
+Cluster 25: 391 docs
+Cluster 26: 266 docs
+Cluster 27: 530 docs
+Cluster 28: 420 docs
+Cluster 29: 509 docs
+Cluster 30: 652 docs
+Cluster 31: 535 docs
+Cluster 32: 365 docs
+Cluster 33: 269 docs
+Cluster 34: 389 docs
+Cluster 35: 627 docs
+Cluster 36: 570 docs
+Cluster 37: 313 docs
+Cluster 38: 353 docs
+Cluster 39: 235 docs
+Cluster 40: 597 docs
+Cluster 41: 454 docs
+Cluster 42: 357 docs
+Cluster 43: 306 docs
+Cluster 44: 331 docs
+Cluster 45: 630 docs
+Cluster 46: 520 docs
+Cluster 47: 646 docs
+Cluster 48: 536 docs
+Cluster 49: 478 docs
+Cluster 50: 391 docs
+Cluster 51: 543 docs
+Cluster 52: 663 docs
+Cluster 53: 568 docs
+Cluster 54: 382 docs
+Cluster 55: 603 docs
+Cluster 56: 433 docs
+Cluster 57: 317 docs
+Cluster 58: 267 docs
+Cluster 59: 611 docs
+Cluster 60: 460 docs
+Cluster 61: 313 docs
+Cluster 62: 250 docs
+Cluster 63: 424 docs
+Cluster 64: 300 docs
+Cluster 65: 629 docs
+Cluster 66: 195 docs
+Cluster 67: 347 docs
+Cluster 68: 378 docs
+Cluster 69: 747 docs
+Cluster 70: 600 docs
+Cluster 71: 789 docs
+Cluster 72: 486 docs
+Cluster 73: 474 docs
+Cluster 74: 826 docs
+Cluster 75: 425 docs
+Cluster 76: 560 docs
+Cluster 77: 411 docs
+Cluster 78: 425 docs
+Cluster 79: 416 docs
+Cluster 80: 255 docs
+Cluster 81: 565 docs
+Cluster 82: 358 docs
+Cluster 83: 411 docs
+Cluster 84: 569 docs
+Cluster 85: 297 docs
+Cluster 86: 407 docs
+Cluster 87: 265 docs
+Cluster 88: 644 docs
+Cluster 89: 159 docs
+Cluster 90: 353 docs
+Cluster 91: 393 docs
+Cluster 92: 655 docs
+Cluster 93: 213 docs
+Cluster 94: 83 docs
+Cluster 95: 632 docs
+Cluster 96: 583 docs
+Cluster 97: 354 docs
+Cluster 98: 189 docs
+Cluster 99: 327 docs
+Cluster 100: 295 docs
+Cluster 101: 461 docs
+Cluster 102: 214 docs
+Cluster 103: 174 docs
+Cluster 104: 772 docs
+Cluster 105: 362 docs
+Cluster 106: 416 docs
+Cluster 107: 312 docs
+Cluster 108: 294 docs
+Cluster 109: 581 docs
+Cluster 110: 395 docs
+Cluster 111: 476 docs
+Cluster 112: 979 docs
+Cluster 113: 328 docs
+Cluster 114: 218 docs
+Cluster 115: 325 docs
+Cluster 116: 339 docs
+Cluster 117: 310 docs
+Cluster 118: 244 docs
+Cluster 119: 1374 docs
+Cluster 120: 246 docs
+Cluster 121: 564 docs
+Cluster 122: 320 docs
+Cluster 123: 539 docs
+Cluster 124: 415 docs
+Cluster 125: 474 docs
+Cluster 126: 689 docs
+Cluster 127: 544 docs
+
+--- Evaluate clustering ---
+Avg Similarity: 5.05554
+Balance Score: 185.904
+
+--- Summary Vectors for each cluster & Indexing ---
+[INDEXING] Computing Summary Vectors (Sketches) for 128 clusters...
+[PROFILER] computing_summaries: 622 ms (0.0103667 minutes)
+[INDEXING] Partitioning Inverted Lists into blocks...
+[PROFILER] building_index: 11718 ms (0.1953 minutes)
+Total Summary Vectors: 128
+Total Concepts indexed: 30522
+[PROFILER] load_query_gold_standard: 103 ms (0.00171667 minutes)
+
+--- Evaluating Recall@10 ---
+  Query 1 Recall@10: 1
+  Query 2 Recall@10: 1
+  Query 3 Recall@10: 1
+  Query 4 Recall@10: 1
+  Query 5 Recall@10: 1
+  Query 6 Recall@10: 1
+  Query 7 Recall@10: 1
+  Query 8 Recall@10: 1
+  Query 9 Recall@10: 1
+  Query 10 Recall@10: 1
+  Query 11 Recall@10: 1
+  Query 12 Recall@10: 1
+  Query 13 Recall@10: 1
+  Query 14 Recall@10: 1
+  Query 15 Recall@10: 1
+  Query 16 Recall@10: 1
+  Query 17 Recall@10: 1
+  Query 18 Recall@10: 1
+  Query 19 Recall@10: 1
+  Query 20 Recall@10: 1
+  Query 21 Recall@10: 1
+  Query 22 Recall@10: 1
+  Query 23 Recall@10: 1
+  Query 24 Recall@10: 1
+  Query 25 Recall@10: 1
+  Query 26 Recall@10: 1
+  Query 27 Recall@10: 1
+  Query 28 Recall@10: 1
+  Query 29 Recall@10: 1
+  Query 30 Recall@10: 1
+  Query 31 Recall@10: 1
+  Query 32 Recall@10: 1
+  Query 33 Recall@10: 1
+  Query 34 Recall@10: 1
+  Query 35 Recall@10: 1
+  Query 36 Recall@10: 1
+  Query 37 Recall@10: 1
+  Query 38 Recall@10: 1
+  Query 39 Recall@10: 1
+  Query 40 Recall@10: 1
+  Query 41 Recall@10: 1
+  Query 42 Recall@10: 1
+  Query 43 Recall@10: 1
+  Query 44 Recall@10: 1
+  Query 45 Recall@10: 1
+  Query 46 Recall@10: 1
+  Query 47 Recall@10: 1
+  Query 48 Recall@10: 1
+  Query 49 Recall@10: 1
+  Query 50 Recall@10: 1
+  Query 51 Recall@10: 1
+  Query 52 Recall@10: 1
+  Query 53 Recall@10: 1
+  Query 54 Recall@10: 1
+  Query 55 Recall@10: 1
+  Query 56 Recall@10: 1
+  Query 57 Recall@10: 1
+  Query 58 Recall@10: 1
+  Query 59 Recall@10: 1
+  Query 60 Recall@10: 1
+  Query 61 Recall@10: 1
+  Query 62 Recall@10: 1
+  Query 63 Recall@10: 1
+  Query 64 Recall@10: 1
+  Query 65 Recall@10: 1
+  Query 66 Recall@10: 1
+  Query 67 Recall@10: 1
+  Query 68 Recall@10: 1
+  Query 69 Recall@10: 1
+  Query 70 Recall@10: 1
+  Query 71 Recall@10: 1
+  Query 72 Recall@10: 1
+  Query 73 Recall@10: 1
+  Query 74 Recall@10: 1
+  Query 75 Recall@10: 1
+  Query 76 Recall@10: 1
+  Query 77 Recall@10: 1
+  Query 78 Recall@10: 1
+  Query 79 Recall@10: 1
+  Query 80 Recall@10: 1
+  Query 81 Recall@10: 1
+  Query 82 Recall@10: 1
+  Query 83 Recall@10: 1
+  Query 84 Recall@10: 1
+  Query 85 Recall@10: 1
+  Query 86 Recall@10: 1
+  Query 87 Recall@10: 1
+  Query 88 Recall@10: 1
+  Query 89 Recall@10: 1
+  Query 90 Recall@10: 1
+  Query 91 Recall@10: 1
+  Query 92 Recall@10: 1
+  Query 93 Recall@10: 1
+  Query 94 Recall@10: 1
+  Query 95 Recall@10: 1
+  Query 96 Recall@10: 1
+  Query 97 Recall@10: 1
+  Query 98 Recall@10: 1
+  Query 99 Recall@10: 1
+  Query 100 Recall@10: 1
+  Query 101 Recall@10: 1
+  Query 102 Recall@10: 1
+  Query 103 Recall@10: 1
+  Query 104 Recall@10: 1
+  Query 105 Recall@10: 1
+  Query 106 Recall@10: 1
+  Query 107 Recall@10: 1
+  Query 108 Recall@10: 1
+  Query 109 Recall@10: 1
+  Query 110 Recall@10: 1
+  Query 111 Recall@10: 1
+  Query 112 Recall@10: 1
+  Query 113 Recall@10: 1
+  Query 114 Recall@10: 1
+  Query 115 Recall@10: 1
+  Query 116 Recall@10: 1
+  Query 117 Recall@10: 1
+  Query 118 Recall@10: 1
+  Query 119 Recall@10: 1
+  Query 120 Recall@10: 1
+  Query 121 Recall@10: 1
+  Query 122 Recall@10: 1
+  Query 123 Recall@10: 1
+  Query 124 Recall@10: 1
+  Query 125 Recall@10: 1
+  Query 126 Recall@10: 1
+  Query 127 Recall@10: 1
+  Query 128 Recall@10: 1
+  Query 129 Recall@10: 1
+  Query 130 Recall@10: 1
+  Query 131 Recall@10: 1
+  Query 132 Recall@10: 1
+  Query 133 Recall@10: 1
+  Query 134 Recall@10: 1
+  Query 135 Recall@10: 1
+  Query 136 Recall@10: 1
+  Query 137 Recall@10: 1
+  Query 138 Recall@10: 1
+  Query 139 Recall@10: 1
+  Query 140 Recall@10: 1
+  Query 141 Recall@10: 1
+  Query 142 Recall@10: 1
+  Query 143 Recall@10: 1
+  Query 144 Recall@10: 1
+  Query 145 Recall@10: 1
+  Query 146 Recall@10: 1
+  Query 147 Recall@10: 1
+  Query 148 Recall@10: 1
+  Query 149 Recall@10: 1
+  Query 150 Recall@10: 1
+  Query 151 Recall@10: 1
+  Query 152 Recall@10: 1
+  Query 153 Recall@10: 1
+  Query 154 Recall@10: 1
+  Query 155 Recall@10: 1
+  Query 156 Recall@10: 1
+  Query 157 Recall@10: 1
+  Query 158 Recall@10: 1
+  Query 159 Recall@10: 1
+  Query 160 Recall@10: 1
+  Query 161 Recall@10: 1
+  Query 162 Recall@10: 1
+  Query 163 Recall@10: 1
+  Query 164 Recall@10: 1
+  Query 165 Recall@10: 1
+  Query 166 Recall@10: 1
+  Query 167 Recall@10: 1
+  Query 168 Recall@10: 1
+  Query 169 Recall@10: 1
+  Query 170 Recall@10: 1
+  Query 171 Recall@10: 1
+  Query 172 Recall@10: 1
+  Query 173 Recall@10: 1
+  Query 174 Recall@10: 1
+  Query 175 Recall@10: 1
+  Query 176 Recall@10: 1
+  Query 177 Recall@10: 1
+  Query 178 Recall@10: 1
+  Query 179 Recall@10: 1
+  Query 180 Recall@10: 1
+  Query 181 Recall@10: 1
+  Query 182 Recall@10: 1
+  Query 183 Recall@10: 1
+  Query 184 Recall@10: 1
+  Query 185 Recall@10: 1
+  Query 186 Recall@10: 1
+  Query 187 Recall@10: 1
+  Query 188 Recall@10: 1
+  Query 189 Recall@10: 1
+  Query 190 Recall@10: 1
+  Query 191 Recall@10: 1
+  Query 192 Recall@10: 1
+  Query 193 Recall@10: 1
+  Query 194 Recall@10: 1
+  Query 195 Recall@10: 1
+  Query 196 Recall@10: 1
+  Query 197 Recall@10: 1
+  Query 198 Recall@10: 1
+  Query 199 Recall@10: 1
+  Query 200 Recall@10: 1
+[PROFILER] search_phase_top_n_10: 26823 ms (0.44705 minutes)
+====================================================
+  VAL RESULTS (N = 200 random queries)
+  Average Recall@30 = 1
+  STATUS: SUCCESS (Passed Challenge Benchmark Threshold)
+====================================================
+
+--- Evaluating Recall@30 ---
+  Query 1 Recall@30: 1
+  Query 2 Recall@30: 1
+  Query 3 Recall@30: 1
+  Query 4 Recall@30: 1
+  Query 5 Recall@30: 1
+  Query 6 Recall@30: 1
+  Query 7 Recall@30: 1
+  Query 8 Recall@30: 1
+  Query 9 Recall@30: 1
+  Query 10 Recall@30: 1
+  Query 11 Recall@30: 1
+  Query 12 Recall@30: 1
+  Query 13 Recall@30: 1
+  Query 14 Recall@30: 1
+  Query 15 Recall@30: 1
+  Query 16 Recall@30: 1
+  Query 17 Recall@30: 1
+  Query 18 Recall@30: 1
+  Query 19 Recall@30: 1
+  Query 20 Recall@30: 1
+  Query 21 Recall@30: 1
+  Query 22 Recall@30: 1
+  Query 23 Recall@30: 1
+  Query 24 Recall@30: 1
+  Query 25 Recall@30: 1
+  Query 26 Recall@30: 1
+  Query 27 Recall@30: 1
+  Query 28 Recall@30: 1
+  Query 29 Recall@30: 1
+  Query 30 Recall@30: 1
+  Query 31 Recall@30: 1
+  Query 32 Recall@30: 1
+  Query 33 Recall@30: 1
+  Query 34 Recall@30: 1
+  Query 35 Recall@30: 1
+  Query 36 Recall@30: 1
+  Query 37 Recall@30: 1
+  Query 38 Recall@30: 1
+  Query 39 Recall@30: 1
+  Query 40 Recall@30: 1
+  Query 41 Recall@30: 1
+  Query 42 Recall@30: 1
+  Query 43 Recall@30: 1
+  Query 44 Recall@30: 1
+  Query 45 Recall@30: 1
+  Query 46 Recall@30: 1
+  Query 47 Recall@30: 1
+  Query 48 Recall@30: 1
+  Query 49 Recall@30: 1
+  Query 50 Recall@30: 1
+  Query 51 Recall@30: 1
+  Query 52 Recall@30: 1
+  Query 53 Recall@30: 1
+  Query 54 Recall@30: 1
+  Query 55 Recall@30: 1
+  Query 56 Recall@30: 1
+  Query 57 Recall@30: 1
+  Query 58 Recall@30: 1
+  Query 59 Recall@30: 1
+  Query 60 Recall@30: 1
+  Query 61 Recall@30: 1
+  Query 62 Recall@30: 1
+  Query 63 Recall@30: 1
+  Query 64 Recall@30: 1
+  Query 65 Recall@30: 1
+  Query 66 Recall@30: 1
+  Query 67 Recall@30: 1
+  Query 68 Recall@30: 1
+  Query 69 Recall@30: 1
+  Query 70 Recall@30: 1
+  Query 71 Recall@30: 1
+  Query 72 Recall@30: 1
+  Query 73 Recall@30: 1
+  Query 74 Recall@30: 1
+  Query 75 Recall@30: 1
+  Query 76 Recall@30: 1
+  Query 77 Recall@30: 1
+  Query 78 Recall@30: 1
+  Query 79 Recall@30: 1
+  Query 80 Recall@30: 1
+  Query 81 Recall@30: 1
+  Query 82 Recall@30: 1
+  Query 83 Recall@30: 1
+  Query 84 Recall@30: 1
+  Query 85 Recall@30: 1
+  Query 86 Recall@30: 1
+  Query 87 Recall@30: 1
+  Query 88 Recall@30: 1
+  Query 89 Recall@30: 1
+  Query 90 Recall@30: 1
+  Query 91 Recall@30: 1
+  Query 92 Recall@30: 1
+  Query 93 Recall@30: 1
+  Query 94 Recall@30: 1
+  Query 95 Recall@30: 1
+  Query 96 Recall@30: 1
+  Query 97 Recall@30: 1
+  Query 98 Recall@30: 1
+  Query 99 Recall@30: 1
+  Query 100 Recall@30: 1
+  Query 101 Recall@30: 1
+  Query 102 Recall@30: 1
+  Query 103 Recall@30: 1
+  Query 104 Recall@30: 1
+  Query 105 Recall@30: 1
+  Query 106 Recall@30: 1
+  Query 107 Recall@30: 1
+  Query 108 Recall@30: 1
+  Query 109 Recall@30: 1
+  Query 110 Recall@30: 1
+  Query 111 Recall@30: 1
+  Query 112 Recall@30: 1
+  Query 113 Recall@30: 1
+  Query 114 Recall@30: 1
+  Query 115 Recall@30: 1
+  Query 116 Recall@30: 1
+  Query 117 Recall@30: 1
+  Query 118 Recall@30: 1
+  Query 119 Recall@30: 1
+  Query 120 Recall@30: 1
+  Query 121 Recall@30: 1
+  Query 122 Recall@30: 1
+  Query 123 Recall@30: 1
+  Query 124 Recall@30: 1
+  Query 125 Recall@30: 1
+  Query 126 Recall@30: 1
+  Query 127 Recall@30: 1
+  Query 128 Recall@30: 1
+  Query 129 Recall@30: 1
+  Query 130 Recall@30: 1
+  Query 131 Recall@30: 1
+  Query 132 Recall@30: 1
+  Query 133 Recall@30: 1
+  Query 134 Recall@30: 1
+  Query 135 Recall@30: 1
+  Query 136 Recall@30: 1
+  Query 137 Recall@30: 1
+  Query 138 Recall@30: 1
+  Query 139 Recall@30: 1
+  Query 140 Recall@30: 1
+  Query 141 Recall@30: 1
+  Query 142 Recall@30: 1
+  Query 143 Recall@30: 1
+  Query 144 Recall@30: 1
+  Query 145 Recall@30: 1
+  Query 146 Recall@30: 1
+  Query 147 Recall@30: 1
+  Query 148 Recall@30: 1
+  Query 149 Recall@30: 1
+  Query 150 Recall@30: 1
+  Query 151 Recall@30: 1
+  Query 152 Recall@30: 1
+  Query 153 Recall@30: 1
+  Query 154 Recall@30: 1
+  Query 155 Recall@30: 1
+  Query 156 Recall@30: 1
+  Query 157 Recall@30: 1
+  Query 158 Recall@30: 1
+  Query 159 Recall@30: 1
+  Query 160 Recall@30: 1
+  Query 161 Recall@30: 1
+  Query 162 Recall@30: 1
+  Query 163 Recall@30: 1
+  Query 164 Recall@30: 1
+  Query 165 Recall@30: 1
+  Query 166 Recall@30: 1
+  Query 167 Recall@30: 1
+  Query 168 Recall@30: 1
+  Query 169 Recall@30: 1
+  Query 170 Recall@30: 1
+  Query 171 Recall@30: 1
+  Query 172 Recall@30: 1
+  Query 173 Recall@30: 1
+  Query 174 Recall@30: 1
+  Query 175 Recall@30: 1
+  Query 176 Recall@30: 1
+  Query 177 Recall@30: 1
+  Query 178 Recall@30: 1
+  Query 179 Recall@30: 1
+  Query 180 Recall@30: 1
+  Query 181 Recall@30: 1
+  Query 182 Recall@30: 1
+  Query 183 Recall@30: 1
+  Query 184 Recall@30: 1
+  Query 185 Recall@30: 1
+  Query 186 Recall@30: 1
+  Query 187 Recall@30: 1
+  Query 188 Recall@30: 1
+  Query 189 Recall@30: 1
+  Query 190 Recall@30: 1
+  Query 191 Recall@30: 1
+  Query 192 Recall@30: 1
+  Query 193 Recall@30: 1
+  Query 194 Recall@30: 1
+  Query 195 Recall@30: 1
+  Query 196 Recall@30: 1
+  Query 197 Recall@30: 1
+  Query 198 Recall@30: 1
+  Query 199 Recall@30: 1
+  Query 200 Recall@30: 1
+[PROFILER] search_phase_top_n_30: 26836 ms (0.447267 minutes)
+====================================================
+  VAL RESULTS (N = 200 random queries)
+  Average Recall@30 = 1
+  STATUS: SUCCESS (Passed Challenge Benchmark Threshold)
+====================================================
+
+--- Evaluating Recall@100 ---
+  Query 1 Recall@100: 0.3
+  Query 2 Recall@100: 0.3
+  Query 3 Recall@100: 0.3
+  Query 4 Recall@100: 0.3
+  Query 5 Recall@100: 0.3
+  Query 6 Recall@100: 0.3
+  Query 7 Recall@100: 0.3
+  Query 8 Recall@100: 0.3
+  Query 9 Recall@100: 0.3
+  Query 10 Recall@100: 0.3
+  Query 11 Recall@100: 0.3
+  Query 12 Recall@100: 0.3
+  Query 13 Recall@100: 0.3
+  Query 14 Recall@100: 0.3
+  Query 15 Recall@100: 0.3
+  Query 16 Recall@100: 0.3
+  Query 17 Recall@100: 0.3
+  Query 18 Recall@100: 0.3
+  Query 19 Recall@100: 0.3
+  Query 20 Recall@100: 0.3
+  Query 21 Recall@100: 0.3
+  Query 22 Recall@100: 0.3
+  Query 23 Recall@100: 0.3
+  Query 24 Recall@100: 0.3
+  Query 25 Recall@100: 0.3
+  Query 26 Recall@100: 0.3
+  Query 27 Recall@100: 0.3
+  Query 28 Recall@100: 0.3
+  Query 29 Recall@100: 0.3
+  Query 30 Recall@100: 0.3
+  Query 31 Recall@100: 0.3
+  Query 32 Recall@100: 0.3
+  Query 33 Recall@100: 0.3
+  Query 34 Recall@100: 0.3
+  Query 35 Recall@100: 0.3
+  Query 36 Recall@100: 0.3
+  Query 37 Recall@100: 0.3
+  Query 38 Recall@100: 0.3
+  Query 39 Recall@100: 0.3
+  Query 40 Recall@100: 0.3
+  Query 41 Recall@100: 0.3
+  Query 42 Recall@100: 0.3
+  Query 43 Recall@100: 0.3
+  Query 44 Recall@100: 0.3
+  Query 45 Recall@100: 0.3
+  Query 46 Recall@100: 0.3
+  Query 47 Recall@100: 0.3
+  Query 48 Recall@100: 0.3
+  Query 49 Recall@100: 0.3
+  Query 50 Recall@100: 0.3
+  Query 51 Recall@100: 0.3
+  Query 52 Recall@100: 0.3
+  Query 53 Recall@100: 0.3
+  Query 54 Recall@100: 0.3
+  Query 55 Recall@100: 0.3
+  Query 56 Recall@100: 0.3
+  Query 57 Recall@100: 0.3
+  Query 58 Recall@100: 0.3
+  Query 59 Recall@100: 0.3
+  Query 60 Recall@100: 0.3
+  Query 61 Recall@100: 0.3
+  Query 62 Recall@100: 0.3
+  Query 63 Recall@100: 0.3
+  Query 64 Recall@100: 0.3
+  Query 65 Recall@100: 0.3
+  Query 66 Recall@100: 0.3
+  Query 67 Recall@100: 0.3
+  Query 68 Recall@100: 0.3
+  Query 69 Recall@100: 0.3
+  Query 70 Recall@100: 0.3
+  Query 71 Recall@100: 0.3
+  Query 72 Recall@100: 0.3
+  Query 73 Recall@100: 0.3
+  Query 74 Recall@100: 0.3
+  Query 75 Recall@100: 0.3
+  Query 76 Recall@100: 0.3
+  Query 77 Recall@100: 0.3
+  Query 78 Recall@100: 0.3
+  Query 79 Recall@100: 0.3
+  Query 80 Recall@100: 0.3
+  Query 81 Recall@100: 0.3
+  Query 82 Recall@100: 0.3
+  Query 83 Recall@100: 0.3
+  Query 84 Recall@100: 0.3
+  Query 85 Recall@100: 0.3
+  Query 86 Recall@100: 0.3
+  Query 87 Recall@100: 0.3
+  Query 88 Recall@100: 0.3
+  Query 89 Recall@100: 0.3
+  Query 90 Recall@100: 0.3
+  Query 91 Recall@100: 0.3
+  Query 92 Recall@100: 0.3
+  Query 93 Recall@100: 0.3
+  Query 94 Recall@100: 0.3
+  Query 95 Recall@100: 0.3
+  Query 96 Recall@100: 0.3
+  Query 97 Recall@100: 0.3
+  Query 98 Recall@100: 0.3
+  Query 99 Recall@100: 0.3
+  Query 100 Recall@100: 0.3
+  Query 101 Recall@100: 0.3
+  Query 102 Recall@100: 0.3
+  Query 103 Recall@100: 0.3
+  Query 104 Recall@100: 0.3
+  Query 105 Recall@100: 0.3
+  Query 106 Recall@100: 0.3
+  Query 107 Recall@100: 0.3
+  Query 108 Recall@100: 0.3
+  Query 109 Recall@100: 0.3
+  Query 110 Recall@100: 0.3
+  Query 111 Recall@100: 0.3
+  Query 112 Recall@100: 0.3
+  Query 113 Recall@100: 0.3
+  Query 114 Recall@100: 0.3
+  Query 115 Recall@100: 0.3
+  Query 116 Recall@100: 0.3
+  Query 117 Recall@100: 0.3
+  Query 118 Recall@100: 0.3
+  Query 119 Recall@100: 0.3
+  Query 120 Recall@100: 0.3
+  Query 121 Recall@100: 0.3
+  Query 122 Recall@100: 0.3
+  Query 123 Recall@100: 0.3
+  Query 124 Recall@100: 0.3
+  Query 125 Recall@100: 0.3
+  Query 126 Recall@100: 0.3
+  Query 127 Recall@100: 0.3
+  Query 128 Recall@100: 0.3
+  Query 129 Recall@100: 0.3
+  Query 130 Recall@100: 0.3
+  Query 131 Recall@100: 0.3
+  Query 132 Recall@100: 0.3
+  Query 133 Recall@100: 0.3
+  Query 134 Recall@100: 0.3
+  Query 135 Recall@100: 0.3
+  Query 136 Recall@100: 0.3
+  Query 137 Recall@100: 0.3
+  Query 138 Recall@100: 0.3
+  Query 139 Recall@100: 0.3
+  Query 140 Recall@100: 0.3
+  Query 141 Recall@100: 0.3
+  Query 142 Recall@100: 0.3
+  Query 143 Recall@100: 0.3
+  Query 144 Recall@100: 0.3
+  Query 145 Recall@100: 0.3
+  Query 146 Recall@100: 0.3
+  Query 147 Recall@100: 0.3
+  Query 148 Recall@100: 0.3
+  Query 149 Recall@100: 0.3
+  Query 150 Recall@100: 0.3
+  Query 151 Recall@100: 0.3
+  Query 152 Recall@100: 0.3
+  Query 153 Recall@100: 0.3
+  Query 154 Recall@100: 0.3
+  Query 155 Recall@100: 0.3
+  Query 156 Recall@100: 0.3
+  Query 157 Recall@100: 0.3
+  Query 158 Recall@100: 0.3
+  Query 159 Recall@100: 0.3
+  Query 160 Recall@100: 0.3
+  Query 161 Recall@100: 0.3
+  Query 162 Recall@100: 0.3
+  Query 163 Recall@100: 0.3
+  Query 164 Recall@100: 0.3
+  Query 165 Recall@100: 0.3
+  Query 166 Recall@100: 0.3
+  Query 167 Recall@100: 0.3
+  Query 168 Recall@100: 0.3
+  Query 169 Recall@100: 0.3
+  Query 170 Recall@100: 0.3
+  Query 171 Recall@100: 0.3
+  Query 172 Recall@100: 0.3
+  Query 173 Recall@100: 0.3
+  Query 174 Recall@100: 0.3
+  Query 175 Recall@100: 0.3
+  Query 176 Recall@100: 0.3
+  Query 177 Recall@100: 0.3
+  Query 178 Recall@100: 0.3
+  Query 179 Recall@100: 0.3
+  Query 180 Recall@100: 0.3
+  Query 181 Recall@100: 0.3
+  Query 182 Recall@100: 0.3
+  Query 183 Recall@100: 0.3
+  Query 184 Recall@100: 0.3
+  Query 185 Recall@100: 0.3
+  Query 186 Recall@100: 0.3
+  Query 187 Recall@100: 0.3
+  Query 188 Recall@100: 0.3
+  Query 189 Recall@100: 0.3
+  Query 190 Recall@100: 0.3
+  Query 191 Recall@100: 0.3
+  Query 192 Recall@100: 0.3
+  Query 193 Recall@100: 0.3
+  Query 194 Recall@100: 0.3
+  Query 195 Recall@100: 0.3
+  Query 196 Recall@100: 0.3
+  Query 197 Recall@100: 0.3
+  Query 198 Recall@100: 0.3
+  Query 199 Recall@100: 0.3
+  Query 200 Recall@100: 0.3
+[PROFILER] search_phase_top_n_100: 26633 ms (0.443883 minutes)
+====================================================
+  VAL RESULTS (N = 200 random queries)
+  Average Recall@30 = 0.299999
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[PROFILER] search_phase: 80293 ms (1.33822 minutes)
+[PROFILER] total_execution: 396150 ms (6.6025 minutes)

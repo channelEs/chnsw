@@ -1,0 +1,233 @@
+-- Running vcpkg install
+Detecting compiler hash for triplet x64-linux...
+Compiler found: /usr/bin/c++
+The following packages are already installed:
+    eigen3:x64-linux@5.0.1
+    hdf5[core,zlib,szip]:x64-linux@2.1.1
+  * libaec:x64-linux@1.1.6
+  * vcpkg-cmake:x64-linux@2024-04-23
+  * vcpkg-cmake-config:x64-linux@2024-05-23
+  * zlib:x64-linux@1.3.2
+eigen3 provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(Eigen3 CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE Eigen3::Eigen)
+
+eigen3 provides pkg-config modules:
+
+  # A C++ template library for linear algebra: vectors, matrices, and related algorithms
+  eigen3
+
+hdf5 provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(hdf5 CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE hdf5::hdf5-static)
+
+hdf5 provides pkg-config modules:
+
+  # HDF5 (Hierarchical Data Format 5) Software Library
+  hdf5
+
+All requested installations completed successfully in: 63.6 us
+-- Running vcpkg install - done
+-- Configuring done (5.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/roger/ADS_MIRI/chnsw/build
+[100%] Built target main
+[PROFILER_START] total_execution
+[PROFILER_START] loading_data
+
+--- Read data (data/nq.h5) ---
+train: 2681468 x 30522
+query: 3452 x 30522
+[PROFILER_STOP] loading_data: 37206 ms (0.6201 minutes)
+
+--- Clustering | k = 128 | iterations = 5 ---
+[PROFILER_START] clustering
+Initializing 128 clusters... with 2681468 documents with 30522 dimensions
+Iteration 1/5...
+Assigning documents to clusters...
+Updating centroids...
+Centroids updated!
+Iteration 2/5...
+Assigning documents to clusters...
+Updating centroids...
+Centroids updated!
+Iteration 3/5...
+Assigning documents to clusters...
+Updating centroids...
+Centroids updated!
+Iteration 4/5...
+Assigning documents to clusters...
+Updating centroids...
+Centroids updated!
+Iteration 5/5...
+Assigning documents to clusters...
+Updating centroids...
+Centroids updated!
+[PROFILER_STOP] clustering: 7806618 ms (130.11 minutes)
+
+Clustering complete. Sample cluster sizes:
+Cluster 0: 38848 docs
+Cluster 1: 12005 docs
+Cluster 2: 22307 docs
+Cluster 3: 14016 docs
+Cluster 4: 23094 docs
+Cluster 5: 23153 docs
+Cluster 6: 32474 docs
+Cluster 7: 23185 docs
+Cluster 8: 17425 docs
+Cluster 9: 30830 docs
+Cluster 10: 16338 docs
+Cluster 11: 25548 docs
+Cluster 12: 11323 docs
+Cluster 13: 24458 docs
+Cluster 14: 25269 docs
+Cluster 15: 28988 docs
+Cluster 16: 12371 docs
+Cluster 17: 13383 docs
+Cluster 18: 9855 docs
+Cluster 19: 22754 docs
+Cluster 20: 20104 docs
+Cluster 21: 15440 docs
+Cluster 22: 18463 docs
+Cluster 23: 23169 docs
+Cluster 24: 15253 docs
+Cluster 25: 35488 docs
+Cluster 26: 26639 docs
+Cluster 27: 22315 docs
+Cluster 28: 17053 docs
+Cluster 29: 30071 docs
+Cluster 30: 20291 docs
+Cluster 31: 23694 docs
+Cluster 32: 16383 docs
+Cluster 33: 14765 docs
+Cluster 34: 18436 docs
+Cluster 35: 11525 docs
+Cluster 36: 19999 docs
+Cluster 37: 41999 docs
+Cluster 38: 12377 docs
+Cluster 39: 11483 docs
+Cluster 40: 15500 docs
+Cluster 41: 18168 docs
+Cluster 42: 19371 docs
+Cluster 43: 18432 docs
+Cluster 44: 42756 docs
+Cluster 45: 31197 docs
+Cluster 46: 21087 docs
+Cluster 47: 12396 docs
+Cluster 48: 17626 docs
+Cluster 49: 15490 docs
+Cluster 50: 15279 docs
+Cluster 51: 23074 docs
+Cluster 52: 20851 docs
+Cluster 53: 9738 docs
+Cluster 54: 20425 docs
+Cluster 55: 15748 docs
+Cluster 56: 17392 docs
+Cluster 57: 22373 docs
+Cluster 58: 40977 docs
+Cluster 59: 27475 docs
+Cluster 60: 15259 docs
+Cluster 61: 17995 docs
+Cluster 62: 20237 docs
+Cluster 63: 16720 docs
+Cluster 64: 16689 docs
+Cluster 65: 26670 docs
+Cluster 66: 23540 docs
+Cluster 67: 15780 docs
+Cluster 68: 32842 docs
+Cluster 69: 19427 docs
+Cluster 70: 9591 docs
+Cluster 71: 16687 docs
+Cluster 72: 11689 docs
+Cluster 73: 16553 docs
+Cluster 74: 16626 docs
+Cluster 75: 16457 docs
+Cluster 76: 15745 docs
+Cluster 77: 21014 docs
+Cluster 78: 10456 docs
+Cluster 79: 19409 docs
+Cluster 80: 37709 docs
+Cluster 81: 9063 docs
+Cluster 82: 25361 docs
+Cluster 83: 56604 docs
+Cluster 84: 26041 docs
+Cluster 85: 17970 docs
+Cluster 86: 24236 docs
+Cluster 87: 15694 docs
+Cluster 88: 23666 docs
+Cluster 89: 20716 docs
+Cluster 90: 11067 docs
+Cluster 91: 27520 docs
+Cluster 92: 13366 docs
+Cluster 93: 13750 docs
+Cluster 94: 17262 docs
+Cluster 95: 33867 docs
+Cluster 96: 20591 docs
+Cluster 97: 12492 docs
+Cluster 98: 7300 docs
+Cluster 99: 14916 docs
+Cluster 100: 25473 docs
+Cluster 101: 24055 docs
+Cluster 102: 15568 docs
+Cluster 103: 31478 docs
+Cluster 104: 18436 docs
+Cluster 105: 16399 docs
+Cluster 106: 25870 docs
+Cluster 107: 21748 docs
+Cluster 108: 21896 docs
+Cluster 109: 22761 docs
+Cluster 110: 15638 docs
+Cluster 111: 27209 docs
+Cluster 112: 28777 docs
+Cluster 113: 12578 docs
+Cluster 114: 14890 docs
+Cluster 115: 40307 docs
+Cluster 116: 13551 docs
+Cluster 117: 41544 docs
+Cluster 118: 22669 docs
+Cluster 119: 18491 docs
+Cluster 120: 22674 docs
+Cluster 121: 21440 docs
+Cluster 122: 16542 docs
+Cluster 123: 27097 docs
+Cluster 124: 16775 docs
+Cluster 125: 23563 docs
+Cluster 126: 22560 docs
+Cluster 127: 14976 docs
+
+--- Evaluate clustering ---
+Avg Similarity: 3.96238
+Balance Score: 8127.91
+
+--- Summary Vectors for each cluster & Indexing ---
+[PROFILER_START] computing_summaries
+[INDEXING] Computing Summary Vectors (Sketches) for 128 clusters...
+[PROFILER_STOP] computing_summaries: 16934 ms (0.282233 minutes)
+[PROFILER_START] building_index
+[INDEXING] Partitioning Inverted Lists into blocks...
+[PROFILER_STOP] building_index: 380160 ms (6.336 minutes)
+Total Summary Vectors: 128
+Total Concepts indexed: 30522
+[PROFILER_START] load_query_gold_standard
+[PROFILER_STOP] load_query_gold_standard: 148 ms (0.00246667 minutes)
+[PROFILER_START] search_phase
+
+--- Evaluating Recall@10 ---
+[PROFILER_START] search_phase_top_n_10
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_10: 13155014 ms (219.25 minutes)
+====================================================
+  VAL RESULTS (N = 3452 queries)
+  Average Recall@30 = 0.99971
+  STATUS: SUCCESS (Passed Challenge Benchmark Threshold)
+====================================================
+
+--- Evaluating Recall@30 ---
+[PROFILER_START] search_phase_top_n_30

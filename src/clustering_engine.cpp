@@ -76,12 +76,12 @@ ClusteringEngine::ClusterResult ClusteringEngine::run(
             }
         }
 
-        std::cout << "Centroids updated. Sample centroid norms: " << std::endl;
-        for (int j = 0; j < num_clusters; ++j) {
-            std::ptrdiff_t nnz_tol = (result.centroids[j].array().abs() > 1e-6f).count();
-            std::cout << "cluster " << j << " with num of documents: " << cluster_sizes[j] << " with centroid non-zero elements: " << nnz_tol << std::endl;
-        }
-        std::cout << std::endl;
+        std::cout << "Centroids updated!" << std::endl;
+        // for (int j = 0; j < num_clusters; ++j) {
+        //     std::ptrdiff_t nnz_tol = (result.centroids[j].array().abs() > 1e-6f).count();
+        //     std::cout << "cluster " << j << " with num of documents: " << cluster_sizes[j] << " with centroid non-zero elements: " << nnz_tol << std::endl;
+        // }
+        // std::cout << std::endl;
     }
 
     return result;

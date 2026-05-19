@@ -19,6 +19,7 @@ std::vector<std::pair<float, int>> SearchEngine::search(
     std::vector<float> query_dense(n_dims, 0.0f);
     std::vector<std::pair<int, float>> query_terms;
     
+    // convert sparse query into dense + list of (concept_id, weight) for upper bound calculations
     for (Eigen::SparseMatrix<float, Eigen::RowMajor>::InnerIterator it(query_matrix, q_idx); it; ++it) {
         query_dense[it.index()] = it.value();
         query_terms.push_back({it.index(), it.value()});
@@ -36,6 +37,7 @@ std::vector<std::pair<float, int>> SearchEngine::search(
         }
     }
 
+    // Format: (score, doc_id). The minimum score of our Top-K sits on top as our threshold T.
     std::priority_queue<std::pair<float, int>, 
                         std::vector<std::pair<float, int>>, 
                         std::greater<std::pair<float, int>>> min_heap;
@@ -58,8 +60,10 @@ std::vector<std::pair<float, int>> SearchEngine::search(
             int c_id = block.cluster_id;
             float ub = cluster_ub[c_id];
 
+            // get the WORST score in the current priority queue
             float threshold = min_heap.empty() ? 0.0f : min_heap.top().first;
 
+            // If the upper bound < WORST score, SKIP THE WHOLE BLOCK!
             if (ub >= threshold * heap_factor) {
                 for (int doc_id : block.doc_ids) {
                     if (!visited[doc_id]) {
