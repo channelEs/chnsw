@@ -1,9 +1,9 @@
-#include "metrics_utils.h"
+#include "utils/metrics.h"
 #include <algorithm>
 
 ClusterEvaluator::Metrics ClusterEvaluator::evaluate(
     const Eigen::SparseMatrix<float, Eigen::RowMajor>& data,
-    const ClusteringEngine::ClusterResult& result
+    const ClusterResult& result
 ) {
     int n_docs = data.rows();
     int n_clusters = result.centroids.size();

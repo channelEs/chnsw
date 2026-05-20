@@ -1,3 +1,5 @@
+#ifndef SEARCH_ENGINE_H
+#define SEARCH_ENGINE_H
 #pragma once
 
 #include <Eigen/Sparse>
@@ -7,6 +9,8 @@
 
 class SearchEngine {
 public:
+    virtual ~SearchEngine() = default;
+    
     /**
      * @brief Executes a Top-K search for a single query using Summary Vector block pruning.
      * * @param train The forward index (collection of sparse document vectors).
@@ -18,7 +22,7 @@ public:
      * @param heap_factor Pruning aggressiveness (1.0 = strict upper bound, < 1.0 = approximate/faster).
      * @return std::vector<std::pair<float, int>> Top-K results as pairs of (score, doc_id) sorted descending.
      */
-    std::vector<std::pair<float, int>> search(
+    virtual std::vector<std::pair<float, int>> search(
         const Eigen::SparseMatrix<float, Eigen::RowMajor>& train,
         const std::vector<std::vector<InvertedBlock>>& inverted_index,
         const std::vector<Eigen::VectorXf>& summary_vectors,
@@ -26,5 +30,7 @@ public:
         int q_idx,
         int k,
         float heap_factor = 1.0f
-    );
+    ) = 0;
 };
+
+#endif

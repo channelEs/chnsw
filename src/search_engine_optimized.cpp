@@ -1,9 +1,9 @@
-#include "search_engine.h"
+#include "search_engine_optimized.h"
 #include <queue>
 #include <algorithm>
 #include <numeric>
 
-std::vector<std::pair<float, int>> SearchEngine::search(
+std::vector<std::pair<float, int>> SearchEngineOptimized::search(
     const Eigen::SparseMatrix<float, Eigen::RowMajor>& train,
     const std::vector<std::vector<InvertedBlock>>& inverted_index,
     const std::vector<Eigen::VectorXf>& summary_vectors,
@@ -44,6 +44,8 @@ std::vector<std::pair<float, int>> SearchEngine::search(
 
     std::vector<bool> visited(n_docs, false);
 
+    int num_of_docs_visited = 0;
+
     for (const auto& [concept_id, q_weight] : query_terms) {
         if (concept_id >= inverted_index.size()) continue;
 
@@ -68,6 +70,7 @@ std::vector<std::pair<float, int>> SearchEngine::search(
                 for (int doc_id : block.doc_ids) {
                     if (!visited[doc_id]) {
                         visited[doc_id] = true;
+                        ++num_of_docs_visited;
 
                         float exact_score = 0.0f;
                         for (Eigen::SparseMatrix<float, Eigen::RowMajor>::InnerIterator doc_it(train, doc_id); doc_it; ++doc_it) {
@@ -79,6 +82,9 @@ std::vector<std::pair<float, int>> SearchEngine::search(
                         } else if (exact_score > min_heap.top().first) {
                             min_heap.pop();
                             min_heap.push({exact_score, doc_id});
+                        }
+                        if (num_of_docs_visited > 30000) {
+                            break;
                         }
                     }
                 }

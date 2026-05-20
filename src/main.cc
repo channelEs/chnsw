@@ -1,10 +1,13 @@
 #include <iostream>
 #include "utils/hdf5_sparse_loader.h"
 #include "utils/types.h"
+#include "utils/metrics.h"
 #include "clustering_engine.h"
-#include "metrics_utils.h"
 #include "index_manager.h"
+
 #include "search_engine.h"
+#include "search_engine_simple.h"
+#include "search_engine_optimized.h"
 
 #include <vector>
 #include <numeric>
@@ -30,13 +33,13 @@ int main() {
         std::cout << "query: " << query.rows() << " x " << query.cols() << "\n";
         profiler.stop("loading_data");
         
-        int k_clusters = 128; // Start small for testing
-        int iterations = 5;
+        int k_clusters = 1000; // Start small for testing
+        int iterations = 10;
         
         std::cout << "\n--- Clustering | k = " << k_clusters << " | iterations = " << iterations << " ---" << std::endl;
         ClusteringEngine engine;
         profiler.start("clustering");
-        auto result = engine.run(train, k_clusters, iterations);
+        auto result = engine.run(train, k_clusters,  profiler, iterations);
         profiler.stop("clustering");
         
         std::vector<int> counts(k_clusters, 0);
@@ -76,11 +79,13 @@ int main() {
         // std::shuffle(random_query_indices.begin(), random_query_indices.end(), g);
         // random_query_indices.resize(num_eval_queries);
 
-        SearchEngine search_engine;
-        int top_k_demand = 30;
+        // SearchEngineSimple search_engine = SearchEngineSimple();
+        SearchEngineOptimized search_engine;
+
+        SearchEngine& search_engine_ref = search_engine; // Polymorphic reference for easy switching between implementations
         float pruning_aggressiveness = 1.0f; // 1.0f preserves exact ceiling limits
         std::vector<std::vector<std::pair<float, int>>> evaluation_results(num_eval_queries);
-
+        
         profiler.start("load_query_gold_standard");
         auto gold_standard = loader.loadGoldStandard("otest/knns");
         profiler.stop("load_query_gold_standard");
@@ -94,7 +99,7 @@ int main() {
             float total_recall = 0.0f;
             profiler.start("search_phase_top_n_" + std::to_string(top_n_to_check));
             for (int actual_query_idx = 0; actual_query_idx < num_eval_queries; ++actual_query_idx) {
-                evaluation_results[actual_query_idx] = search_engine.search(train, inverted_index, summaries, query, actual_query_idx, top_k_demand, pruning_aggressiveness);
+                evaluation_results[actual_query_idx] =  search_engine_ref.search(train, inverted_index, summaries, query, actual_query_idx, top_n_to_check, pruning_aggressiveness);
                 const auto& hits = evaluation_results[actual_query_idx];
                 
                 // std::cout << "--- Top " << top_n_to_check << " Evaluation Evaluation for Query " << actual_query_idx << " ---\n";
@@ -133,7 +138,7 @@ int main() {
             
             std::cout << "====================================================\n";
             std::cout << "  VAL RESULTS (N = " << num_eval_queries << " queries)\n";
-            std::cout << "  Average Recall@" << top_k_demand << " = " << average_recall << "\n";
+            std::cout << "  Average Recall@" << top_n_to_check << " = " << average_recall << "\n";
             if (average_recall >= 0.90f) {
                 std::cout << "  STATUS: SUCCESS (Passed Challenge Benchmark Threshold)\n";
             } else {

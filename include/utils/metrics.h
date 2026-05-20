@@ -6,7 +6,6 @@
 #include <vector>
 #include <numeric>
 #include <cmath>
-#include "clustering_engine.h"
 #include "utils/types.h"
 
 class ExecutionProfiler {
@@ -38,6 +37,6 @@ public:
 
     static Metrics evaluate(
         const Eigen::SparseMatrix<float, Eigen::RowMajor>& data,
-        const ClusteringEngine::ClusterResult& result
+        const ClusterResult& result
     );
 };

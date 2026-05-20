@@ -231,3 +231,28 @@ Total Concepts indexed: 30522
 
 --- Evaluating Recall@30 ---
 [PROFILER_START] search_phase_top_n_30
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_30: 13161791 ms (219.363 minutes)
+====================================================
+  VAL RESULTS (N = 3452 queries)
+  Average Recall@30 = 0.999865
+  STATUS: SUCCESS (Passed Challenge Benchmark Threshold)
+====================================================
+
+--- Evaluating Recall@100 ---
+[PROFILER_START] search_phase_top_n_100
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_100: 13157991 ms (219.3 minutes)
+====================================================
+  VAL RESULTS (N = 3452 queries)
+  Average Recall@30 = 0.299992
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[PROFILER_STOP] search_phase: 39474797 ms (657.913 minutes)
+[PROFILER_STOP] total_execution: 47727591 ms (795.46 minutes)
