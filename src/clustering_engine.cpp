@@ -32,8 +32,8 @@ ClusterResult ClusteringEngine::run(
 
     // 2. Iterative Clustering
     for (int iter = 0; iter < max_iterations; ++iter) {
-        profiler.start("clustering_iteration_" + std::to_string(iter + 1));
         std::cout << "\n--- Iteration " << (iter + 1) << "/" << max_iterations << " ---" << std::endl;
+        profiler.start("clustering_iteration_" + std::to_string(iter + 1));
         
         // =====================================================================
         // Step A: Assignment (Parallelized across 8 Cores)

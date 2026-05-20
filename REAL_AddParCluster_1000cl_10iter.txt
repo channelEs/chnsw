@@ -1,0 +1,1190 @@
+-- Running vcpkg install
+Detecting compiler hash for triplet x64-linux...
+Compiler found: /usr/bin/c++
+The following packages are already installed:
+    eigen3:x64-linux@5.0.1
+    hdf5[core,zlib,szip]:x64-linux@2.1.1
+  * libaec:x64-linux@1.1.6
+  * vcpkg-cmake:x64-linux@2024-04-23
+  * vcpkg-cmake-config:x64-linux@2024-05-23
+  * zlib:x64-linux@1.3.2
+eigen3 provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(Eigen3 CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE Eigen3::Eigen)
+
+eigen3 provides pkg-config modules:
+
+  # A C++ template library for linear algebra: vectors, matrices, and related algorithms
+  eigen3
+
+hdf5 provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(hdf5 CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE hdf5::hdf5-static)
+
+hdf5 provides pkg-config modules:
+
+  # HDF5 (Hierarchical Data Format 5) Software Library
+  hdf5
+
+All requested installations completed successfully in: 69.3 us
+-- Running vcpkg install - done
+-- Configuring done (4.5s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/roger/ADS_MIRI/chnsw/build
+[100%] Built target main
+[PROFILER_START] total_execution
+[PROFILER_START] loading_data
+
+--- Read data (data/nq.h5) ---
+train: 2681468 x 30522
+query: 3452 x 30522
+[PROFILER_STOP] loading_data: 14064 ms (0.2344 minutes)
+
+--- Clustering | k = 1000 | iterations = 10 ---
+[PROFILER_START] clustering
+Initializing 1000 clusters... with 2681468 documents with 30522 dimensions
+[PROFILER_START] clustering_iteration_1
+
+--- Iteration 1/10 ---
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_1: 509094 ms (8.4849 minutes)
+[PROFILER_START] clustering_iteration_2
+
+--- Iteration 2/10 ---
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_2: 487006 ms (8.11677 minutes)
+[PROFILER_START] clustering_iteration_3
+
+--- Iteration 3/10 ---
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_3: 477759 ms (7.96265 minutes)
+[PROFILER_START] clustering_iteration_4
+
+--- Iteration 4/10 ---
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_4: 481752 ms (8.0292 minutes)
+[PROFILER_START] clustering_iteration_5
+
+--- Iteration 5/10 ---
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_5: 485641 ms (8.09402 minutes)
+[PROFILER_START] clustering_iteration_6
+
+--- Iteration 6/10 ---
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_6: 496099 ms (8.26832 minutes)
+[PROFILER_START] clustering_iteration_7
+
+--- Iteration 7/10 ---
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_7: 495707 ms (8.26178 minutes)
+[PROFILER_START] clustering_iteration_8
+
+--- Iteration 8/10 ---
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_8: 481502 ms (8.02503 minutes)
+[PROFILER_START] clustering_iteration_9
+
+--- Iteration 9/10 ---
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_9: 494670 ms (8.2445 minutes)
+[PROFILER_START] clustering_iteration_10
+
+--- Iteration 10/10 ---
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_10: 487077 ms (8.11795 minutes)
+[PROFILER_STOP] clustering: 4896386 ms (81.6064 minutes)
+
+Clustering complete. Sample cluster sizes:
+Cluster 0: 1928 docs
+Cluster 1: 1690 docs
+Cluster 2: 3895 docs
+Cluster 3: 4015 docs
+Cluster 4: 3319 docs
+Cluster 5: 2501 docs
+Cluster 6: 4867 docs
+Cluster 7: 1067 docs
+Cluster 8: 5677 docs
+Cluster 9: 2181 docs
+Cluster 10: 2994 docs
+Cluster 11: 3834 docs
+Cluster 12: 3499 docs
+Cluster 13: 2016 docs
+Cluster 14: 3185 docs
+Cluster 15: 3798 docs
+Cluster 16: 2633 docs
+Cluster 17: 3987 docs
+Cluster 18: 988 docs
+Cluster 19: 2969 docs
+Cluster 20: 3693 docs
+Cluster 21: 6110 docs
+Cluster 22: 1174 docs
+Cluster 23: 1005 docs
+Cluster 24: 2448 docs
+Cluster 25: 3203 docs
+Cluster 26: 2021 docs
+Cluster 27: 2511 docs
+Cluster 28: 2411 docs
+Cluster 29: 3611 docs
+Cluster 30: 1864 docs
+Cluster 31: 3883 docs
+Cluster 32: 1221 docs
+Cluster 33: 2721 docs
+Cluster 34: 1957 docs
+Cluster 35: 2397 docs
+Cluster 36: 1501 docs
+Cluster 37: 2492 docs
+Cluster 38: 1150 docs
+Cluster 39: 1487 docs
+Cluster 40: 2195 docs
+Cluster 41: 2509 docs
+Cluster 42: 2046 docs
+Cluster 43: 1782 docs
+Cluster 44: 3357 docs
+Cluster 45: 2847 docs
+Cluster 46: 4011 docs
+Cluster 47: 5104 docs
+Cluster 48: 5284 docs
+Cluster 49: 1826 docs
+Cluster 50: 1726 docs
+Cluster 51: 3614 docs
+Cluster 52: 1295 docs
+Cluster 53: 1834 docs
+Cluster 54: 1886 docs
+Cluster 55: 1813 docs
+Cluster 56: 2114 docs
+Cluster 57: 1195 docs
+Cluster 58: 2387 docs
+Cluster 59: 2691 docs
+Cluster 60: 3743 docs
+Cluster 61: 3020 docs
+Cluster 62: 3454 docs
+Cluster 63: 989 docs
+Cluster 64: 2594 docs
+Cluster 65: 2867 docs
+Cluster 66: 1262 docs
+Cluster 67: 2888 docs
+Cluster 68: 1723 docs
+Cluster 69: 1689 docs
+Cluster 70: 2184 docs
+Cluster 71: 2861 docs
+Cluster 72: 2223 docs
+Cluster 73: 1836 docs
+Cluster 74: 2143 docs
+Cluster 75: 2010 docs
+Cluster 76: 2812 docs
+Cluster 77: 2163 docs
+Cluster 78: 2197 docs
+Cluster 79: 2959 docs
+Cluster 80: 1616 docs
+Cluster 81: 1803 docs
+Cluster 82: 3113 docs
+Cluster 83: 3137 docs
+Cluster 84: 5546 docs
+Cluster 85: 3145 docs
+Cluster 86: 3390 docs
+Cluster 87: 4858 docs
+Cluster 88: 2362 docs
+Cluster 89: 1902 docs
+Cluster 90: 2268 docs
+Cluster 91: 1975 docs
+Cluster 92: 1900 docs
+Cluster 93: 2206 docs
+Cluster 94: 1994 docs
+Cluster 95: 2374 docs
+Cluster 96: 2172 docs
+Cluster 97: 2302 docs
+Cluster 98: 2245 docs
+Cluster 99: 1941 docs
+Cluster 100: 2206 docs
+Cluster 101: 4822 docs
+Cluster 102: 2840 docs
+Cluster 103: 2461 docs
+Cluster 104: 1929 docs
+Cluster 105: 2515 docs
+Cluster 106: 2320 docs
+Cluster 107: 3109 docs
+Cluster 108: 3286 docs
+Cluster 109: 2101 docs
+Cluster 110: 2974 docs
+Cluster 111: 1458 docs
+Cluster 112: 1655 docs
+Cluster 113: 3460 docs
+Cluster 114: 2591 docs
+Cluster 115: 2031 docs
+Cluster 116: 740 docs
+Cluster 117: 3828 docs
+Cluster 118: 3211 docs
+Cluster 119: 3633 docs
+Cluster 120: 2325 docs
+Cluster 121: 4133 docs
+Cluster 122: 1486 docs
+Cluster 123: 2766 docs
+Cluster 124: 2587 docs
+Cluster 125: 3360 docs
+Cluster 126: 1932 docs
+Cluster 127: 4170 docs
+Cluster 128: 2575 docs
+Cluster 129: 1460 docs
+Cluster 130: 2502 docs
+Cluster 131: 4334 docs
+Cluster 132: 1563 docs
+Cluster 133: 1448 docs
+Cluster 134: 2459 docs
+Cluster 135: 3556 docs
+Cluster 136: 1898 docs
+Cluster 137: 1791 docs
+Cluster 138: 1277 docs
+Cluster 139: 2566 docs
+Cluster 140: 3635 docs
+Cluster 141: 1894 docs
+Cluster 142: 1964 docs
+Cluster 143: 2841 docs
+Cluster 144: 2298 docs
+Cluster 145: 2357 docs
+Cluster 146: 2294 docs
+Cluster 147: 2657 docs
+Cluster 148: 2719 docs
+Cluster 149: 5761 docs
+Cluster 150: 2045 docs
+Cluster 151: 1721 docs
+Cluster 152: 2034 docs
+Cluster 153: 1128 docs
+Cluster 154: 1507 docs
+Cluster 155: 3339 docs
+Cluster 156: 2321 docs
+Cluster 157: 1717 docs
+Cluster 158: 2715 docs
+Cluster 159: 2658 docs
+Cluster 160: 1824 docs
+Cluster 161: 2969 docs
+Cluster 162: 2148 docs
+Cluster 163: 2270 docs
+Cluster 164: 1477 docs
+Cluster 165: 2155 docs
+Cluster 166: 1152 docs
+Cluster 167: 3574 docs
+Cluster 168: 2007 docs
+Cluster 169: 2623 docs
+Cluster 170: 1489 docs
+Cluster 171: 2497 docs
+Cluster 172: 2545 docs
+Cluster 173: 1719 docs
+Cluster 174: 6193 docs
+Cluster 175: 3079 docs
+Cluster 176: 3097 docs
+Cluster 177: 1205 docs
+Cluster 178: 2949 docs
+Cluster 179: 4448 docs
+Cluster 180: 2378 docs
+Cluster 181: 2391 docs
+Cluster 182: 2656 docs
+Cluster 183: 1938 docs
+Cluster 184: 2520 docs
+Cluster 185: 2307 docs
+Cluster 186: 2102 docs
+Cluster 187: 2162 docs
+Cluster 188: 3445 docs
+Cluster 189: 2436 docs
+Cluster 190: 2820 docs
+Cluster 191: 3501 docs
+Cluster 192: 2825 docs
+Cluster 193: 4528 docs
+Cluster 194: 2762 docs
+Cluster 195: 3610 docs
+Cluster 196: 1654 docs
+Cluster 197: 4115 docs
+Cluster 198: 3642 docs
+Cluster 199: 1905 docs
+Cluster 200: 2356 docs
+Cluster 201: 2934 docs
+Cluster 202: 2214 docs
+Cluster 203: 3059 docs
+Cluster 204: 2110 docs
+Cluster 205: 2812 docs
+Cluster 206: 3710 docs
+Cluster 207: 2789 docs
+Cluster 208: 3215 docs
+Cluster 209: 3620 docs
+Cluster 210: 3043 docs
+Cluster 211: 2774 docs
+Cluster 212: 2535 docs
+Cluster 213: 1617 docs
+Cluster 214: 2791 docs
+Cluster 215: 1994 docs
+Cluster 216: 2310 docs
+Cluster 217: 3639 docs
+Cluster 218: 4388 docs
+Cluster 219: 1947 docs
+Cluster 220: 3098 docs
+Cluster 221: 2929 docs
+Cluster 222: 2768 docs
+Cluster 223: 1841 docs
+Cluster 224: 2153 docs
+Cluster 225: 2739 docs
+Cluster 226: 1799 docs
+Cluster 227: 2974 docs
+Cluster 228: 2448 docs
+Cluster 229: 2128 docs
+Cluster 230: 2660 docs
+Cluster 231: 3794 docs
+Cluster 232: 4054 docs
+Cluster 233: 3859 docs
+Cluster 234: 2098 docs
+Cluster 235: 7858 docs
+Cluster 236: 1861 docs
+Cluster 237: 2982 docs
+Cluster 238: 5808 docs
+Cluster 239: 1312 docs
+Cluster 240: 2520 docs
+Cluster 241: 1196 docs
+Cluster 242: 2066 docs
+Cluster 243: 3660 docs
+Cluster 244: 1735 docs
+Cluster 245: 3394 docs
+Cluster 246: 1678 docs
+Cluster 247: 3138 docs
+Cluster 248: 2034 docs
+Cluster 249: 3695 docs
+Cluster 250: 1810 docs
+Cluster 251: 2492 docs
+Cluster 252: 3495 docs
+Cluster 253: 3564 docs
+Cluster 254: 1891 docs
+Cluster 255: 3655 docs
+Cluster 256: 5587 docs
+Cluster 257: 775 docs
+Cluster 258: 4087 docs
+Cluster 259: 2619 docs
+Cluster 260: 3161 docs
+Cluster 261: 2103 docs
+Cluster 262: 2841 docs
+Cluster 263: 3268 docs
+Cluster 264: 4069 docs
+Cluster 265: 3075 docs
+Cluster 266: 1258 docs
+Cluster 267: 1814 docs
+Cluster 268: 3051 docs
+Cluster 269: 2936 docs
+Cluster 270: 3139 docs
+Cluster 271: 832 docs
+Cluster 272: 3181 docs
+Cluster 273: 2694 docs
+Cluster 274: 2600 docs
+Cluster 275: 2876 docs
+Cluster 276: 2947 docs
+Cluster 277: 2175 docs
+Cluster 278: 2473 docs
+Cluster 279: 4685 docs
+Cluster 280: 1747 docs
+Cluster 281: 2842 docs
+Cluster 282: 1732 docs
+Cluster 283: 806 docs
+Cluster 284: 3109 docs
+Cluster 285: 3765 docs
+Cluster 286: 3391 docs
+Cluster 287: 2183 docs
+Cluster 288: 3592 docs
+Cluster 289: 1978 docs
+Cluster 290: 1655 docs
+Cluster 291: 1827 docs
+Cluster 292: 2871 docs
+Cluster 293: 1995 docs
+Cluster 294: 2390 docs
+Cluster 295: 4434 docs
+Cluster 296: 1984 docs
+Cluster 297: 1042 docs
+Cluster 298: 2460 docs
+Cluster 299: 1886 docs
+Cluster 300: 3832 docs
+Cluster 301: 3719 docs
+Cluster 302: 2519 docs
+Cluster 303: 2171 docs
+Cluster 304: 3054 docs
+Cluster 305: 1962 docs
+Cluster 306: 2299 docs
+Cluster 307: 2675 docs
+Cluster 308: 3674 docs
+Cluster 309: 2614 docs
+Cluster 310: 1187 docs
+Cluster 311: 2904 docs
+Cluster 312: 2186 docs
+Cluster 313: 3981 docs
+Cluster 314: 5472 docs
+Cluster 315: 830 docs
+Cluster 316: 2659 docs
+Cluster 317: 2793 docs
+Cluster 318: 1147 docs
+Cluster 319: 1315 docs
+Cluster 320: 2611 docs
+Cluster 321: 3918 docs
+Cluster 322: 3062 docs
+Cluster 323: 3364 docs
+Cluster 324: 2921 docs
+Cluster 325: 3215 docs
+Cluster 326: 4083 docs
+Cluster 327: 2790 docs
+Cluster 328: 2918 docs
+Cluster 329: 2600 docs
+Cluster 330: 1593 docs
+Cluster 331: 3700 docs
+Cluster 332: 2433 docs
+Cluster 333: 1604 docs
+Cluster 334: 1593 docs
+Cluster 335: 1668 docs
+Cluster 336: 3162 docs
+Cluster 337: 2154 docs
+Cluster 338: 2137 docs
+Cluster 339: 3243 docs
+Cluster 340: 3179 docs
+Cluster 341: 2729 docs
+Cluster 342: 3715 docs
+Cluster 343: 1169 docs
+Cluster 344: 4944 docs
+Cluster 345: 3537 docs
+Cluster 346: 5518 docs
+Cluster 347: 1738 docs
+Cluster 348: 1874 docs
+Cluster 349: 2118 docs
+Cluster 350: 162 docs
+Cluster 351: 1626 docs
+Cluster 352: 734 docs
+Cluster 353: 3046 docs
+Cluster 354: 3318 docs
+Cluster 355: 2325 docs
+Cluster 356: 2693 docs
+Cluster 357: 2017 docs
+Cluster 358: 3956 docs
+Cluster 359: 1980 docs
+Cluster 360: 2741 docs
+Cluster 361: 2794 docs
+Cluster 362: 6182 docs
+Cluster 363: 3646 docs
+Cluster 364: 431 docs
+Cluster 365: 3524 docs
+Cluster 366: 628 docs
+Cluster 367: 443 docs
+Cluster 368: 2177 docs
+Cluster 369: 2953 docs
+Cluster 370: 1262 docs
+Cluster 371: 2265 docs
+Cluster 372: 1557 docs
+Cluster 373: 1670 docs
+Cluster 374: 2213 docs
+Cluster 375: 2897 docs
+Cluster 376: 1795 docs
+Cluster 377: 1641 docs
+Cluster 378: 3897 docs
+Cluster 379: 2988 docs
+Cluster 380: 1883 docs
+Cluster 381: 3230 docs
+Cluster 382: 2162 docs
+Cluster 383: 2007 docs
+Cluster 384: 2086 docs
+Cluster 385: 2142 docs
+Cluster 386: 3077 docs
+Cluster 387: 1952 docs
+Cluster 388: 4460 docs
+Cluster 389: 3119 docs
+Cluster 390: 2288 docs
+Cluster 391: 2945 docs
+Cluster 392: 2644 docs
+Cluster 393: 2118 docs
+Cluster 394: 1928 docs
+Cluster 395: 2903 docs
+Cluster 396: 2271 docs
+Cluster 397: 1980 docs
+Cluster 398: 1713 docs
+Cluster 399: 1415 docs
+Cluster 400: 1977 docs
+Cluster 401: 2429 docs
+Cluster 402: 2095 docs
+Cluster 403: 1975 docs
+Cluster 404: 2236 docs
+Cluster 405: 2200 docs
+Cluster 406: 2295 docs
+Cluster 407: 2653 docs
+Cluster 408: 1772 docs
+Cluster 409: 3053 docs
+Cluster 410: 2474 docs
+Cluster 411: 2437 docs
+Cluster 412: 1030 docs
+Cluster 413: 2382 docs
+Cluster 414: 3776 docs
+Cluster 415: 2793 docs
+Cluster 416: 2964 docs
+Cluster 417: 1272 docs
+Cluster 418: 2425 docs
+Cluster 419: 4284 docs
+Cluster 420: 1898 docs
+Cluster 421: 5273 docs
+Cluster 422: 4279 docs
+Cluster 423: 4832 docs
+Cluster 424: 2028 docs
+Cluster 425: 3349 docs
+Cluster 426: 2604 docs
+Cluster 427: 2086 docs
+Cluster 428: 2934 docs
+Cluster 429: 2805 docs
+Cluster 430: 2353 docs
+Cluster 431: 2778 docs
+Cluster 432: 1966 docs
+Cluster 433: 2711 docs
+Cluster 434: 2519 docs
+Cluster 435: 1987 docs
+Cluster 436: 2511 docs
+Cluster 437: 2789 docs
+Cluster 438: 2681 docs
+Cluster 439: 1595 docs
+Cluster 440: 2191 docs
+Cluster 441: 3329 docs
+Cluster 442: 1277 docs
+Cluster 443: 2960 docs
+Cluster 444: 1938 docs
+Cluster 445: 4114 docs
+Cluster 446: 1972 docs
+Cluster 447: 2201 docs
+Cluster 448: 3340 docs
+Cluster 449: 3799 docs
+Cluster 450: 1832 docs
+Cluster 451: 1474 docs
+Cluster 452: 2402 docs
+Cluster 453: 2225 docs
+Cluster 454: 1338 docs
+Cluster 455: 3028 docs
+Cluster 456: 6415 docs
+Cluster 457: 1783 docs
+Cluster 458: 2703 docs
+Cluster 459: 2231 docs
+Cluster 460: 5896 docs
+Cluster 461: 2534 docs
+Cluster 462: 2762 docs
+Cluster 463: 3241 docs
+Cluster 464: 4343 docs
+Cluster 465: 1833 docs
+Cluster 466: 3019 docs
+Cluster 467: 3972 docs
+Cluster 468: 2326 docs
+Cluster 469: 1985 docs
+Cluster 470: 2536 docs
+Cluster 471: 353 docs
+Cluster 472: 1187 docs
+Cluster 473: 985 docs
+Cluster 474: 2177 docs
+Cluster 475: 1956 docs
+Cluster 476: 2645 docs
+Cluster 477: 2842 docs
+Cluster 478: 2381 docs
+Cluster 479: 3268 docs
+Cluster 480: 4224 docs
+Cluster 481: 3151 docs
+Cluster 482: 2161 docs
+Cluster 483: 3268 docs
+Cluster 484: 1560 docs
+Cluster 485: 2969 docs
+Cluster 486: 2037 docs
+Cluster 487: 3317 docs
+Cluster 488: 2505 docs
+Cluster 489: 2069 docs
+Cluster 490: 2717 docs
+Cluster 491: 1177 docs
+Cluster 492: 4499 docs
+Cluster 493: 1605 docs
+Cluster 494: 1130 docs
+Cluster 495: 2108 docs
+Cluster 496: 3335 docs
+Cluster 497: 1811 docs
+Cluster 498: 1749 docs
+Cluster 499: 3321 docs
+Cluster 500: 2900 docs
+Cluster 501: 2700 docs
+Cluster 502: 2785 docs
+Cluster 503: 2525 docs
+Cluster 504: 2955 docs
+Cluster 505: 6117 docs
+Cluster 506: 1723 docs
+Cluster 507: 3779 docs
+Cluster 508: 2102 docs
+Cluster 509: 2732 docs
+Cluster 510: 2805 docs
+Cluster 511: 2652 docs
+Cluster 512: 4019 docs
+Cluster 513: 1194 docs
+Cluster 514: 2915 docs
+Cluster 515: 2164 docs
+Cluster 516: 2524 docs
+Cluster 517: 2786 docs
+Cluster 518: 5029 docs
+Cluster 519: 2422 docs
+Cluster 520: 4434 docs
+Cluster 521: 1835 docs
+Cluster 522: 2485 docs
+Cluster 523: 2926 docs
+Cluster 524: 3517 docs
+Cluster 525: 2114 docs
+Cluster 526: 2180 docs
+Cluster 527: 2562 docs
+Cluster 528: 2391 docs
+Cluster 529: 2399 docs
+Cluster 530: 1231 docs
+Cluster 531: 1772 docs
+Cluster 532: 3240 docs
+Cluster 533: 1268 docs
+Cluster 534: 2225 docs
+Cluster 535: 1941 docs
+Cluster 536: 2889 docs
+Cluster 537: 1673 docs
+Cluster 538: 3484 docs
+Cluster 539: 3613 docs
+Cluster 540: 4555 docs
+Cluster 541: 2075 docs
+Cluster 542: 1955 docs
+Cluster 543: 2451 docs
+Cluster 544: 4137 docs
+Cluster 545: 3093 docs
+Cluster 546: 4044 docs
+Cluster 547: 2894 docs
+Cluster 548: 2861 docs
+Cluster 549: 3861 docs
+Cluster 550: 2154 docs
+Cluster 551: 3111 docs
+Cluster 552: 1640 docs
+Cluster 553: 1934 docs
+Cluster 554: 4160 docs
+Cluster 555: 2228 docs
+Cluster 556: 3362 docs
+Cluster 557: 2477 docs
+Cluster 558: 4813 docs
+Cluster 559: 6036 docs
+Cluster 560: 2216 docs
+Cluster 561: 3782 docs
+Cluster 562: 2661 docs
+Cluster 563: 1908 docs
+Cluster 564: 2867 docs
+Cluster 565: 2479 docs
+Cluster 566: 1444 docs
+Cluster 567: 3002 docs
+Cluster 568: 3877 docs
+Cluster 569: 4258 docs
+Cluster 570: 2363 docs
+Cluster 571: 1570 docs
+Cluster 572: 1018 docs
+Cluster 573: 1920 docs
+Cluster 574: 3914 docs
+Cluster 575: 4229 docs
+Cluster 576: 2843 docs
+Cluster 577: 2201 docs
+Cluster 578: 1760 docs
+Cluster 579: 1920 docs
+Cluster 580: 3990 docs
+Cluster 581: 4059 docs
+Cluster 582: 1556 docs
+Cluster 583: 3471 docs
+Cluster 584: 2227 docs
+Cluster 585: 2090 docs
+Cluster 586: 3455 docs
+Cluster 587: 941 docs
+Cluster 588: 1920 docs
+Cluster 589: 2910 docs
+Cluster 590: 4187 docs
+Cluster 591: 2003 docs
+Cluster 592: 1727 docs
+Cluster 593: 2060 docs
+Cluster 594: 2794 docs
+Cluster 595: 1525 docs
+Cluster 596: 1932 docs
+Cluster 597: 1952 docs
+Cluster 598: 2821 docs
+Cluster 599: 3189 docs
+Cluster 600: 2990 docs
+Cluster 601: 3138 docs
+Cluster 602: 2408 docs
+Cluster 603: 2136 docs
+Cluster 604: 3971 docs
+Cluster 605: 2844 docs
+Cluster 606: 1258 docs
+Cluster 607: 5859 docs
+Cluster 608: 1930 docs
+Cluster 609: 2792 docs
+Cluster 610: 2269 docs
+Cluster 611: 5182 docs
+Cluster 612: 2138 docs
+Cluster 613: 3348 docs
+Cluster 614: 2494 docs
+Cluster 615: 3338 docs
+Cluster 616: 1767 docs
+Cluster 617: 1827 docs
+Cluster 618: 3538 docs
+Cluster 619: 2799 docs
+Cluster 620: 2224 docs
+Cluster 621: 2350 docs
+Cluster 622: 2387 docs
+Cluster 623: 2526 docs
+Cluster 624: 1554 docs
+Cluster 625: 3381 docs
+Cluster 626: 4077 docs
+Cluster 627: 2600 docs
+Cluster 628: 1951 docs
+Cluster 629: 4102 docs
+Cluster 630: 3606 docs
+Cluster 631: 3663 docs
+Cluster 632: 2716 docs
+Cluster 633: 3447 docs
+Cluster 634: 3067 docs
+Cluster 635: 2027 docs
+Cluster 636: 2625 docs
+Cluster 637: 2890 docs
+Cluster 638: 2320 docs
+Cluster 639: 2721 docs
+Cluster 640: 2995 docs
+Cluster 641: 3621 docs
+Cluster 642: 4273 docs
+Cluster 643: 2601 docs
+Cluster 644: 2568 docs
+Cluster 645: 6847 docs
+Cluster 646: 3214 docs
+Cluster 647: 3255 docs
+Cluster 648: 2790 docs
+Cluster 649: 1823 docs
+Cluster 650: 2281 docs
+Cluster 651: 3967 docs
+Cluster 652: 2244 docs
+Cluster 653: 1289 docs
+Cluster 654: 1791 docs
+Cluster 655: 1781 docs
+Cluster 656: 2371 docs
+Cluster 657: 2031 docs
+Cluster 658: 3183 docs
+Cluster 659: 1294 docs
+Cluster 660: 5518 docs
+Cluster 661: 3237 docs
+Cluster 662: 1348 docs
+Cluster 663: 1774 docs
+Cluster 664: 1006 docs
+Cluster 665: 3843 docs
+Cluster 666: 2738 docs
+Cluster 667: 2397 docs
+Cluster 668: 3075 docs
+Cluster 669: 2838 docs
+Cluster 670: 2509 docs
+Cluster 671: 3800 docs
+Cluster 672: 1676 docs
+Cluster 673: 2807 docs
+Cluster 674: 2261 docs
+Cluster 675: 3629 docs
+Cluster 676: 2109 docs
+Cluster 677: 2915 docs
+Cluster 678: 3082 docs
+Cluster 679: 3423 docs
+Cluster 680: 2232 docs
+Cluster 681: 1306 docs
+Cluster 682: 3984 docs
+Cluster 683: 2732 docs
+Cluster 684: 2060 docs
+Cluster 685: 2428 docs
+Cluster 686: 4734 docs
+Cluster 687: 2619 docs
+Cluster 688: 4383 docs
+Cluster 689: 2374 docs
+Cluster 690: 5137 docs
+Cluster 691: 3376 docs
+Cluster 692: 2565 docs
+Cluster 693: 1771 docs
+Cluster 694: 2525 docs
+Cluster 695: 2988 docs
+Cluster 696: 3284 docs
+Cluster 697: 1601 docs
+Cluster 698: 4040 docs
+Cluster 699: 7047 docs
+Cluster 700: 3600 docs
+Cluster 701: 3154 docs
+Cluster 702: 2052 docs
+Cluster 703: 3206 docs
+Cluster 704: 3241 docs
+Cluster 705: 2026 docs
+Cluster 706: 1890 docs
+Cluster 707: 1829 docs
+Cluster 708: 2775 docs
+Cluster 709: 3098 docs
+Cluster 710: 2630 docs
+Cluster 711: 2782 docs
+Cluster 712: 5072 docs
+Cluster 713: 5348 docs
+Cluster 714: 4697 docs
+Cluster 715: 3101 docs
+Cluster 716: 4548 docs
+Cluster 717: 1576 docs
+Cluster 718: 539 docs
+Cluster 719: 2780 docs
+Cluster 720: 2781 docs
+Cluster 721: 1439 docs
+Cluster 722: 1891 docs
+Cluster 723: 2677 docs
+Cluster 724: 1439 docs
+Cluster 725: 1652 docs
+Cluster 726: 4005 docs
+Cluster 727: 1405 docs
+Cluster 728: 2296 docs
+Cluster 729: 3916 docs
+Cluster 730: 2199 docs
+Cluster 731: 1221 docs
+Cluster 732: 2240 docs
+Cluster 733: 1193 docs
+Cluster 734: 3878 docs
+Cluster 735: 2531 docs
+Cluster 736: 2676 docs
+Cluster 737: 1699 docs
+Cluster 738: 2822 docs
+Cluster 739: 3411 docs
+Cluster 740: 2563 docs
+Cluster 741: 2433 docs
+Cluster 742: 1586 docs
+Cluster 743: 572 docs
+Cluster 744: 1864 docs
+Cluster 745: 2298 docs
+Cluster 746: 2772 docs
+Cluster 747: 1727 docs
+Cluster 748: 4648 docs
+Cluster 749: 2342 docs
+Cluster 750: 2917 docs
+Cluster 751: 2095 docs
+Cluster 752: 4574 docs
+Cluster 753: 1979 docs
+Cluster 754: 2428 docs
+Cluster 755: 4256 docs
+Cluster 756: 2044 docs
+Cluster 757: 5434 docs
+Cluster 758: 3146 docs
+Cluster 759: 761 docs
+Cluster 760: 2804 docs
+Cluster 761: 2715 docs
+Cluster 762: 958 docs
+Cluster 763: 2646 docs
+Cluster 764: 2188 docs
+Cluster 765: 1489 docs
+Cluster 766: 2089 docs
+Cluster 767: 1434 docs
+Cluster 768: 2451 docs
+Cluster 769: 2312 docs
+Cluster 770: 1067 docs
+Cluster 771: 3093 docs
+Cluster 772: 1621 docs
+Cluster 773: 3729 docs
+Cluster 774: 3096 docs
+Cluster 775: 1622 docs
+Cluster 776: 1834 docs
+Cluster 777: 3647 docs
+Cluster 778: 3514 docs
+Cluster 779: 2439 docs
+Cluster 780: 3973 docs
+Cluster 781: 2379 docs
+Cluster 782: 4068 docs
+Cluster 783: 1982 docs
+Cluster 784: 2089 docs
+Cluster 785: 2709 docs
+Cluster 786: 2843 docs
+Cluster 787: 2599 docs
+Cluster 788: 1776 docs
+Cluster 789: 1571 docs
+Cluster 790: 2882 docs
+Cluster 791: 2048 docs
+Cluster 792: 1221 docs
+Cluster 793: 2627 docs
+Cluster 794: 2544 docs
+Cluster 795: 3022 docs
+Cluster 796: 1303 docs
+Cluster 797: 3946 docs
+Cluster 798: 2512 docs
+Cluster 799: 1732 docs
+Cluster 800: 1892 docs
+Cluster 801: 2339 docs
+Cluster 802: 629 docs
+Cluster 803: 1970 docs
+Cluster 804: 2022 docs
+Cluster 805: 4255 docs
+Cluster 806: 5636 docs
+Cluster 807: 2494 docs
+Cluster 808: 3239 docs
+Cluster 809: 2381 docs
+Cluster 810: 3440 docs
+Cluster 811: 2193 docs
+Cluster 812: 2877 docs
+Cluster 813: 1740 docs
+Cluster 814: 1546 docs
+Cluster 815: 4436 docs
+Cluster 816: 2777 docs
+Cluster 817: 2767 docs
+Cluster 818: 2284 docs
+Cluster 819: 1594 docs
+Cluster 820: 3816 docs
+Cluster 821: 4414 docs
+Cluster 822: 2757 docs
+Cluster 823: 1629 docs
+Cluster 824: 2674 docs
+Cluster 825: 3148 docs
+Cluster 826: 4406 docs
+Cluster 827: 1189 docs
+Cluster 828: 2119 docs
+Cluster 829: 3940 docs
+Cluster 830: 2302 docs
+Cluster 831: 3142 docs
+Cluster 832: 2665 docs
+Cluster 833: 2492 docs
+Cluster 834: 3975 docs
+Cluster 835: 2690 docs
+Cluster 836: 3343 docs
+Cluster 837: 3017 docs
+Cluster 838: 2599 docs
+Cluster 839: 2195 docs
+Cluster 840: 3699 docs
+Cluster 841: 4213 docs
+Cluster 842: 2374 docs
+Cluster 843: 3434 docs
+Cluster 844: 4199 docs
+Cluster 845: 2461 docs
+Cluster 846: 3844 docs
+Cluster 847: 1578 docs
+Cluster 848: 1230 docs
+Cluster 849: 2197 docs
+Cluster 850: 1231 docs
+Cluster 851: 3020 docs
+Cluster 852: 2325 docs
+Cluster 853: 4002 docs
+Cluster 854: 1904 docs
+Cluster 855: 2549 docs
+Cluster 856: 3236 docs
+Cluster 857: 2817 docs
+Cluster 858: 5055 docs
+Cluster 859: 2433 docs
+Cluster 860: 2454 docs
+Cluster 861: 3232 docs
+Cluster 862: 117 docs
+Cluster 863: 2004 docs
+Cluster 864: 4054 docs
+Cluster 865: 2752 docs
+Cluster 866: 3111 docs
+Cluster 867: 745 docs
+Cluster 868: 2424 docs
+Cluster 869: 6809 docs
+Cluster 870: 431 docs
+Cluster 871: 3793 docs
+Cluster 872: 2658 docs
+Cluster 873: 2040 docs
+Cluster 874: 2778 docs
+Cluster 875: 2836 docs
+Cluster 876: 1861 docs
+Cluster 877: 3755 docs
+Cluster 878: 4758 docs
+Cluster 879: 5554 docs
+Cluster 880: 2400 docs
+Cluster 881: 3428 docs
+Cluster 882: 2558 docs
+Cluster 883: 3156 docs
+Cluster 884: 3010 docs
+Cluster 885: 1194 docs
+Cluster 886: 2254 docs
+Cluster 887: 953 docs
+Cluster 888: 2615 docs
+Cluster 889: 2585 docs
+Cluster 890: 2263 docs
+Cluster 891: 2234 docs
+Cluster 892: 2928 docs
+Cluster 893: 2924 docs
+Cluster 894: 1603 docs
+Cluster 895: 1738 docs
+Cluster 896: 1887 docs
+Cluster 897: 2473 docs
+Cluster 898: 2683 docs
+Cluster 899: 1848 docs
+Cluster 900: 4169 docs
+Cluster 901: 2565 docs
+Cluster 902: 1426 docs
+Cluster 903: 1863 docs
+Cluster 904: 2890 docs
+Cluster 905: 2640 docs
+Cluster 906: 2027 docs
+Cluster 907: 3330 docs
+Cluster 908: 2285 docs
+Cluster 909: 2645 docs
+Cluster 910: 2412 docs
+Cluster 911: 4961 docs
+Cluster 912: 2644 docs
+Cluster 913: 8018 docs
+Cluster 914: 3873 docs
+Cluster 915: 1307 docs
+Cluster 916: 2399 docs
+Cluster 917: 2751 docs
+Cluster 918: 1676 docs
+Cluster 919: 3056 docs
+Cluster 920: 2038 docs
+Cluster 921: 3098 docs
+Cluster 922: 3682 docs
+Cluster 923: 4227 docs
+Cluster 924: 3484 docs
+Cluster 925: 2128 docs
+Cluster 926: 1830 docs
+Cluster 927: 4470 docs
+Cluster 928: 1994 docs
+Cluster 929: 2975 docs
+Cluster 930: 3653 docs
+Cluster 931: 1100 docs
+Cluster 932: 2591 docs
+Cluster 933: 1221 docs
+Cluster 934: 354 docs
+Cluster 935: 1761 docs
+Cluster 936: 2323 docs
+Cluster 937: 3839 docs
+Cluster 938: 4315 docs
+Cluster 939: 3139 docs
+Cluster 940: 1886 docs
+Cluster 941: 2986 docs
+Cluster 942: 3406 docs
+Cluster 943: 3634 docs
+Cluster 944: 2766 docs
+Cluster 945: 3120 docs
+Cluster 946: 2361 docs
+Cluster 947: 3029 docs
+Cluster 948: 2190 docs
+Cluster 949: 4567 docs
+Cluster 950: 2115 docs
+Cluster 951: 2649 docs
+Cluster 952: 2037 docs
+Cluster 953: 2431 docs
+Cluster 954: 2540 docs
+Cluster 955: 2066 docs
+Cluster 956: 3314 docs
+Cluster 957: 2125 docs
+Cluster 958: 2533 docs
+Cluster 959: 3117 docs
+Cluster 960: 1721 docs
+Cluster 961: 2739 docs
+Cluster 962: 2399 docs
+Cluster 963: 1875 docs
+Cluster 964: 1890 docs
+Cluster 965: 2746 docs
+Cluster 966: 2547 docs
+Cluster 967: 3271 docs
+Cluster 968: 3512 docs
+Cluster 969: 3816 docs
+Cluster 970: 527 docs
+Cluster 971: 2986 docs
+Cluster 972: 496 docs
+Cluster 973: 4984 docs
+Cluster 974: 3097 docs
+Cluster 975: 1542 docs
+Cluster 976: 2708 docs
+Cluster 977: 1654 docs
+Cluster 978: 3591 docs
+Cluster 979: 3403 docs
+Cluster 980: 3600 docs
+Cluster 981: 5631 docs
+Cluster 982: 619 docs
+Cluster 983: 2074 docs
+Cluster 984: 4421 docs
+Cluster 985: 3261 docs
+Cluster 986: 1848 docs
+Cluster 987: 2836 docs
+Cluster 988: 2051 docs
+Cluster 989: 2130 docs
+Cluster 990: 2291 docs
+Cluster 991: 3475 docs
+Cluster 992: 2254 docs
+Cluster 993: 3036 docs
+Cluster 994: 1723 docs
+Cluster 995: 1881 docs
+Cluster 996: 1964 docs
+Cluster 997: 3365 docs
+Cluster 998: 3624 docs
+Cluster 999: 1742 docs
+
+--- Evaluate clustering ---
+Avg Similarity: 4.86992
+Balance Score: 1063.48
+
+--- Summary Vectors for each cluster & Indexing ---
+[PROFILER_START] computing_summaries
+[INDEXING] Computing Summary Vectors (Sketches) for 1000 clusters...
+[PROFILER_STOP] computing_summaries: 2490 ms (0.0415 minutes)
+[PROFILER_START] building_index
+[INDEXING] Partitioning Inverted Lists into blocks...
+[PROFILER_STOP] building_index: 317331 ms (5.28885 minutes)
+Total Summary Vectors: 1000
+Total Concepts indexed: 30522
+[PROFILER_START] load_query_gold_standard
+[PROFILER_STOP] load_query_gold_standard: 1013 ms (0.0168833 minutes)
+[PROFILER_START] search_phase
+
+--- Evaluating Recall@10 ---
+[PROFILER_START] search_phase_top_n_10
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_10: 117483 ms (1.95805 minutes)
+====================================================
+  VAL RESULTS (N = 3452 queries)
+  Average Recall@10 = 0.906372
+  STATUS: SUCCESS (Passed Challenge Benchmark Threshold)
+====================================================
+
+--- Evaluating Recall@30 ---
+[PROFILER_START] search_phase_top_n_30
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_30: 122806 ms (2.04677 minutes)
+====================================================
+  VAL RESULTS (N = 3452 queries)
+  Average Recall@30 = 0.849129
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+
+--- Evaluating Recall@100 ---
+[PROFILER_START] search_phase_top_n_100
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_100: 122959 ms (2.04932 minutes)
+====================================================
+  VAL RESULTS (N = 3452 queries)
+  Average Recall@100 = 0.766341
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[PROFILER_STOP] search_phase: 363249 ms (6.05415 minutes)
+[PROFILER_STOP] total_execution: 5596096 ms (93.2683 minutes)

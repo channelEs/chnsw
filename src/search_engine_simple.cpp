@@ -10,7 +10,8 @@ std::vector<std::pair<float, int>> SearchEngineSimple::search(
     const Eigen::SparseMatrix<float, Eigen::RowMajor>& query_matrix,
     int q_idx,
     int k,
-    float heap_factor
+    float heap_factor,
+    int max_docs_to_visit
 ) {
     int num_clusters = summary_vectors.size();
     int n_docs = train.rows();

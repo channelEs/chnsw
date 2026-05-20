@@ -10,7 +10,8 @@ std::vector<std::pair<float, int>> SearchEngineOptimized::search(
     const Eigen::SparseMatrix<float, Eigen::RowMajor>& query_matrix,
     int q_idx,
     int k,
-    float heap_factor
+    float heap_factor,
+    int max_docs_to_visit
 ) {
     int num_clusters = summary_vectors.size();
     int n_docs = train.rows();
@@ -83,7 +84,7 @@ std::vector<std::pair<float, int>> SearchEngineOptimized::search(
                             min_heap.pop();
                             min_heap.push({exact_score, doc_id});
                         }
-                        if (num_of_docs_visited > 30000) {
+                        if (num_of_docs_visited > max_docs_to_visit) {
                             break;
                         }
                     }

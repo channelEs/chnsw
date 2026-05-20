@@ -12,7 +12,8 @@ public:
         const Eigen::SparseMatrix<float, Eigen::RowMajor>& query_matrix,
         int q_idx,
         int k,
-        float heap_factor = 1.0f
+        float heap_factor = 1.0f,
+        int max_docs_to_visit = 10000
     ) override;
 };
 

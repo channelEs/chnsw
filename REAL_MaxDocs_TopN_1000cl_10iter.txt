@@ -1,0 +1,213 @@
+-- Running vcpkg install
+Detecting compiler hash for triplet x64-linux...
+Compiler found: /usr/bin/c++
+The following packages are already installed:
+    eigen3:x64-linux@5.0.1
+    hdf5[core,zlib,szip]:x64-linux@2.1.1
+  * libaec:x64-linux@1.1.6
+  * vcpkg-cmake:x64-linux@2024-04-23
+  * vcpkg-cmake-config:x64-linux@2024-05-23
+  * zlib:x64-linux@1.3.2
+eigen3 provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(Eigen3 CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE Eigen3::Eigen)
+
+eigen3 provides pkg-config modules:
+
+  # A C++ template library for linear algebra: vectors, matrices, and related algorithms
+  eigen3
+
+hdf5 provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(hdf5 CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE hdf5::hdf5-static)
+
+hdf5 provides pkg-config modules:
+
+  # HDF5 (Hierarchical Data Format 5) Software Library
+  hdf5
+
+All requested installations completed successfully in: 52.9 us
+-- Running vcpkg install - done
+-- Configuring done (4.5s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/roger/ADS_MIRI/chnsw/build
+[100%] Built target main
+[PROFILER_START] total_execution
+[PROFILER_START] loading_data
+
+--- Read data (data/nq.h5) ---
+train: 2681468 x 30522
+query: 3452 x 30522
+[PROFILER_STOP] loading_data: 19237 ms (0.320617 minutes)
+
+--- Clustering | k = 1000 | iterations = 10 ---
+[PROFILER_START] clustering
+Initializing 1000 clusters... with 2681468 documents with 30522 dimensions
+
+--- Iteration 1/10 ---
+[PROFILER_START] clustering_iteration_1
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_1: 508146 ms (8.4691 minutes)
+
+--- Iteration 2/10 ---
+[PROFILER_START] clustering_iteration_2
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_2: 490184 ms (8.16973 minutes)
+
+--- Iteration 3/10 ---
+[PROFILER_START] clustering_iteration_3
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_3: 484334 ms (8.07223 minutes)
+
+--- Iteration 4/10 ---
+[PROFILER_START] clustering_iteration_4
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_4: 490100 ms (8.16833 minutes)
+
+--- Iteration 5/10 ---
+[PROFILER_START] clustering_iteration_5
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_5: 493472 ms (8.22453 minutes)
+
+--- Iteration 6/10 ---
+[PROFILER_START] clustering_iteration_6
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_6: 475956 ms (7.9326 minutes)
+
+--- Iteration 7/10 ---
+[PROFILER_START] clustering_iteration_7
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_7: 472400 ms (7.87333 minutes)
+
+--- Iteration 8/10 ---
+[PROFILER_START] clustering_iteration_8
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_8: 471314 ms (7.85523 minutes)
+
+--- Iteration 9/10 ---
+[PROFILER_START] clustering_iteration_9
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_9: 469901 ms (7.83168 minutes)
+
+--- Iteration 10/10 ---
+[PROFILER_START] clustering_iteration_10
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_10: 470140 ms (7.83567 minutes)
+[PROFILER_STOP] clustering: 4826097 ms (80.435 minutes)
+
+Clustering complete. Sample cluster sizes:
+
+--- Evaluate clustering ---
+Average Cluster Size: 2681.47
+Largest Cluster Size: 999
+Smallest Cluster Size: 0
+Empty Clusters: 1889
+Cluster Size Deviation: 113822
+Avg Similarity: 4.87437
+
+--- Summary Vectors for each cluster & Indexing ---
+[PROFILER_START] computing_summaries
+[INDEXING] Computing Summary Vectors (Sketches) for 1000 clusters...
+[PROFILER_STOP] computing_summaries: 2276 ms (0.0379333 minutes)
+[PROFILER_START] building_index
+[INDEXING] Partitioning Inverted Lists into blocks...
+[PROFILER_STOP] building_index: 288550 ms (4.80917 minutes)
+Total Summary Vectors: 1000
+Total Concepts indexed: 30522
+[PROFILER_START] load_query_gold_standard
+[PROFILER_STOP] load_query_gold_standard: 907 ms (0.0151167 minutes)
+
+--- SEARCH PHASE ---
+[PROFILER_START] search_phase
+[PROFILER_START] search_phase_MaxDocs_30000
+
+--- Evaluating Recall@10 ---
+[PROFILER_START] search_phase_top_n_10
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_10: 87901 ms (1.46502 minutes)
+====================================================
+  VAL RESULTS (N = 3452 queries || MaxDocs = 30000)
+  Average Recall@10 = 0.84438
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+
+--- Evaluating Recall@30 ---
+[PROFILER_START] search_phase_top_n_30
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_30: 91645 ms (1.52742 minutes)
+====================================================
+  VAL RESULTS (N = 3452 queries || MaxDocs = 30000)
+  Average Recall@30 = 0.763962
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+
+--- Evaluating Recall@100 ---
+[PROFILER_START] search_phase_top_n_100
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_100: 92551 ms (1.54252 minutes)
+====================================================
+  VAL RESULTS (N = 3452 queries || MaxDocs = 30000)
+  Average Recall@100 = 0.654235
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[PROFILER_STOP] search_phase_MaxDocs_30000: 272100 ms (4.535 minutes)
+[PROFILER_START] search_phase_MaxDocs_50000
+
+--- Evaluating Recall@10 ---
+[PROFILER_START] search_phase_top_n_10
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_10: 87854 ms (1.46423 minutes)
+====================================================
+  VAL RESULTS (N = 3452 queries || MaxDocs = 50000)
+  Average Recall@10 = 0.84438
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+
+--- Evaluating Recall@30 ---
+[PROFILER_START] search_phase_top_n_30
