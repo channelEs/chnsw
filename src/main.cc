@@ -9,26 +9,43 @@
 #include "search_engine_simple.h"
 #include "search_engine_optimized.h"
 
+#include <string>
 #include <vector>
 #include <numeric>
 #include <algorithm>
 #include <random>
 #include <Eigen/Sparse>
 
-int main() {
+int main(int argc, char* argv[]) {
     try {
+        // Default fallbacks if flags aren't passed
+        std::string dataset = "fiqa-dev"; 
+        std::string task = "task3";
+
+        // Parse command line arguments from SISAP
+        for (int i = 1; i < argc; ++i) {
+            std::string arg = argv[i];
+            if (arg == "--dataset" && i + 1 < argc) {
+                dataset = argv[++i];
+            } else if (arg == "--task" && i + 1 < argc) {
+                task = argv[++i];
+            }
+        }
+
         ExecutionProfiler profiler;
         profiler.start("total_execution");
-        // std::cout << "loading data..." << std::endl;
-        profiler.start("loading_data");
-        std::cout << "\n--- Read data (data/nq.h5) ---" << std::endl;
-        HDF5SparseLoader loader("data/nq.h5");
-        // std::cout << "\n--- Read data (data/fiqa-dev.h5) ---" << std::endl;
-        // HDF5SparseLoader loader("data/fiqa-dev.h5");
         
+        // Dynamically resolve dataset file pathway using the mount layout
+        std::string dataset_path = "data/" + dataset + ".h5";
+        std::cout << "[SISAP] Running " << task << " on dataset: " << dataset_path << std::endl;
+        
+        std::cout << "\n--- Read data (data/nq.h5) ---" << std::endl;
+        profiler.start("loading_data");
+        HDF5SparseLoader loader(dataset_path);
+
         auto train = loader.load<float>("train");
         auto query = loader.load<float>("otest/queries");
-        
+
         std::cout << "train: " << train.rows() << " x " << train.cols() << "\n";
         std::cout << "query: " << query.rows() << " x " << query.cols() << "\n";
         profiler.stop("loading_data");
