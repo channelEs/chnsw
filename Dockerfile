@@ -1,3 +1,4 @@
+# First environment for the build process
 FROM ubuntu:22.04 AS builder
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -29,7 +30,7 @@ RUN cmake -B build -S . \
     -DCMAKE_TOOLCHAIN_FILE=$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake \
     && cmake --build build --config Release
 
-# Optimized Runtime Environment
+# Second environement just with the compiled version
 FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -38,7 +39,7 @@ RUN apt-get update && apt-get install -y \
     libgomp1 \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /app
+WORKDIR /sisap2026
 
 # Pull the compiled binary
 COPY --from=builder /src/build/main /app/chnsw_app

@@ -1,0 +1,7 @@
+# Ignore local build artifacts and vcpkg installs
+build/
+vcpkg_installed/
+.vscode/
+.git/
+*.log
+result_logs/
