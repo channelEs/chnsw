@@ -6,7 +6,6 @@
 
 class SearchEngineOptimized : public SearchEngine {
 public:    
-    
     std::vector<std::pair<float, int>> search(
         const Eigen::SparseMatrix<float, Eigen::RowMajor>& train,
         const std::vector<std::vector<InvertedBlock>>& inverted_index,
@@ -14,9 +13,19 @@ public:
         const Eigen::SparseMatrix<float, Eigen::RowMajor>& query_matrix,
         int q_idx,
         int k,
-        float heap_factor = 1.0f,
-        int max_docs_to_visit = 10000
+        const struct ExecConfig& config
     ) override;
+
+    // Aggregated debug counters across all queries (averaged and printed by caller)
+    void printAvgDebugStats() const;
+    void getAvgDebugStats(double& avg_blocks_entered, double& avg_blocks_skipped, double& avg_docs_examined, double& avg_docs_popped) const;
+
+private:
+    long long total_blocks_entered = 0;
+    long long total_blocks_skipped = 0;
+    long long total_docs_examined = 0;
+    long long total_docs_popped = 0;
+    long long num_queries_run = 0;
 };
 
 #endif

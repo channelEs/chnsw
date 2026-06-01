@@ -9,8 +9,7 @@ public:
     // Performs Spherical K-means
     static ClusterResult run(
         const Eigen::SparseMatrix<float, Eigen::RowMajor>& data, 
-        int num_clusters, 
-        ExecutionProfiler& profiler,
-        int max_iterations = 10
+        const ExecConfig& config,
+        ExecutionProfiler& profiler
     );
 };

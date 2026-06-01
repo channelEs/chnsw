@@ -36,7 +36,8 @@ std::vector<Eigen::VectorXf> IndexManager::computeSummaryVectors(
 std::vector<std::vector<InvertedBlock>> IndexManager::buildInvertedIndex(
     const Eigen::SparseMatrix<float, Eigen::RowMajor>& data,
     const std::vector<int>& assignments,
-    int num_clusters
+    int num_clusters,
+    const struct ExecConfig& config
 ) {
     int n_docs = data.rows();
     int n_dims = data.cols();
@@ -58,15 +59,23 @@ std::vector<std::vector<InvertedBlock>> IndexManager::buildInvertedIndex(
             int concept_id = it.index();
             float weight = it.value();
 
-            // Check if we already have a block for this cluster in this concept's list
-            if (map_block_pos[concept_id].find(cluster_id) == map_block_pos[concept_id].end()) {
+            bool has_block = map_block_pos[concept_id].find(cluster_id) != map_block_pos[concept_id].end();
+            if (!has_block) {
+                if (config.max_blocks_per_dimension > 0 &&
+                    static_cast<int>(map_block_pos[concept_id].size()) >= config.max_blocks_per_dimension) {
+                    continue;
+                }
                 // Create a new block for this cluster
                 map_block_pos[concept_id][cluster_id] = index[concept_id].size();
                 index[concept_id].push_back({cluster_id, {}, {}});
             }
 
-            // Append document data to the correct block
+            // Append document data to the correct block if the block is not full.
             int pos = map_block_pos[concept_id][cluster_id];
+            if (config.max_docs_per_block > 0 &&
+                static_cast<int>(index[concept_id][pos].doc_ids.size()) >= config.max_docs_per_block) {
+                continue;
+            }
             index[concept_id][pos].doc_ids.push_back(i);
             index[concept_id][pos].weights.push_back(weight);
         }

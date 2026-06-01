@@ -10,9 +10,10 @@ std::vector<std::pair<float, int>> SearchEngineSimple::search(
     const Eigen::SparseMatrix<float, Eigen::RowMajor>& query_matrix,
     int q_idx,
     int k,
-    float heap_factor,
-    int max_docs_to_visit
+    const struct ExecConfig& config
 ) {
+    int max_docs_to_visit = config.max_docs_to_visit;
+    float heap_factor = 1.0f;
     int num_clusters = summary_vectors.size();
     int n_docs = train.rows();
     int n_dims = train.cols();
@@ -44,8 +45,11 @@ std::vector<std::pair<float, int>> SearchEngineSimple::search(
                         std::greater<std::pair<float, int>>> min_heap;
 
     std::vector<bool> visited(n_docs, false);
+    int num_of_docs_visited = 0;
+    bool stop_search = false;
 
     for (const auto& [concept_id, q_weight] : query_terms) {
+        if (stop_search) break;
         if (concept_id >= inverted_index.size()) continue;
 
         const auto& blocks = inverted_index[concept_id];
@@ -81,8 +85,14 @@ std::vector<std::pair<float, int>> SearchEngineSimple::search(
                             min_heap.pop();
                             min_heap.push({exact_score, doc_id});
                         }
+
+                        if (max_docs_to_visit > 0 && ++num_of_docs_visited >= max_docs_to_visit) {
+                            stop_search = true;
+                            break;
+                        }
                     }
                 }
+                if (stop_search) break;
             }
         }
     }

@@ -19,16 +19,29 @@ public:
         auto end = std::chrono::high_resolution_clock::now();
         auto start = start_times[tag];
         auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+        durations[tag] = duration;
         std::cout << "[PROFILER_STOP] " << tag << ": " << duration << " ms (" << duration / 60000.0 << " minutes)" << std::endl;
+    }
+
+    long long getDuration(const std::string& tag) const {
+        auto it = durations.find(tag);
+        return (it != durations.end()) ? it->second : 0;
     }
 
 private:
     std::map<std::string, std::chrono::time_point<std::chrono::high_resolution_clock>> start_times;
+    std::map<std::string, long long> durations;
+};
+
+struct ClusteringMetrics {
+    double avg_cluster_size;
+    int median_cluster_size;
+    double avg_intra_cluster_similarity;
 };
 
 class ClusterEvaluator {
 public:
-    static void evaluate(
+    static ClusteringMetrics evaluate(
         const Eigen::SparseMatrix<float, Eigen::RowMajor>& data,
         const ClusterResult& result
     ) 
@@ -71,5 +84,7 @@ public:
         std::cout << "Empty Clusters: " << empty_clusters << "\n";
         std::cout << "Cluster Size Deviation: " << size_deviation << "\n";  
         std::cout << "Avg Similarity (Docs and its cluster assignments with dot product): " << avg_intra_cluster_similarity << std::endl;
+
+        return ClusteringMetrics{avg_cluster_size, median_cluster_size, avg_intra_cluster_similarity};
     }
 };

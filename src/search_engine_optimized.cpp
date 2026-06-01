@@ -1,4 +1,5 @@
 #include "search_engine_optimized.h"
+#include <iostream>
 #include <queue>
 #include <algorithm>
 #include <numeric>
@@ -10,9 +11,10 @@ std::vector<std::pair<float, int>> SearchEngineOptimized::search(
     const Eigen::SparseMatrix<float, Eigen::RowMajor>& query_matrix,
     int q_idx,
     int k,
-    float heap_factor,
-    int max_docs_to_visit
+    const struct ExecConfig& config
 ) {
+    int max_docs_to_visit = config.max_docs_to_visit;
+    float heap_factor = 1.0f;
     int num_clusters = summary_vectors.size();
     int n_docs = train.rows();
     int n_dims = train.cols();
@@ -46,8 +48,13 @@ std::vector<std::pair<float, int>> SearchEngineOptimized::search(
     std::vector<bool> visited(n_docs, false);
 
     int num_of_docs_visited = 0;
+    int blocks_entered = 0;
+    int blocks_skipped = 0;
+    int docs_popped = 0;
+    bool stop_search = false;
 
     for (const auto& [concept_id, q_weight] : query_terms) {
+        if (stop_search) break;
         if (concept_id >= inverted_index.size()) continue;
 
         const auto& blocks = inverted_index[concept_id];
@@ -67,7 +74,10 @@ std::vector<std::pair<float, int>> SearchEngineOptimized::search(
             float threshold = min_heap.empty() ? 0.0f : min_heap.top().first;
 
             // If the upper bound < WORST score, SKIP THE WHOLE BLOCK!
-            if (ub >= threshold * heap_factor) {
+            if (ub < threshold * heap_factor) {
+                ++blocks_skipped;
+            } else {
+                ++blocks_entered;
                 for (int doc_id : block.doc_ids) {
                     if (!visited[doc_id]) {
                         visited[doc_id] = true;
@@ -83,15 +93,28 @@ std::vector<std::pair<float, int>> SearchEngineOptimized::search(
                         } else if (exact_score > min_heap.top().first) {
                             min_heap.pop();
                             min_heap.push({exact_score, doc_id});
+                            ++docs_popped;
                         }
-                        if (num_of_docs_visited > max_docs_to_visit) {
+
+                        if (max_docs_to_visit > 0 && num_of_docs_visited >= max_docs_to_visit) {
+                            stop_search = true;
                             break;
                         }
                     }
+                    if (stop_search) break;
                 }
+                if (stop_search) break;
             }
+            if (stop_search) break;
         }
     }
+
+    // Accumulate into the object's totals; caller will print averages after all queries
+    total_blocks_entered += blocks_entered;
+    total_blocks_skipped += blocks_skipped;
+    total_docs_examined += num_of_docs_visited;
+    total_docs_popped += docs_popped;
+    ++num_queries_run;
 
     std::vector<std::pair<float, int>> top_k;
     while (!min_heap.empty()) {
@@ -101,4 +124,35 @@ std::vector<std::pair<float, int>> SearchEngineOptimized::search(
     std::reverse(top_k.begin(), top_k.end());
 
     return top_k;
+}
+
+void SearchEngineOptimized::printAvgDebugStats() const {
+    if (num_queries_run == 0) {
+        std::cout << "[SEARCH_DEBUG_AVG] No queries run.\n";
+        return;
+    }
+    double avg_blocks_entered = static_cast<double>(total_blocks_entered) / static_cast<double>(num_queries_run);
+    double avg_blocks_skipped = static_cast<double>(total_blocks_skipped) / static_cast<double>(num_queries_run);
+    double avg_docs_examined = static_cast<double>(total_docs_examined) / static_cast<double>(num_queries_run);
+    double avg_docs_popped = static_cast<double>(total_docs_popped) / static_cast<double>(num_queries_run);
+
+    std::cout << "[SEARCH_DEBUG_AVG] avg_blocks_entered=" << avg_blocks_entered
+              << " avg_blocks_skipped=" << avg_blocks_skipped
+              << " avg_docs_examined=" << avg_docs_examined
+              << " avg_docs_popped=" << avg_docs_popped
+              << "\n";
+}
+
+void SearchEngineOptimized::getAvgDebugStats(double& avg_blocks_entered, double& avg_blocks_skipped, double& avg_docs_examined, double& avg_docs_popped) const {
+    if (num_queries_run == 0) {
+        avg_blocks_entered = 0.0;
+        avg_blocks_skipped = 0.0;
+        avg_docs_examined = 0.0;
+        avg_docs_popped = 0.0;
+        return;
+    }
+    avg_blocks_entered = static_cast<double>(total_blocks_entered) / static_cast<double>(num_queries_run);
+    avg_blocks_skipped = static_cast<double>(total_blocks_skipped) / static_cast<double>(num_queries_run);
+    avg_docs_examined = static_cast<double>(total_docs_examined) / static_cast<double>(num_queries_run);
+    avg_docs_popped = static_cast<double>(total_docs_popped) / static_cast<double>(num_queries_run);
 }

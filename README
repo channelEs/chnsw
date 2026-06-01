@@ -96,7 +96,7 @@ cmake --build build
 ## Run the compiled version
 
 ```bash
-./build/main
+./build/main --dataset nq --task task3 --params clusters
 ```
 
 Or:
@@ -105,28 +105,109 @@ Or:
 ./run.sh
 ```
 
+**Command-line arguments:**
+- `--dataset <name>`: Dataset to run on (default: `nq`)
+- `--task <name>`: Task name (default: `task3`)
+- `--params <config_file>`: Path to JSON configuration file (default: `exec_config.json`)
+
+**Configuration file (exec_config.json):**
+```json
+{
+  "k": 200,
+  "itr": 3,
+  "nb": 100,
+  "nd": 50,
+  "md": 50000
+}
+```
+
+Where:
+- `k`: Number of clusters
+- `itr`: Maximum iterations for clustering
+- `nb`: Max blocks per dimension (0 = unlimited)
+- `nd`: Max docs per block (0 = unlimited)
+- `md`: Max docs to visit during search (0 = unlimited)
+
+**Output:**
+Results are automatically appended to `results.csv` with the following columns:
+- Configuration: k, itr, nb, nd, md
+- Clustering metrics: Avg_Cluster_Size, Median_Cluster_Size, Avg_Cluster_Similarity
+- Execution times: Clustering_Time_ms, Indexing_Time_ms, Search_Time_ms
+- Recall metrics: Recall@30, Avg_Time_Per_Query_ms
+
 ---
 
 # Docker execution
+
 Build the image with:
 
 ```bash
-docker build --no-cache -t name_of_the_image .
+docker build --no-cache -t chnsw .
 ```
 
 Run it with the SISAP 2026 requirements:
+
 ```bash
 docker run \
   -it \
   --cpus=8 \
   --memory=24g \
   --memory-swap=24g \
-  --memory-swappiness 0 \
+  --memory-swappiness=0 \
   --volume $(pwd)/data:/sisap2026/data:ro \
   --volume $(pwd)/results:/sisap2026/results:rw \
-  chnsw --task task3 --dataset nq
+  --volume $(pwd)/config:/sisap2026/config:ro \
+  chnsw --task task3 --dataset nq --params clusters
 ```
-*dataset_filename* will be **fiqa-dev** (smaller dataset based on FIQA for testing) or **nq** (the real dataset) 
+
+**Docker run parameters:**
+- `--cpus=8`: Limit container to 8 CPUs
+- `--memory=24g`: Limit container memory to 24GB
+- `--volume $(pwd)/data:/sisap2026/data:ro`: Mount local data directory (read-only)
+- `--volume $(pwd)/results:/sisap2026/results:rw`: Mount results directory (read-write) for CSV output
+- `--volume $(pwd)/exec_config.json:/sisap2026/exec_config.json:ro`: Mount configuration file (read-only)
+
+**Capturing results locally:**
+
+After the container finishes execution, the `results.csv` file will be in your local `results/` directory:
+
+```bash
+cat results/results.csv
+```
+
+The CSV file is cumulative—each run appends a new row with:
+- Configuration parameters used (k, itr, nb, nd, md)
+- Clustering metrics (average size, median size, similarity)
+- Execution times (clustering, indexing, search in milliseconds)
+- Search performance (recall@30, average time per query)
+
+**Example CSV output:**
+```
+k,itr,nb,nd,md,Avg_Cluster_Size,Median_Cluster_Size,Avg_Cluster_Similarity,Clustering_Time_ms,Indexing_Time_ms,Recall@30,Avg_Time_Per_Query_ms,Search_Time_ms
+200,3,100,50,50000,17.8957,11,5.22518,45234,12567,0.8524,123.45,567890
+```
+
+**Running multiple experiments:**
+
+Create different config files and run sequentially:
+
+```bash
+# Experiment 1
+docker run -it --cpus=8 --memory=24g \
+  --volume $(pwd)/data:/sisap2026/data:ro \
+  --volume $(pwd)/results:/sisap2026/results:rw \
+  --volume $(pwd)/config1.json:/sisap2026/config1.json:ro \
+  chnsw --task task3 --dataset nq --params config1.json
+
+# Experiment 2
+docker run -it --cpus=8 --memory=24g \
+  --volume $(pwd)/data:/sisap2026/data:ro \
+  --volume $(pwd)/results:/sisap2026/results:rw \
+  --volume $(pwd)/config2.json:/sisap2026/config2.json:ro \
+  chnsw --task task3 --dataset nq --params config2.json
+```
+
+Results from all runs will accumulate in `results/results.csv` for easy comparison. 
 
 
 # Notes

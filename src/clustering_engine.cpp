@@ -6,12 +6,13 @@
 
 ClusterResult ClusteringEngine::run(
     const Eigen::SparseMatrix<float, Eigen::RowMajor>& data, 
-    int num_clusters, 
-    ExecutionProfiler& profiler,
-    int max_iterations
+    const ExecConfig& config,
+    ExecutionProfiler& profiler
 ) {
     int n_docs = data.rows();
     int n_dims = data.cols();
+    int num_clusters = config.num_clusters;
+    int max_iterations = config.max_iterations;
     
     ClusterResult result;
     result.assignments.resize(n_docs);

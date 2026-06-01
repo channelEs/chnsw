@@ -1,0 +1,406 @@
+[SISAP] Running task3 on dataset: data/nq.h5
+[CONFIG] Executing 5 config file(s) from `config/max_docs`
+
+--- Read data (data/nq.h5) ---
+train: 2681468 x 30522
+query: 3452 x 30522
+
+=====================
+[CONFIG] Running config: config/max_docs/config_md_1.json
+[PROFILER_START] total_execution
+[PARAMS] k=1000 itr=3 nb=250 nd=100 md=100000
+
+--- Clustering | k = 1000 | iterations = 3 ---
+[PROFILER_START] clustering
+Initializing 1000 clusters... with 2681468 documents with 30522 dimensions
+
+--- Iteration 1/3 ---
+[PROFILER_START] clustering_iteration_1
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_1: 576647 ms (9.61078 minutes)
+
+--- Iteration 2/3 ---
+[PROFILER_START] clustering_iteration_2
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_2: 567024 ms (9.4504 minutes)
+
+--- Iteration 3/3 ---
+[PROFILER_START] clustering_iteration_3
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_3: 567392 ms (9.45653 minutes)
+
+Clustering complete. Sample cluster sizes:
+
+--- Evaluate clustering (relating docs information) ---
+Objective Average Cluster Size: 2681.47
+Median Cluster Size: 2471
+Largest Cluster Size: 12558
+Smallest Cluster Size: 107
+Empty Clusters: 0
+Cluster Size Deviation: 1371.18
+Avg Similarity (Docs and its cluster assignments with dot product): 4.7601
+[PROFILER_STOP] clustering: 1713002 ms (28.55 minutes)
+
+--- Summary Vectors for each cluster & Indexing ---
+[PROFILER_START] computing_summaries
+[INDEXING] Computing Summary Vectors (Sketches) for 1000 clusters...
+[PROFILER_STOP] computing_summaries: 2001 ms (0.03335 minutes)
+[PROFILER_START] building_index
+[INDEXING] Partitioning Inverted Lists into blocks...
+[PROFILER_STOP] building_index: 77345 ms (1.28908 minutes)
+Total Summary Vectors: 1000
+Total Concepts indexed: 30522
+[PROFILER_START] load_query_gold_standard
+[PROFILER_STOP] load_query_gold_standard: 329 ms (0.00548333 minutes)
+
+--- SEARCH PHASE ---
+[PROFILER_START] search_phase
+[PROFILER_START] search_phase_MaxDocs_100000
+
+--- Evaluating Recall@30 ---
+[PROFILER_START] search_phase_top_n_30
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_30: 177535 ms (2.95892 minutes)
+====================================================
+  VAL RESULTS (N = 3452 queries || MaxDocs = 100000)
+  Average Recall@30 = 0.677773
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[PROFILER_STOP] search_phase_MaxDocs_100000: 177535 ms (2.95892 minutes)
+[PROFILER_STOP] search_phase: 177535 ms (2.95892 minutes)
+[SEARCH_DEBUG_AVG] avg_blocks_entered=1696.76 avg_blocks_skipped=66.4429 avg_docs_examined=99961.7 avg_docs_popped=132.97
+[PROFILER_STOP] total_execution: 1970216 ms (32.8369 minutes)
+
+[SUCCESS] Results saved to "results/max_docs.csv"
+
+=====================
+[CONFIG] Running config: config/max_docs/config_md_2.json
+[PROFILER_START] total_execution
+[PARAMS] k=1000 itr=3 nb=250 nd=100 md=200000
+
+--- Clustering | k = 1000 | iterations = 3 ---
+[PROFILER_START] clustering
+Initializing 1000 clusters... with 2681468 documents with 30522 dimensions
+
+--- Iteration 1/3 ---
+[PROFILER_START] clustering_iteration_1
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_1: 557982 ms (9.2997 minutes)
+
+--- Iteration 2/3 ---
+[PROFILER_START] clustering_iteration_2
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_2: 559891 ms (9.33152 minutes)
+
+--- Iteration 3/3 ---
+[PROFILER_START] clustering_iteration_3
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_3: 558988 ms (9.31647 minutes)
+
+Clustering complete. Sample cluster sizes:
+
+--- Evaluate clustering (relating docs information) ---
+Objective Average Cluster Size: 2681.47
+Median Cluster Size: 2444
+Largest Cluster Size: 20728
+Smallest Cluster Size: 182
+Empty Clusters: 0
+Cluster Size Deviation: 1512.45
+Avg Similarity (Docs and its cluster assignments with dot product): 4.75018
+[PROFILER_STOP] clustering: 1678716 ms (27.9786 minutes)
+
+--- Summary Vectors for each cluster & Indexing ---
+[PROFILER_START] computing_summaries
+[INDEXING] Computing Summary Vectors (Sketches) for 1000 clusters...
+[PROFILER_STOP] computing_summaries: 1954 ms (0.0325667 minutes)
+[PROFILER_START] building_index
+[INDEXING] Partitioning Inverted Lists into blocks...
+[PROFILER_STOP] building_index: 75340 ms (1.25567 minutes)
+Total Summary Vectors: 1000
+Total Concepts indexed: 30522
+[PROFILER_START] load_query_gold_standard
+[PROFILER_STOP] load_query_gold_standard: 294 ms (0.0049 minutes)
+
+--- SEARCH PHASE ---
+[PROFILER_START] search_phase
+[PROFILER_START] search_phase_MaxDocs_200000
+
+--- Evaluating Recall@30 ---
+[PROFILER_START] search_phase_top_n_30
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_30: 354949 ms (5.91582 minutes)
+====================================================
+  VAL RESULTS (N = 3452 queries || MaxDocs = 200000)
+  Average Recall@30 = 0.742178
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[PROFILER_STOP] search_phase_MaxDocs_200000: 354949 ms (5.91582 minutes)
+[PROFILER_STOP] search_phase: 354949 ms (5.91582 minutes)
+[SEARCH_DEBUG_AVG] avg_blocks_entered=3750.1 avg_blocks_skipped=153.432 avg_docs_examined=197245 avg_docs_popped=139.857
+[PROFILER_STOP] total_execution: 2111257 ms (35.1876 minutes)
+
+[SUCCESS] Results saved to "results/max_docs.csv"
+
+=====================
+[CONFIG] Running config: config/max_docs/config_md_3.json
+[PROFILER_START] total_execution
+[PARAMS] k=1000 itr=3 nb=250 nd=100 md=500000
+
+--- Clustering | k = 1000 | iterations = 3 ---
+[PROFILER_START] clustering
+Initializing 1000 clusters... with 2681468 documents with 30522 dimensions
+
+--- Iteration 1/3 ---
+[PROFILER_START] clustering_iteration_1
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_1: 562750 ms (9.37917 minutes)
+
+--- Iteration 2/3 ---
+[PROFILER_START] clustering_iteration_2
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_2: 563105 ms (9.38508 minutes)
+
+--- Iteration 3/3 ---
+[PROFILER_START] clustering_iteration_3
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_3: 561484 ms (9.35807 minutes)
+
+Clustering complete. Sample cluster sizes:
+
+--- Evaluate clustering (relating docs information) ---
+Objective Average Cluster Size: 2681.47
+Median Cluster Size: 2464
+Largest Cluster Size: 11389
+Smallest Cluster Size: 263
+Empty Clusters: 0
+Cluster Size Deviation: 1333.15
+Avg Similarity (Docs and its cluster assignments with dot product): 4.75957
+[PROFILER_STOP] clustering: 1689280 ms (28.1547 minutes)
+
+--- Summary Vectors for each cluster & Indexing ---
+[PROFILER_START] computing_summaries
+[INDEXING] Computing Summary Vectors (Sketches) for 1000 clusters...
+[PROFILER_STOP] computing_summaries: 1960 ms (0.0326667 minutes)
+[PROFILER_START] building_index
+[INDEXING] Partitioning Inverted Lists into blocks...
+[PROFILER_STOP] building_index: 75893 ms (1.26488 minutes)
+Total Summary Vectors: 1000
+Total Concepts indexed: 30522
+[PROFILER_START] load_query_gold_standard
+[PROFILER_STOP] load_query_gold_standard: 322 ms (0.00536667 minutes)
+
+--- SEARCH PHASE ---
+[PROFILER_START] search_phase
+[PROFILER_START] search_phase_MaxDocs_500000
+
+--- Evaluating Recall@30 ---
+[PROFILER_START] search_phase_top_n_30
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_30: 560152 ms (9.33587 minutes)
+====================================================
+  VAL RESULTS (N = 3452 queries || MaxDocs = 500000)
+  Average Recall@30 = 0.792284
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[PROFILER_STOP] search_phase_MaxDocs_500000: 560152 ms (9.33587 minutes)
+[PROFILER_STOP] search_phase: 560152 ms (9.33587 minutes)
+[SEARCH_DEBUG_AVG] avg_blocks_entered=6516.56 avg_blocks_skipped=199.67 avg_docs_examined=304807 avg_docs_popped=135.391
+[PROFILER_STOP] total_execution: 2327610 ms (38.7935 minutes)
+
+[SUCCESS] Results saved to "results/max_docs.csv"
+
+=====================
+[CONFIG] Running config: config/max_docs/config_md_4.json
+[PROFILER_START] total_execution
+[PARAMS] k=1000 itr=3 nb=250 nd=100 md=750000
+
+--- Clustering | k = 1000 | iterations = 3 ---
+[PROFILER_START] clustering
+Initializing 1000 clusters... with 2681468 documents with 30522 dimensions
+
+--- Iteration 1/3 ---
+[PROFILER_START] clustering_iteration_1
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_1: 562050 ms (9.3675 minutes)
+
+--- Iteration 2/3 ---
+[PROFILER_START] clustering_iteration_2
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_2: 563424 ms (9.3904 minutes)
+
+--- Iteration 3/3 ---
+[PROFILER_START] clustering_iteration_3
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_3: 579201 ms (9.65335 minutes)
+
+Clustering complete. Sample cluster sizes:
+
+--- Evaluate clustering (relating docs information) ---
+Objective Average Cluster Size: 2681.47
+Median Cluster Size: 2482
+Largest Cluster Size: 13173
+Smallest Cluster Size: 113
+Empty Clusters: 0
+Cluster Size Deviation: 1490.65
+Avg Similarity (Docs and its cluster assignments with dot product): 4.75859
+[PROFILER_STOP] clustering: 1706540 ms (28.4423 minutes)
+
+--- Summary Vectors for each cluster & Indexing ---
+[PROFILER_START] computing_summaries
+[INDEXING] Computing Summary Vectors (Sketches) for 1000 clusters...
+[PROFILER_STOP] computing_summaries: 1971 ms (0.03285 minutes)
+[PROFILER_START] building_index
+[INDEXING] Partitioning Inverted Lists into blocks...
+[PROFILER_STOP] building_index: 77574 ms (1.2929 minutes)
+Total Summary Vectors: 1000
+Total Concepts indexed: 30522
+[PROFILER_START] load_query_gold_standard
+[PROFILER_STOP] load_query_gold_standard: 308 ms (0.00513333 minutes)
+
+--- SEARCH PHASE ---
+[PROFILER_START] search_phase
+[PROFILER_START] search_phase_MaxDocs_750000
+
+--- Evaluating Recall@30 ---
+[PROFILER_START] search_phase_top_n_30
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_30: 565257 ms (9.42095 minutes)
+====================================================
+  VAL RESULTS (N = 3452 queries || MaxDocs = 750000)
+  Average Recall@30 = 0.790731
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[PROFILER_STOP] search_phase_MaxDocs_750000: 565257 ms (9.42095 minutes)
+[PROFILER_STOP] search_phase: 565257 ms (9.42095 minutes)
+[SEARCH_DEBUG_AVG] avg_blocks_entered=6535.22 avg_blocks_skipped=206.244 avg_docs_examined=304358 avg_docs_popped=140.987
+[PROFILER_STOP] total_execution: 2351654 ms (39.1942 minutes)
+
+[SUCCESS] Results saved to "results/max_docs.csv"
+
+=====================
+[CONFIG] Running config: config/max_docs/config_md_5.json
+[PROFILER_START] total_execution
+[PARAMS] k=1000 itr=3 nb=250 nd=100 md=1000000
+
+--- Clustering | k = 1000 | iterations = 3 ---
+[PROFILER_START] clustering
+Initializing 1000 clusters... with 2681468 documents with 30522 dimensions
+
+--- Iteration 1/3 ---
+[PROFILER_START] clustering_iteration_1
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_1: 564090 ms (9.4015 minutes)
+
+--- Iteration 2/3 ---
+[PROFILER_START] clustering_iteration_2
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_2: 564690 ms (9.4115 minutes)
+
+--- Iteration 3/3 ---
+[PROFILER_START] clustering_iteration_3
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_3: 564344 ms (9.40573 minutes)
+
+Clustering complete. Sample cluster sizes:
+
+--- Evaluate clustering (relating docs information) ---
+Objective Average Cluster Size: 2681.47
+Median Cluster Size: 2476
+Largest Cluster Size: 13644
+Smallest Cluster Size: 145
+Empty Clusters: 0
+Cluster Size Deviation: 1403.35
+Avg Similarity (Docs and its cluster assignments with dot product): 4.75594
+[PROFILER_STOP] clustering: 1694975 ms (28.2496 minutes)
+
+--- Summary Vectors for each cluster & Indexing ---
+[PROFILER_START] computing_summaries
+[INDEXING] Computing Summary Vectors (Sketches) for 1000 clusters...
+[PROFILER_STOP] computing_summaries: 1950 ms (0.0325 minutes)
+[PROFILER_START] building_index
+[INDEXING] Partitioning Inverted Lists into blocks...
+[PROFILER_STOP] building_index: 76010 ms (1.26683 minutes)
+Total Summary Vectors: 1000
+Total Concepts indexed: 30522
+[PROFILER_START] load_query_gold_standard
+[PROFILER_STOP] load_query_gold_standard: 284 ms (0.00473333 minutes)
+
+--- SEARCH PHASE ---
+[PROFILER_START] search_phase
+[PROFILER_START] search_phase_MaxDocs_1000000
+
+--- Evaluating Recall@30 ---
+[PROFILER_START] search_phase_top_n_30
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_30: 560342 ms (9.33903 minutes)
+====================================================
+  VAL RESULTS (N = 3452 queries || MaxDocs = 1000000)
+  Average Recall@30 = 0.788867
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[PROFILER_STOP] search_phase_MaxDocs_1000000: 560343 ms (9.33905 minutes)
+[PROFILER_STOP] search_phase: 560343 ms (9.33905 minutes)
+[SEARCH_DEBUG_AVG] avg_blocks_entered=6538.22 avg_blocks_skipped=207.72 avg_docs_examined=304602 avg_docs_popped=138.959
+[PROFILER_STOP] total_execution: 2333568 ms (38.8928 minutes)
+
+[SUCCESS] Results saved to "results/max_docs.csv"

@@ -13,13 +13,13 @@ public:
     
     /**
      * @brief Executes a Top-K search for a single query using Summary Vector block pruning.
-     * * @param train The forward index (collection of sparse document vectors).
+     * @param train The forward index (collection of sparse document vectors).
      * @param inverted_index The partitioned inverted index grouped by clusters.
      * @param summary_vectors The max-weight bounding vectors for each cluster.
      * @param query_matrix The matrix containing the sparse queries.
      * @param q_idx The index of the specific query to run.
      * @param k The number of results to return (e.g., 30).
-     * @param heap_factor Pruning aggressiveness (1.0 = strict upper bound, < 1.0 = approximate/faster).
+     * @param config Global execution configuration.
      * @return std::vector<std::pair<float, int>> Top-K results as pairs of (score, doc_id) sorted descending.
      */
     virtual std::vector<std::pair<float, int>> search(
@@ -29,8 +29,7 @@ public:
         const Eigen::SparseMatrix<float, Eigen::RowMajor>& query_matrix,
         int q_idx,
         int k,
-        float heap_factor = 1.0f,
-        int max_docs_to_visit = 10000
+        const struct ExecConfig& config
     ) = 0;
 };
 

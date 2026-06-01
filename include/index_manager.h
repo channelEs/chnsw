@@ -4,6 +4,7 @@
 #include <Eigen/Dense>
 #include <vector>
 #include <unordered_map>
+#include "utils/types.h"
 
 /**
  * @brief Represents a block of documents within a single concept's inverted list.
@@ -36,6 +37,7 @@ public:
     std::vector<std::vector<InvertedBlock>> buildInvertedIndex(
         const Eigen::SparseMatrix<float, Eigen::RowMajor>& data,
         const std::vector<int>& assignments,
-        int num_clusters
+        int num_clusters,
+        const struct ExecConfig& config
     );
 };
