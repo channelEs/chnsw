@@ -13,21 +13,15 @@ RUN apt-get update && apt-get install -y \
     tar \
     pkg-config \
     libgomp1 \
+    libeigen3-dev \
+    libhdf5-dev \
     && rm -rf /var/lib/apt/lists/*
 
-ENV VCPKG_ROOT=/opt/vcpkg
-RUN git clone https://github.com/microsoft/vcpkg.git $VCPKG_ROOT \
-    && $VCPKG_ROOT/bootstrap-vcpkg.sh
-
 WORKDIR /src
-
-COPY vcpkg.json .
-RUN $VCPKG_ROOT/vcpkg install --triplet x64-linux
 
 COPY . .
 RUN cmake -B build -S . \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_TOOLCHAIN_FILE=$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake \
     && cmake --build build --config Release
 
 # Second environement just with the compiled version
@@ -37,6 +31,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y \
     libgomp1 \
+    libhdf5-103 \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /sisap2026

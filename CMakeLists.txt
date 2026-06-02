@@ -11,11 +11,17 @@ target_include_directories(main PRIVATE
 )
 
 find_package(Eigen3 CONFIG REQUIRED)
-find_package(hdf5 CONFIG REQUIRED)
-find_package(OpenMP REQUIRED) 
+find_package(HDF5 REQUIRED COMPONENTS C)
+find_package(OpenMP REQUIRED)
 
 target_link_libraries(main PRIVATE Eigen3::Eigen)
-target_link_libraries(main PRIVATE hdf5::hdf5-static)
+if(TARGET HDF5::HDF5)
+    target_link_libraries(main PRIVATE HDF5::HDF5)
+elseif(TARGET hdf5::hdf5-static)
+    target_link_libraries(main PRIVATE hdf5::hdf5-static)
+else()
+    message(FATAL_ERROR "No supported HDF5 target found")
+endif()
 target_link_libraries(main PRIVATE OpenMP::OpenMP_CXX)
 
 if(NOT MSVC)

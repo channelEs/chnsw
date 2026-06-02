@@ -1,4 +1,4 @@
-k,itr,nb,nd,md,Avg_Cluster_Size,Median_Cluster_Size,Avg_Cluster_Similarity,Clustering_Time_s,Indexing_Time_s,Recall@30,Avg_Time_Per_Query_ms,Search_Time_s
+k,itr,nb,nd,md,Avg_Cluster_Size,Median_Cluster_Size,Avg_Cluster_Similarity,Clustering_Time_s,Indexing_Time_s,Recall@30,Avg_Time_Per_Query_s,Search_Time_s
 1000,3,250,100,50000,2681.47,2481,4.74914,28,1,0.598012,0.000289687,1
 1000,3,500,100,50000,2681.47,2463,4.75538,27,1,0.595367,0.000289687,1
 1000,3,750,100,50000,2681.47,2485,4.75403,27,1,0.577772,0.000289687,1
