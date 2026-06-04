@@ -6,13 +6,55 @@
 #include <vector>
 #include <numeric>
 #include <cmath>
+#include <fstream>
+#include <cctype>
 #include "utils/types.h"
+
+static uint64_t parseUnsignedLongLong(const std::string& text) {
+    try {
+        size_t pos = 0;
+        return std::stoull(text, &pos, 10);
+    } catch (...) {
+        return 0;
+    }
+}
+
+static uint64_t getCurrentProcessRSSBytes() {
+    std::ifstream file("/proc/self/status");
+    if (!file.is_open()) {
+        return 0;
+    }
+
+    std::string line;
+    while (std::getline(file, line)) {
+        if (line.rfind("VmRSS:", 0) == 0) {
+            auto colon = line.find(':');
+            if (colon == std::string::npos) {
+                return 0;
+            }
+            std::string value = line.substr(colon + 1);
+            size_t pos = 0;
+            while (pos < value.size() && std::isspace(static_cast<unsigned char>(value[pos]))) {
+                ++pos;
+            }
+            size_t end = pos;
+            while (end < value.size() && std::isdigit(static_cast<unsigned char>(value[end]))) {
+                ++end;
+            }
+            uint64_t kb = parseUnsignedLongLong(value.substr(pos, end - pos));
+            return kb * 1024ULL;
+        }
+    }
+
+    return 0;
+}
 
 class ExecutionProfiler {
 public:
     void start(const std::string& tag) {
         start_times[tag] = std::chrono::high_resolution_clock::now();
-        std::cout << "[PROFILER_START] " << tag << std::endl;
+        start_memory[tag] = getCurrentProcessRSSBytes();
+        std::cout << "[PROFILER_START] " << tag << " memory_start=" << start_memory[tag] << " bytes" << std::endl;
     }
 
     void stop(const std::string& tag) {
@@ -20,7 +62,16 @@ public:
         auto start = start_times[tag];
         auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
         durations[tag] = duration;
+        uint64_t end_mem = getCurrentProcessRSSBytes();
+        uint64_t start_mem = 0;
+        auto mem_it = start_memory.find(tag);
+        if (mem_it != start_memory.end()) {
+            start_mem = mem_it->second;
+        }
+        int64_t delta = static_cast<int64_t>(end_mem) - static_cast<int64_t>(start_mem);
         std::cout << "[PROFILER_STOP] " << tag << ": " << duration << " ms (" << duration / 60000.0 << " minutes)" << std::endl;
+        std::cout << "[PROFILER_MEM] " << tag << " start=" << start_mem << " bytes stop=" << end_mem << " bytes delta=" << delta << " bytes" << std::endl;
+        memory_delta[tag] = delta;
     }
 
     long long getDuration(const std::string& tag) const {
@@ -28,9 +79,16 @@ public:
         return (it != durations.end()) ? it->second : 0;
     }
 
+    int64_t getMemoryDelta(const std::string& tag) const {
+        auto it = memory_delta.find(tag);
+        return (it != memory_delta.end()) ? it->second : 0;
+    }
+
 private:
     std::map<std::string, std::chrono::time_point<std::chrono::high_resolution_clock>> start_times;
     std::map<std::string, long long> durations;
+    std::map<std::string, int64_t> memory_delta;
+    std::map<std::string, uint64_t> start_memory;
 };
 
 struct ClusteringMetrics {

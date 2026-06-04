@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <new>
 #include "utils/hdf5_sparse_loader.h"
 #include "utils/types.h"
 #include "utils/metrics.h"
@@ -97,6 +98,10 @@ static std::vector<std::filesystem::path> getConfigFiles(const std::filesystem::
 
 int main(int argc, char* argv[]) {
     try {
+        std::set_new_handler([]() {
+            std::cerr << "[ERROR] Memory allocation failure: std::new_handler triggered.\n";
+        });
+
         // Default fallbacks if flags aren't passed
         std::string dataset = "fiqa-dev"; 
         std::string task = "task3";
@@ -167,8 +172,9 @@ int main(int argc, char* argv[]) {
                       << " nd=" << exec_config.max_docs_per_block
                       << " md=" << exec_config.max_docs_to_visit << "\n";
 
-            std::cout << "\n--- Clustering | k = " << exec_config.num_clusters 
-                      << " | iterations = " << exec_config.max_iterations << " ---" << std::endl;
+            try {
+                std::cout << "\n--- Clustering | k = " << exec_config.num_clusters 
+                          << " | iterations = " << exec_config.max_iterations << " ---" << std::endl;
             ClusteringEngine engine;
             profiler.start("clustering");
             auto result = engine.run(train, exec_config, profiler);
@@ -280,7 +286,21 @@ int main(int argc, char* argv[]) {
                      << profiler.getDuration("total_execution") / 6000.0 << "\n";
 
             std::cout << "\n[SUCCESS] Results saved to " << results_csv << "\n";
+            } catch (const std::bad_alloc& e) {
+                std::cerr << "[SKIP] Config skipped due to memory allocation failure: " << e.what() << "\n";
+                continue;
+            } catch (const std::runtime_error& e) {
+                std::string msg = e.what();
+                if (msg.find("memory") != std::string::npos || msg.find("Estimated index build memory") != std::string::npos) {
+                    std::cerr << "[SKIP] Config skipped due to estimated memory limit: " << e.what() << "\n";
+                    continue;
+                }
+                throw;
+            }
         }
+    } catch (const std::bad_alloc& e) {
+        std::cerr << "Out of memory: " << e.what() << "\n";
+        return 1;
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << "\n";
         return 1;

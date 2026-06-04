@@ -1,0 +1,4 @@
+k,itr,nb,nd,md,Avg_Cluster_Size,Median_Cluster_Size,Avg_Cluster_Similarity,Avg_Blocks_Entered,Avg_Blocks_Skipped,Avg_Docs_Examined,Avg_Docs_Popped,Clustering_Time_s,Indexing_Time_s,Recall@30,Avg_Time_Per_Query_ms,Search_Time_s,Total_Time_s
+200,3,100,50,50000,288.19,272,5.18382,3661.31,51.628,42099,79.3365,0,1,0.99988,17.9042,19.8378,21.3068
+500,3,100,50,50000,115.276,102,5.52977,3618.72,160.066,37399,80.2632,2,1,0.999017,16.4603,18.238,21.5837
+1000,3,100,50,50000,57.638,48,5.81134,3436.81,354.844,31317.4,83.3962,8,1,0.995031,14.3571,15.9077,26.0932
