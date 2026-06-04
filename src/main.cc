@@ -53,13 +53,56 @@ static int parseJsonInt(const std::string& json, const std::string& key, int def
     }
 }
 
-static ExecConfig loadConfigFromFile(const std::string& filepath) {
-    ExecConfig config;
-    
+static std::vector<int> parseJsonIntArray(const std::string& json, const std::string& key) {
+    std::vector<int> values;
+    if (json.empty()) {
+        return values;
+    }
+
+    std::string quotedKey = "\"" + key + "\"";
+    auto pos = json.find(quotedKey);
+    if (pos == std::string::npos) {
+        pos = json.find(key);
+        if (pos == std::string::npos) {
+            return values;
+        }
+    }
+
+    auto colon = json.find(':', pos);
+    if (colon == std::string::npos) {
+        return values;
+    }
+
+    auto start = json.find('[', colon + 1);
+    if (start == std::string::npos) {
+        return values;
+    }
+
+    auto end = json.find(']', start + 1);
+    if (end == std::string::npos) {
+        return values;
+    }
+
+    std::string array_content = json.substr(start + 1, end - start - 1);
+    std::stringstream ss(array_content);
+    int value;
+    char separator;
+    while (ss >> value) {
+        values.push_back(value);
+        ss >> separator;
+    }
+
+    return values;
+}
+
+static std::vector<ExecConfig> loadConfigSetFromFile(const std::string& filepath) {
+    std::vector<ExecConfig> configs;
+    ExecConfig baseConfig;
+
     std::ifstream file(filepath);
     if (!file.is_open()) {
         std::cerr << "[WARNING] Could not open config file: " << filepath << ". Using defaults.\n";
-        return config;
+        return configs;
     }
 
     std::stringstream buffer;
@@ -67,13 +110,37 @@ static ExecConfig loadConfigFromFile(const std::string& filepath) {
     std::string json_content = buffer.str();
     file.close();
 
-    config.num_clusters = parseJsonInt(json_content, "k", 200);
-    config.max_iterations = parseJsonInt(json_content, "itr", 3);
-    config.max_blocks_per_dimension = parseJsonInt(json_content, "nb", 0);
-    config.max_docs_per_block = parseJsonInt(json_content, "nd", 0);
-    config.max_docs_to_visit = parseJsonInt(json_content, "md", 0);
+    baseConfig.num_clusters = parseJsonInt(json_content, "k", 200);
+    baseConfig.max_iterations = parseJsonInt(json_content, "itr", 3);
 
-    return config;
+    auto nbs = parseJsonIntArray(json_content, "nb");
+    if (nbs.empty()) {
+        nbs.push_back(parseJsonInt(json_content, "nb", 0));
+    }
+
+    auto nds = parseJsonIntArray(json_content, "nd");
+    if (nds.empty()) {
+        nds.push_back(parseJsonInt(json_content, "nd", 0));
+    }
+
+    auto mds = parseJsonIntArray(json_content, "md");
+    if (mds.empty()) {
+        mds.push_back(parseJsonInt(json_content, "md", 0));
+    }
+
+    for (int nb : nbs) {
+        for (int nd : nds) {
+            for (int md : mds) {
+                ExecConfig cfg = baseConfig;
+                cfg.max_blocks_per_dimension = nb;
+                cfg.max_docs_per_block = nd;
+                cfg.max_docs_to_visit = md;
+                configs.push_back(cfg);
+            }
+        }
+    }
+
+    return configs;
 }
 
 static std::vector<std::filesystem::path> getConfigFiles(const std::filesystem::path& params_path) {
@@ -162,140 +229,146 @@ int main(int argc, char* argv[]) {
             std::cout << "\n=====================\n";
             std::cout << "[CONFIG] Running config: " << config_path.string() << "\n";
 
-            ExecConfig exec_config = loadConfigFromFile(config_path.string());
-            ExecutionProfiler profiler;
-            profiler.start("total_execution");
+            auto exec_configs = loadConfigSetFromFile(config_path.string());
+            if (exec_configs.empty()) {
+                std::cerr << "[SKIP] No valid configurations could be parsed from " << config_path.string() << "\n";
+                continue;
+            }
 
-            std::cout << "[PARAMS] k=" << exec_config.num_clusters
-                      << " itr=" << exec_config.max_iterations
-                      << " nb=" << exec_config.max_blocks_per_dimension
-                      << " nd=" << exec_config.max_docs_per_block
-                      << " md=" << exec_config.max_docs_to_visit << "\n";
+            const ExecConfig base_config = exec_configs.front();
+            std::cout << "[PARAMS] k=" << base_config.num_clusters
+                      << " itr=" << base_config.max_iterations
+                      << " (base values)\n";
 
-            try {
-                std::cout << "\n--- Clustering | k = " << exec_config.num_clusters 
-                          << " | iterations = " << exec_config.max_iterations << " ---" << std::endl;
+            std::cout << "\n--- Clustering | k = " << base_config.num_clusters
+                      << " | iterations = " << base_config.max_iterations << " ---" << std::endl;
+            ExecutionProfiler clustering_profiler;
+            clustering_profiler.start("clustering");
             ClusteringEngine engine;
-            profiler.start("clustering");
-            auto result = engine.run(train, exec_config, profiler);
+            auto result = engine.run(train, base_config, clustering_profiler);
+            clustering_profiler.stop("clustering");
 
             std::cout << "\nClustering complete. Sample cluster sizes:\n";
             ClusteringMetrics clustering_metrics = ClusterEvaluator::evaluate(train, result);
-            profiler.stop("clustering");
 
             std::cout << "\n--- Summary Vectors for each cluster & Indexing ---" << std::endl;
             IndexManager index_manager;
-            profiler.start("computing_summaries");
-            std::vector<Eigen::VectorXf> summaries = index_manager.computeSummaryVectors(train, result.assignments, exec_config.num_clusters);
-            profiler.stop("computing_summaries");
+            clustering_profiler.start("computing_summaries");
+            std::vector<Eigen::VectorXf> summaries = index_manager.computeSummaryVectors(train, result.assignments, base_config.num_clusters);
+            clustering_profiler.stop("computing_summaries");
 
-            profiler.start("building_index");
-            auto inverted_index = index_manager.buildInvertedIndex(train, result.assignments, exec_config.num_clusters, exec_config);
-            profiler.stop("building_index");
-
-            std::cout << "Total Summary Vectors: " << summaries.size() << std::endl;
-            std::cout << "Total Concepts indexed: " << inverted_index.size() << std::endl;
-
-            int num_eval_queries = query.rows(); // Evaluate on all queries for now
-            SearchEngineOptimized search_engine;
-            SearchEngine& search_engine_ref = search_engine; // Polymorphic reference for easy switching between implementations
-            std::vector<std::vector<std::pair<float, int>>> evaluation_results(num_eval_queries);
-
-            profiler.start("load_query_gold_standard");
             auto gold_standard = loader.loadGoldStandard("otest/knns");
-            profiler.stop("load_query_gold_standard");
+            int num_eval_queries = query.rows();
+            long long clustering_time_sec = clustering_profiler.getDuration("clustering") / 6000.0;
 
-            std::cout << "\n--- SEARCH PHASE ---" << std::endl;
-            profiler.start("search_phase");
-            float average_recall_30 = 0.0f;
-            std::vector<int> top_n_values = {30};
-            profiler.start("search_phase_MaxDocs_" + std::to_string(exec_config.max_docs_to_visit));
-            for (int top_n_to_check : top_n_values) {
-                std::cout << "\n--- Evaluating Recall@" << top_n_to_check << " ---\n";
-                float total_recall = 0.0f;
-                profiler.start("search_phase_top_n_" + std::to_string(top_n_to_check));
-                for (int actual_query_idx = 0; actual_query_idx < num_eval_queries; ++actual_query_idx) {
-                    evaluation_results[actual_query_idx] = search_engine_ref.search(train, inverted_index, summaries, query, actual_query_idx, top_n_to_check, exec_config);
-                    const auto& hits = evaluation_results[actual_query_idx];
-                    auto gold_start = gold_standard[actual_query_idx].begin();
-                    auto gold_end = gold_start + std::min<size_t>(top_n_to_check, gold_standard[actual_query_idx].size());
+            for (const auto& exec_config : exec_configs) {
+                std::cout << "\n[RUN] nb=" << exec_config.max_blocks_per_dimension
+                          << " nd=" << exec_config.max_docs_per_block
+                          << " md=" << exec_config.max_docs_to_visit << "\n";
 
-                    int true_positives = 0;
-                    for (int k = 0; k < top_n_to_check; ++k) {
-                        int predicted_doc = hits[k].second;
-                        bool is_true_positive = (std::find(gold_start, gold_end, predicted_doc) != gold_end);
-                        if (is_true_positive) {
-                            true_positives++;
+                try {
+                    ExecutionProfiler run_profiler;
+                    std::cout << "\n--- Indexing | nb = " << exec_config.max_blocks_per_dimension
+                              << " | nd = " << exec_config.max_docs_per_block << " ---" << std::endl;
+                    run_profiler.start("building_index");
+                    auto inverted_index = index_manager.buildInvertedIndex(train, result.assignments, exec_config.num_clusters, exec_config);
+                    run_profiler.stop("building_index");
+
+                    std::cout << "Total Summary Vectors: " << summaries.size() << std::endl;
+                    std::cout << "Total Concepts indexed: " << inverted_index.size() << std::endl;
+
+                    SearchEngineOptimized search_engine;
+                    SearchEngine& search_engine_ref = search_engine;
+                    std::vector<std::vector<std::pair<float, int>>> evaluation_results(num_eval_queries);
+
+                    std::cout << "\n--- SEARCH PHASE ---" << std::endl;
+                    run_profiler.start("search_phase");
+                    float average_recall_30 = 0.0f;
+                    std::vector<int> top_n_values = {30};
+                    run_profiler.start("search_phase_MaxDocs_" + std::to_string(exec_config.max_docs_to_visit));
+                    for (int top_n_to_check : top_n_values) {
+                        std::cout << "\n--- Evaluating Recall@" << top_n_to_check << " ---\n";
+                        float total_recall = 0.0f;
+                        run_profiler.start("search_phase_top_n_" + std::to_string(top_n_to_check));
+                        for (int actual_query_idx = 0; actual_query_idx < num_eval_queries; ++actual_query_idx) {
+                            evaluation_results[actual_query_idx] = search_engine_ref.search(train, inverted_index, summaries, query, actual_query_idx, top_n_to_check, exec_config);
+                            const auto& hits = evaluation_results[actual_query_idx];
+                            auto gold_start = gold_standard[actual_query_idx].begin();
+                            auto gold_end = gold_start + std::min<size_t>(top_n_to_check, gold_standard[actual_query_idx].size());
+
+                            int true_positives = 0;
+                            for (int k = 0; k < top_n_to_check; ++k) {
+                                int predicted_doc = hits[k].second;
+                                bool is_true_positive = (std::find(gold_start, gold_end, predicted_doc) != gold_end);
+                                if (is_true_positive) {
+                                    true_positives++;
+                                }
+                            }
+                            float query_recall = (top_n_to_check > 0) ? static_cast<float>(true_positives) / static_cast<float>(top_n_to_check) : 0.0f;
+                            total_recall += query_recall;
+                            if ((actual_query_idx) % 1000 == 0) {
+                                std::cout << "  Processed " << (actual_query_idx) << "/" << num_eval_queries << " queries...\n";
+                            }
                         }
+
+                        run_profiler.stop("search_phase_top_n_" + std::to_string(top_n_to_check));
+                        average_recall_30 = total_recall / static_cast<float>(num_eval_queries);
+                        std::cout << "====================================================\n";
+                        std::cout << "  VAL RESULTS (N = " << num_eval_queries << " queries || MaxDocs = " << exec_config.max_docs_to_visit << ")\n";
+                        std::cout << "  Average Recall@" << top_n_to_check << " = " << average_recall_30 << "\n";
+                        if (average_recall_30 >= 0.90f) {
+                            std::cout << "  STATUS: SUCCESS (Passed Challenge Benchmark Threshold)\n";
+                        } else {
+                            std::cout << "  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)\n";
+                        }
+                        std::cout << "====================================================\n";
                     }
-                    float query_recall = (top_n_to_check > 0) ? static_cast<float>(true_positives) / static_cast<float>(top_n_to_check) : 0.0f;
-                    total_recall += query_recall;
-                    if ((actual_query_idx) % 1000 == 0) {
-                        std::cout << "  Processed " << (actual_query_idx) << "/" << num_eval_queries << " queries...\n";
-                    }
-                }
+                    run_profiler.stop("search_phase_MaxDocs_" + std::to_string(exec_config.max_docs_to_visit));
+                    run_profiler.stop("search_phase");
 
-                profiler.stop("search_phase_top_n_" + std::to_string(top_n_to_check));
-                average_recall_30 = total_recall / static_cast<float>(num_eval_queries);
-                std::cout << "====================================================\n";
-                std::cout << "  VAL RESULTS (N = " << num_eval_queries << " queries || MaxDocs = " << exec_config.max_docs_to_visit << ")\n";
-                std::cout << "  Average Recall@" << top_n_to_check << " = " << average_recall_30 << "\n";
-                if (average_recall_30 >= 0.90f) {
-                    std::cout << "  STATUS: SUCCESS (Passed Challenge Benchmark Threshold)\n";
-                } else {
-                    std::cout << "  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)\n";
-                }
-                std::cout << "====================================================\n";
-            }
-            profiler.stop("search_phase_MaxDocs_" + std::to_string(exec_config.max_docs_to_visit));
-            profiler.stop("search_phase");
+                    double avg_blocks_entered = 0.0;
+                    double avg_blocks_skipped = 0.0;
+                    double avg_docs_examined = 0.0;
+                    double avg_docs_popped = 0.0;
+                    search_engine.getAvgDebugStats(avg_blocks_entered, avg_blocks_skipped, avg_docs_examined, avg_docs_popped);
+                    search_engine.printAvgDebugStats();
 
-            // Retrieve aggregated averages from the optimized search engine for CSV
-            double avg_blocks_entered = 0.0;
-            double avg_blocks_skipped = 0.0;
-            double avg_docs_examined = 0.0;
-            double avg_docs_popped = 0.0;
-            search_engine.getAvgDebugStats(avg_blocks_entered, avg_blocks_skipped, avg_docs_examined, avg_docs_popped);
+                    long long indexing_time_sec = run_profiler.getDuration("building_index") / 6000.0;
+                    long long search_time = run_profiler.getDuration("search_phase");
+                    double avg_time_per_query_ms = (num_eval_queries > 0) ? static_cast<double>(search_time) / num_eval_queries : 0.0;
+                    double total_time_sec = clustering_time_sec + indexing_time_sec + search_time / 6000.0;
 
-            // Also print for quick console inspection
-            search_engine.printAvgDebugStats();
-            profiler.stop("total_execution");
+                    csv_file << exec_config.num_clusters << ","
+                             << exec_config.max_iterations << ","
+                             << exec_config.max_blocks_per_dimension << ","
+                             << exec_config.max_docs_per_block << ","
+                             << exec_config.max_docs_to_visit << ","
+                             << clustering_metrics.avg_cluster_size << ","
+                             << clustering_metrics.median_cluster_size << ","
+                             << clustering_metrics.avg_intra_cluster_similarity << ","
+                             << avg_blocks_entered << ","
+                             << avg_blocks_skipped << ","
+                             << avg_docs_examined << ","
+                             << avg_docs_popped << ","
+                             << clustering_time_sec << ","
+                             << indexing_time_sec << ","
+                             << average_recall_30 << ","
+                             << avg_time_per_query_ms << ","
+                             << search_time / 6000.0 << ","
+                             << total_time_sec << "\n";
 
-            long long clustering_time_sec = profiler.getDuration("clustering") / 6000.0;
-            long long indexing_time_sec = profiler.getDuration("building_index") / 6000.0;
-            long long search_time = profiler.getDuration("search_phase");
-            double avg_time_per_query_ms = (num_eval_queries > 0) ? static_cast<double>(search_time) / num_eval_queries : 0.0;
-
-            csv_file << exec_config.num_clusters << ","
-                     << exec_config.max_iterations << ","
-                     << exec_config.max_blocks_per_dimension << ","
-                     << exec_config.max_docs_per_block << ","
-                     << exec_config.max_docs_to_visit << ","
-                     << clustering_metrics.avg_cluster_size << ","
-                     << clustering_metrics.median_cluster_size << ","
-                     << clustering_metrics.avg_intra_cluster_similarity << ","
-                     << avg_blocks_entered << ","
-                     << avg_blocks_skipped << ","
-                     << avg_docs_examined << ","
-                     << avg_docs_popped << ","
-                     << clustering_time_sec << ","
-                     << indexing_time_sec << ","
-                     << average_recall_30 << ","
-                     << avg_time_per_query_ms << ","
-                     << search_time / 6000.0 << ","
-                     << profiler.getDuration("total_execution") / 6000.0 << "\n";
-
-            std::cout << "\n[SUCCESS] Results saved to " << results_csv << "\n";
-            } catch (const std::bad_alloc& e) {
-                std::cerr << "[SKIP] Config skipped due to memory allocation failure: " << e.what() << "\n";
-                continue;
-            } catch (const std::runtime_error& e) {
-                std::string msg = e.what();
-                if (msg.find("memory") != std::string::npos || msg.find("Estimated index build memory") != std::string::npos) {
-                    std::cerr << "[SKIP] Config skipped due to estimated memory limit: " << e.what() << "\n";
+                    std::cout << "\n[SUCCESS] Results saved to " << results_csv << "\n";
+                } catch (const std::bad_alloc& e) {
+                    std::cerr << "[SKIP] Run skipped due to memory allocation failure: " << e.what() << "\n";
                     continue;
+                } catch (const std::runtime_error& e) {
+                    std::string msg = e.what();
+                    if (msg.find("memory") != std::string::npos || msg.find("Estimated index build memory") != std::string::npos) {
+                        std::cerr << "[SKIP] Run skipped due to estimated memory limit: " << e.what() << "\n";
+                        continue;
+                    }
+                    throw;
                 }
-                throw;
             }
         }
     } catch (const std::bad_alloc& e) {
