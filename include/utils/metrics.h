@@ -49,12 +49,64 @@ static uint64_t getCurrentProcessRSSBytes() {
     return 0;
 }
 
+static uint64_t readUnsignedFromFile(const char* path) {
+    std::ifstream file(path);
+    if (!file.is_open()) {
+        return 0;
+    }
+
+    std::string line;
+    if (!std::getline(file, line)) {
+        return 0;
+    }
+
+    if (line == "max") {
+        return 0;
+    }
+
+    return parseUnsignedLongLong(line);
+}
+
+static uint64_t getCgroupMemoryLimitBytes() {
+    uint64_t limit = readUnsignedFromFile("/sys/fs/cgroup/memory.max");
+    if (limit > 0) {
+        return limit;
+    }
+    limit = readUnsignedFromFile("/sys/fs/cgroup/memory.limit_in_bytes");
+    return limit;
+}
+
+static uint64_t getPhysicalMemoryBytes() {
+    long pages = sysconf(_SC_PHYS_PAGES);
+    long page_size = sysconf(_SC_PAGESIZE);
+    if (pages <= 0 || page_size <= 0) {
+        return 0;
+    }
+    return static_cast<uint64_t>(pages) * static_cast<uint64_t>(page_size);
+}
+
+static uint64_t getEffectiveMemoryLimitBytes() {
+    uint64_t cgroup_limit = getCgroupMemoryLimitBytes();
+    if (cgroup_limit > 0 && cgroup_limit < std::numeric_limits<uint64_t>::max()) {
+        return cgroup_limit;
+    }
+    return getPhysicalMemoryBytes();
+}
+
+static double bytesToGB(uint64_t bytes) {
+    const double gb = 1024.0 * 1024.0 * 1024.0;
+    return static_cast<double>(bytes) / gb;
+}
+
 class ExecutionProfiler {
 public:
     void start(const std::string& tag) {
         start_times[tag] = std::chrono::high_resolution_clock::now();
         start_memory[tag] = getCurrentProcessRSSBytes();
-        std::cout << "[PROFILER_START] " << tag << " memory_start=" << start_memory[tag] << " bytes" << std::endl;
+        uint64_t limit = getEffectiveMemoryLimitBytes();
+        std::cout << "[PROFILER_START] " << tag
+                  << " memory_start=" << start_memory[tag] << " bytes (" << bytesToGB(start_memory[tag]) << " GB)"
+                  << " limit=" << limit << " bytes (" << bytesToGB(limit) << " GB)" << std::endl;
     }
 
     void stop(const std::string& tag) {
@@ -69,8 +121,14 @@ public:
             start_mem = mem_it->second;
         }
         int64_t delta = static_cast<int64_t>(end_mem) - static_cast<int64_t>(start_mem);
+        uint64_t limit = getEffectiveMemoryLimitBytes();
         std::cout << "[PROFILER_STOP] " << tag << ": " << duration << " ms (" << duration / 60000.0 << " minutes)" << std::endl;
-        std::cout << "[PROFILER_MEM] " << tag << " start=" << start_mem << " bytes stop=" << end_mem << " bytes delta=" << delta << " bytes" << std::endl;
+        std::cout << "[PROFILER_MEM] " << tag
+              << " start=" << start_mem << " bytes (" << bytesToGB(start_mem) << " GB)"
+              << " stop=" << end_mem << " bytes (" << bytesToGB(end_mem) << " GB)"
+              << " delta=" << delta << " bytes (" << bytesToGB((delta >= 0) ? static_cast<uint64_t>(delta) : static_cast<uint64_t>(-delta)) << " GB)"
+              << " limit=" << limit << " bytes (" << bytesToGB(limit) << " GB)"
+              << std::endl;
         memory_delta[tag] = delta;
     }
 

@@ -14,6 +14,10 @@ public:
         int k,
         const struct ExecConfig& config
     ) override;
+
+    void printAvgDebugStats() const override;
+
+    void getAvgDebugStats(double& avg_blocks_entered, double& avg_blocks_skipped, double& avg_docs_examined, double& avg_docs_popped) const override;
 };
 
 #endif

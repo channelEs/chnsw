@@ -1,4 +1,4 @@
-#include "index_manager.h"
+#include "index_manager_optimized.h"
 #include <iostream>
 #include <algorithm>
 #include <numeric>
@@ -9,61 +9,7 @@
 #include <unistd.h>
 #include <cstdint>
 
-static uint64_t parseUnsignedLongLong(const std::string& text) {
-    try {
-        size_t pos = 0;
-        uint64_t value = std::stoull(text, &pos, 10);
-        return value;
-    } catch (...) {
-        return 0;
-    }
-}
-
-static uint64_t readUnsignedFromFile(const char* path) {
-    std::ifstream file(path);
-    if (!file.is_open()) {
-        return 0;
-    }
-
-    std::string line;
-    if (!std::getline(file, line)) {
-        return 0;
-    }
-
-    if (line == "max") {
-        return 0;
-    }
-
-    return parseUnsignedLongLong(line);
-}
-
-static uint64_t getCgroupMemoryLimitBytes() {
-    uint64_t limit = readUnsignedFromFile("/sys/fs/cgroup/memory.max");
-    if (limit > 0) {
-        return limit;
-    }
-    limit = readUnsignedFromFile("/sys/fs/cgroup/memory.limit_in_bytes");
-    return limit;
-}
-
-static uint64_t getPhysicalMemoryBytes() {
-    long pages = sysconf(_SC_PHYS_PAGES);
-    long page_size = sysconf(_SC_PAGESIZE);
-    if (pages <= 0 || page_size <= 0) {
-        return 0;
-    }
-    return static_cast<uint64_t>(pages) * static_cast<uint64_t>(page_size);
-}
-
-static uint64_t getEffectiveMemoryLimitBytes() {
-    uint64_t cgroup_limit = getCgroupMemoryLimitBytes();
-    if (cgroup_limit > 0 && cgroup_limit < std::numeric_limits<uint64_t>::max()) {
-        return cgroup_limit;
-    }
-    return getPhysicalMemoryBytes();
-}
-
-static uint64_t estimateIndexMemoryBytes(int n_dims, int num_clusters, const struct ExecConfig& config) {
+static double estimateIndexMemoryGBytes(int n_dims, int num_clusters, const struct ExecConfig& config) {
     uint64_t max_docs = (config.max_docs_per_block > 0) ? static_cast<uint64_t>(config.max_docs_per_block) : static_cast<uint64_t>(n_dims);
     uint64_t cluster_count = static_cast<uint64_t>(num_clusters);
 
@@ -75,10 +21,10 @@ static uint64_t estimateIndexMemoryBytes(int n_dims, int num_clusters, const str
     unsigned long long cluster_overhead = cluster_nodes * 80ULL;
 
     unsigned long long total = docs_bytes + cluster_overhead;
-    return total;
+    return static_cast<double>(total) / (1024.0 * 1024.0 * 1024.0);
 }
 
-std::vector<Eigen::VectorXf> IndexManager::computeSummaryVectors(
+std::vector<Eigen::VectorXf> IndexManagerOptimized::computeSummaryVectors(
     const Eigen::SparseMatrix<float, Eigen::RowMajor>& data,
     const std::vector<int>& assignments,
     int num_clusters
@@ -109,11 +55,12 @@ std::vector<Eigen::VectorXf> IndexManager::computeSummaryVectors(
     return summaries;
 }
 
-std::vector<std::vector<InvertedBlock>> IndexManager::buildInvertedIndex(
+std::vector<std::vector<InvertedBlock>> IndexManagerOptimized::buildInvertedIndex(
     const Eigen::SparseMatrix<float, Eigen::RowMajor>& data,
     const std::vector<int>& assignments,
     int num_clusters,
-    const struct ExecConfig& config
+    const struct ExecConfig& config,
+    const std::vector<Eigen::VectorXf>& summaries
 ) {
     int n_docs = data.rows();
     int n_dims = data.cols();
@@ -126,25 +73,9 @@ std::vector<std::vector<InvertedBlock>> IndexManager::buildInvertedIndex(
               << " max_docs_to_visit=" << config.max_docs_to_visit
               << std::endl;
 
-    const uint64_t memory_limit_bytes = getEffectiveMemoryLimitBytes();
-    const uint64_t estimated_index_bytes = estimateIndexMemoryBytes(n_dims, num_clusters, config);
-    uint64_t safe_threshold = 0;
-    if (memory_limit_bytes > 0) {
-        safe_threshold = memory_limit_bytes * 80ULL / 100ULL;
-        std::cout << "[MEMORY_ESTIMATE] Estimated build memory=" << estimated_index_bytes
-                  << " bytes, limit=" << memory_limit_bytes
-                  << " bytes, safe threshold=" << safe_threshold << " bytes" << std::endl;
-        if (estimated_index_bytes > safe_threshold) {
-            throw std::runtime_error("Estimated index build memory exceeds safe threshold.");
-        }
-    } else {
-        safe_threshold = 128ULL * 1024ULL * 1024ULL * 1024ULL;
-        std::cout << "[MEMORY_ESTIMATE] Estimated build memory=" << estimated_index_bytes
-                  << " bytes, no cgroup limit available, using safety threshold=" << safe_threshold << " bytes" << std::endl;
-        if (estimated_index_bytes > safe_threshold) {
-            throw std::runtime_error("Estimated index build memory exceeds local safety limit.");
-        }
-    }
+    const double estimated_index_gbytes = estimateIndexMemoryGBytes(n_dims, num_clusters, config);
+    std::cout << "[MEMORY_ESTIMATE] Estimated build memory=" << estimated_index_gbytes
+              << " GB. Proceeding with index build regardless of system limits." << std::endl;
 
     try {
         // The partitioned index: Concept -> List of Blocks
@@ -208,18 +139,18 @@ std::vector<std::vector<InvertedBlock>> IndexManager::buildInvertedIndex(
             auto &cluster_map = candidates[concept_id];
             if (cluster_map.empty()) continue;
             ++processed_concepts;
-            if ((processed_concepts <= 5) || (processed_concepts % 1000 == 0)) {
-                size_t doc_entries = 0;
-                for (auto &entry : cluster_map) {
-                    doc_entries += entry.second.docs.size();
-                }
-                std::cout << "[INDEXING] Processing concept " << concept_id
-                          << " / " << n_dims
-                          << " clusters=" << cluster_map.size()
-                          << " docs=" << doc_entries
-                          << " processed_concepts=" << processed_concepts
-                          << std::endl;
-            }
+            // if ((processed_concepts <= 5) || (processed_concepts % 1000 == 0)) {
+            //     size_t doc_entries = 0;
+            //     for (auto &entry : cluster_map) {
+            //         doc_entries += entry.second.docs.size();
+            //     }
+            //     std::cout << "[INDEXING] Processing concept " << concept_id
+            //               << " / " << n_dims
+            //               << " clusters=" << cluster_map.size()
+            //               << " docs=" << doc_entries
+            //               << " processed_concepts=" << processed_concepts
+            //               << std::endl;
+            // }
 
             std::vector<std::pair<int, ClusterCandidate>> cluster_entries;
             cluster_entries.reserve(cluster_map.size());
@@ -276,6 +207,32 @@ std::vector<std::vector<InvertedBlock>> IndexManager::buildInvertedIndex(
                 index[concept_id].push_back(std::move(block));
             }
         }
+
+        // Profiling: compute totals and averages for blocks and documents
+        size_t total_blocks = 0;
+        size_t total_docs_in_blocks = 0;
+        int empty_dimensions = 0;
+        for (int concept_id = 0; concept_id < n_dims; ++concept_id) {
+            auto &blocks = index[concept_id];
+            if (blocks.empty()) {
+                ++empty_dimensions;
+                continue;
+            }
+            total_blocks += blocks.size();
+            for (const auto &b : blocks) {
+                total_docs_in_blocks += b.doc_ids.size();
+            }
+        }
+
+        double avg_docs_per_block = 0.0;
+        if (total_blocks > 0) avg_docs_per_block = static_cast<double>(total_docs_in_blocks) / static_cast<double>(total_blocks);
+        double avg_blocks_per_dimension = static_cast<double>(total_blocks) / static_cast<double>(n_dims);
+
+        std::cout << "[INDEX_PROFILE] total_blocks=" << total_blocks
+                  << " total_docs_in_blocks=" << total_docs_in_blocks
+                  << " avg_docs_per_block=" << avg_docs_per_block
+                  << " avg_blocks_per_dimension=" << avg_blocks_per_dimension
+                  << " empty_dimensions=" << empty_dimensions << std::endl;
 
         return index;
     } catch (const std::bad_alloc& e) {

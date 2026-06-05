@@ -7,6 +7,8 @@
 #include "utils/metrics.h"
 #include "clustering_engine.h"
 #include "index_manager.h"
+#include "index_manager_simple.h"
+#include "index_manager_optimized.h"
 
 #include "search_engine.h"
 #include "search_engine_simple.h"
@@ -252,9 +254,11 @@ int main(int argc, char* argv[]) {
             ClusteringMetrics clustering_metrics = ClusterEvaluator::evaluate(train, result);
 
             std::cout << "\n--- Summary Vectors for each cluster & Indexing ---" << std::endl;
-            IndexManager index_manager;
+            // IndexManagerOptimized index_manager;
+            IndexManagerSimple index_manager;
+            IndexManager& index_manager_ref = index_manager;
             clustering_profiler.start("computing_summaries");
-            std::vector<Eigen::VectorXf> summaries = index_manager.computeSummaryVectors(train, result.assignments, base_config.num_clusters);
+            std::vector<Eigen::VectorXf> summaries = index_manager_ref.computeSummaryVectors(train, result.assignments, base_config.num_clusters);
             clustering_profiler.stop("computing_summaries");
 
             auto gold_standard = loader.loadGoldStandard("otest/knns");
@@ -262,7 +266,9 @@ int main(int argc, char* argv[]) {
             long long clustering_time_sec = clustering_profiler.getDuration("clustering") / 6000.0;
 
             for (const auto& exec_config : exec_configs) {
-                std::cout << "\n[RUN] nb=" << exec_config.max_blocks_per_dimension
+                std::cout << "\n[RUN] k=" << exec_config.num_clusters
+                          << " itr=" << exec_config.max_iterations 
+                          << "nb=" << exec_config.max_blocks_per_dimension
                           << " nd=" << exec_config.max_docs_per_block
                           << " md=" << exec_config.max_docs_to_visit << "\n";
 
@@ -271,21 +277,21 @@ int main(int argc, char* argv[]) {
                     std::cout << "\n--- Indexing | nb = " << exec_config.max_blocks_per_dimension
                               << " | nd = " << exec_config.max_docs_per_block << " ---" << std::endl;
                     run_profiler.start("building_index");
-                    auto inverted_index = index_manager.buildInvertedIndex(train, result.assignments, exec_config.num_clusters, exec_config);
+                    auto inverted_index = index_manager_ref.buildInvertedIndex(train, result.assignments, exec_config.num_clusters, exec_config, summaries);
                     run_profiler.stop("building_index");
 
                     std::cout << "Total Summary Vectors: " << summaries.size() << std::endl;
                     std::cout << "Total Concepts indexed: " << inverted_index.size() << std::endl;
 
                     SearchEngineOptimized search_engine;
+                    // SearchEngineSimple search_engine;
                     SearchEngine& search_engine_ref = search_engine;
                     std::vector<std::vector<std::pair<float, int>>> evaluation_results(num_eval_queries);
 
                     std::cout << "\n--- SEARCH PHASE ---" << std::endl;
-                    run_profiler.start("search_phase");
                     float average_recall_30 = 0.0f;
                     std::vector<int> top_n_values = {30};
-                    run_profiler.start("search_phase_MaxDocs_" + std::to_string(exec_config.max_docs_to_visit));
+                    run_profiler.start("search_phase");
                     for (int top_n_to_check : top_n_values) {
                         std::cout << "\n--- Evaluating Recall@" << top_n_to_check << " ---\n";
                         float total_recall = 0.0f;
@@ -323,19 +329,19 @@ int main(int argc, char* argv[]) {
                         }
                         std::cout << "====================================================\n";
                     }
-                    run_profiler.stop("search_phase_MaxDocs_" + std::to_string(exec_config.max_docs_to_visit));
                     run_profiler.stop("search_phase");
 
                     double avg_blocks_entered = 0.0;
                     double avg_blocks_skipped = 0.0;
                     double avg_docs_examined = 0.0;
                     double avg_docs_popped = 0.0;
-                    search_engine.getAvgDebugStats(avg_blocks_entered, avg_blocks_skipped, avg_docs_examined, avg_docs_popped);
-                    search_engine.printAvgDebugStats();
+                    search_engine_ref.getAvgDebugStats(avg_blocks_entered, avg_blocks_skipped, avg_docs_examined, avg_docs_popped);
+                    search_engine_ref.printAvgDebugStats();
 
                     long long indexing_time_sec = run_profiler.getDuration("building_index") / 6000.0;
                     long long search_time = run_profiler.getDuration("search_phase");
                     double avg_time_per_query_ms = (num_eval_queries > 0) ? static_cast<double>(search_time) / num_eval_queries : 0.0;
+                    std::cout << "\n[TIME-QUERY] Average Time per Query: " << avg_time_per_query_ms << " ms\n";
                     double total_time_sec = clustering_time_sec + indexing_time_sec + search_time / 6000.0;
 
                     csv_file << exec_config.num_clusters << ","
@@ -357,7 +363,7 @@ int main(int argc, char* argv[]) {
                              << search_time / 6000.0 << ","
                              << total_time_sec << "\n";
 
-                    std::cout << "\n[SUCCESS] Results saved to " << results_csv << "\n";
+                    std::cout << "\n[OK] Results saved to " << results_csv << "\n";
                 } catch (const std::bad_alloc& e) {
                     std::cerr << "[SKIP] Run skipped due to memory allocation failure: " << e.what() << "\n";
                     continue;
