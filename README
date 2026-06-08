@@ -209,6 +209,45 @@ docker run -it --cpus=8 --memory=24g \
 
 Results from all runs will accumulate in `results/results.csv` for easy comparison. 
 
+---
+
+# Plotting Results
+
+The `scripts/plot_global_iterations.py` script generates visualization plots from the global iterations results CSV.
+
+## Requirements
+
+Ensure you have the required Python packages installed:
+
+```bash
+pip install pandas matplotlib numpy
+```
+
+## Usage
+
+```bash
+python scripts/plot_global_iterations.py --csv <csv_file> --k <k_value> --itr <itr_value> [--outdir <output_directory>]
+```
+
+**Arguments:**
+- `--csv`: Path to the global iterations CSV file (required)
+- `--k`: Value of k to filter results (required, must be integer)
+- `--itr`: Value of itr to filter results (required, must be integer)
+- `--outdir`: Output directory for generated plots (optional, default: `figures`)
+
+## Example
+
+Generate plots for k=1500 and itr=3 from the test results:
+
+```bash
+python scripts/plot_global_iterations.py --csv results/global_iterations_test.csv --k 1500 --itr 3 --md 30000 --outdir figures
+```
+
+This will create two plots in the `figures/` directory:
+1. **`global_iterations_k1500_itr3_time.png`** – Scatter plot of `nd` vs `nb` colored by average query time (green = fast, red = slow)
+2. **`global_iterations_k1500_itr3_recall.png`** – Scatter plot of `nd` vs `nb` with recall gradient (red = 0.6 or worse, green = 0.9 or better)
+
+---
 
 # Notes
 

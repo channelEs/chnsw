@@ -14,7 +14,9 @@ std::vector<std::pair<float, int>> SearchEngineOptimized::search(
     const struct ExecConfig& config
 ) {
     int max_docs_to_visit = config.max_docs_to_visit;
-    float heap_factor = 1.0f;
+    // Use a tuned pruning factor since summary_vectors now represent a cluster-average estimate,
+    // not a strict maximum bound. Lower values increase pruning aggressiveness.
+    float heap_factor = 0.60f;
     int num_clusters = summary_vectors.size();
     int n_docs = train.rows();
     int n_dims = train.cols();
@@ -59,21 +61,16 @@ std::vector<std::pair<float, int>> SearchEngineOptimized::search(
 
         const auto& blocks = inverted_index[concept_id];
 
-        std::vector<size_t> sorted_block_indices(blocks.size());
-        std::iota(sorted_block_indices.begin(), sorted_block_indices.end(), 0);
-        std::sort(sorted_block_indices.begin(), sorted_block_indices.end(), [&](size_t a, size_t b) {
-            return cluster_ub[blocks[a].cluster_id] > cluster_ub[blocks[b].cluster_id];
-        });
-
-        for (size_t b_idx : sorted_block_indices) {
-            const auto& block = blocks[b_idx];
+        // The index is already built with the most promising clusters first for each concept.
+        // Avoid per-query heap allocations and sorts by scanning blocks in stored order.
+        for (const auto& block : blocks) {
             int c_id = block.cluster_id;
             float ub = cluster_ub[c_id];
 
             // get the WORST score in the current priority queue
             float threshold = min_heap.empty() ? 0.0f : min_heap.top().first;
 
-            // If the upper bound < WORST score, SKIP THE WHOLE BLOCK!
+            // If the upper bound is below the threshold, skip the entire block.
             if (ub < threshold * heap_factor) {
                 ++blocks_skipped;
             } else {

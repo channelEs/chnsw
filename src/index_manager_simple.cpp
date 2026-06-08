@@ -32,23 +32,30 @@ std::vector<Eigen::VectorXf> IndexManagerSimple::computeSummaryVectors(
     int n_docs = data.rows();
     int n_dims = data.cols();
 
-    // Initialize dense vectors to store the max weights for each cluster
+    // Initialize dense vectors to store the average cluster weights for each concept.
+    // This produces a tighter heuristic bound than maximum-weight summaries,
+    // which tend to overestimate the relevance of noisy spikes.
     std::vector<Eigen::VectorXf> summaries(num_clusters, Eigen::VectorXf::Zero(n_dims));
+    std::vector<int> cluster_doc_count(num_clusters, 0);
 
     std::cout << "[INDEXING] Computing Summary Vectors (Sketches) for " << num_clusters << " clusters..." << std::endl;
 
     for (int i = 0; i < n_docs; ++i) {
         int cluster_id = assignments[i];
+        ++cluster_doc_count[cluster_id];
         
         // Use Eigen's InnerIterator to touch only non-zero values (High Efficiency)
         for (Eigen::SparseMatrix<float, Eigen::RowMajor>::InnerIterator it(data, i); it; ++it) {
             int term_idx = it.index();
             float weight = it.value();
+            summaries[cluster_id][term_idx] += weight;
+        }
+    }
 
-            // We want the 'ceiling' (max weight) for this concept in this cluster
-            if (weight > summaries[cluster_id][term_idx]) {
-                summaries[cluster_id][term_idx] = weight;
-            }
+    for (int cluster_id = 0; cluster_id < num_clusters; ++cluster_id) {
+        int count = cluster_doc_count[cluster_id];
+        if (count > 0) {
+            summaries[cluster_id] /= static_cast<float>(count);
         }
     }
 

@@ -320,7 +320,7 @@ int main(int argc, char* argv[]) {
                         run_profiler.stop("search_phase_top_n_" + std::to_string(top_n_to_check));
                         average_recall_30 = total_recall / static_cast<float>(num_eval_queries);
                         std::cout << "====================================================\n";
-                        std::cout << "  VAL RESULTS (N = " << num_eval_queries << " queries || MaxDocs = " << exec_config.max_docs_to_visit << ")\n";
+                        // std::cout << "  VAL RESULTS (N = " << num_eval_queries << " queries || MaxDocs = " << exec_config.max_docs_to_visit << ")\n";
                         std::cout << "  Average Recall@" << top_n_to_check << " = " << average_recall_30 << "\n";
                         if (average_recall_30 >= 0.90f) {
                             std::cout << "  STATUS: SUCCESS (Passed Challenge Benchmark Threshold)\n";

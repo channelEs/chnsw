@@ -1,0 +1,546 @@
+2026-06-05 23:09:39.402 | [SISAP] Running task3 on dataset: data/nq.h5
+2026-06-05 23:09:39.402 | [CONFIG] Executing 6 config file(s) from `config/clusters`
+2026-06-05 23:09:39.402 | 
+2026-06-05 23:09:39.402 | --- Read data (data/nq.h5) ---
+2026-06-05 23:10:03.748 | train: 2681468 x 30522
+2026-06-05 23:10:03.748 | query: 3452 x 30522
+2026-06-05 23:10:03.748 | 
+2026-06-05 23:10:03.748 | =====================
+2026-06-05 23:10:03.748 | [CONFIG] Running config: config/clusters/config_k_1.json
+2026-06-05 23:10:03.755 | [PARAMS] k=200 itr=3 (base values)
+2026-06-05 23:10:03.755 | 
+2026-06-05 23:10:03.755 | --- Clustering | k = 200 | iterations = 3 ---
+2026-06-05 23:10:03.757 | [PROFILER_START] clustering memory_start=4607254528 bytes (4.29084 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:10:03.767 | Initializing 200 clusters... with 2681468 documents with 30522 dimensions
+2026-06-05 23:10:03.792 | 
+2026-06-05 23:10:03.792 | --- Iteration 1/3 ---
+2026-06-05 23:10:03.792 | [PROFILER_START] clustering_iteration_1 memory_start=4652802048 bytes (4.33326 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:10:03.792 | Assigning 2681468 documents to clusters (8 threads)...
+2026-06-05 23:10:41.723 | Grouping documents by cluster assignments...
+2026-06-05 23:10:41.748 | Updating cluster centroid shapes in parallel...
+2026-06-05 23:10:42.103 | Centroids updated successfully!
+2026-06-05 23:10:42.103 | [PROFILER_STOP] clustering_iteration_1: 38310 ms (0.6385 minutes)
+2026-06-05 23:10:42.103 | [PROFILER_MEM] clustering_iteration_1 start=4652802048 bytes (4.33326 GB) stop=4667424768 bytes (4.34688 GB) delta=14622720 bytes (0.0136185 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:10:42.103 | 
+2026-06-05 23:10:42.103 | --- Iteration 2/3 ---
+2026-06-05 23:10:42.103 | [PROFILER_START] clustering_iteration_2 memory_start=4667424768 bytes (4.34688 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:10:42.103 | Assigning 2681468 documents to clusters (8 threads)...
+2026-06-05 23:11:19.783 | Grouping documents by cluster assignments...
+2026-06-05 23:11:19.807 | Updating cluster centroid shapes in parallel...
+2026-06-05 23:11:20.140 | Centroids updated successfully!
+2026-06-05 23:11:20.140 | [PROFILER_STOP] clustering_iteration_2: 38036 ms (0.633933 minutes)
+2026-06-05 23:11:20.140 | [PROFILER_MEM] clustering_iteration_2 start=4667424768 bytes (4.34688 GB) stop=4669317120 bytes (4.34864 GB) delta=1892352 bytes (0.00176239 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:11:20.140 | 
+2026-06-05 23:11:20.140 | --- Iteration 3/3 ---
+2026-06-05 23:11:20.140 | [PROFILER_START] clustering_iteration_3 memory_start=4669317120 bytes (4.34864 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:11:20.140 | Assigning 2681468 documents to clusters (8 threads)...
+2026-06-05 23:11:56.089 | Grouping documents by cluster assignments...
+2026-06-05 23:11:56.111 | Updating cluster centroid shapes in parallel...
+2026-06-05 23:11:56.452 | Centroids updated successfully!
+2026-06-05 23:11:56.453 | [PROFILER_STOP] clustering_iteration_3: 36311 ms (0.605183 minutes)
+2026-06-05 23:11:56.453 | [PROFILER_MEM] clustering_iteration_3 start=4669317120 bytes (4.34864 GB) stop=4670128128 bytes (4.3494 GB) delta=811008 bytes (0.00075531 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:11:56.453 | [PROFILER_STOP] clustering: 112697 ms (1.87828 minutes)
+2026-06-05 23:11:56.453 | [PROFILER_MEM] clustering start=4607254528 bytes (4.29084 GB) stop=4670128128 bytes (4.3494 GB) delta=62873600 bytes (0.0585556 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:11:56.453 | 
+2026-06-05 23:11:56.453 | Clustering complete. Sample cluster sizes:
+2026-06-05 23:11:57.412 | 
+2026-06-05 23:11:57.412 | --- Evaluate clustering (relating docs information) ---
+2026-06-05 23:11:57.412 | Objective Average Cluster Size: 13407.3
+2026-06-05 23:11:57.412 | Median Cluster Size: 13064
+2026-06-05 23:11:57.412 | Largest Cluster Size: 39304
+2026-06-05 23:11:57.412 | Smallest Cluster Size: 1327
+2026-06-05 23:11:57.412 | Empty Clusters: 0
+2026-06-05 23:11:57.412 | Cluster Size Deviation: 5389.22
+2026-06-05 23:11:57.412 | Avg Similarity (Docs and its cluster assignments with dot product): 4.08384
+2026-06-05 23:11:57.412 | 
+2026-06-05 23:11:57.412 | --- Summary Vectors for each cluster & Indexing ---
+2026-06-05 23:11:57.412 | [PROFILER_START] computing_summaries memory_start=4670128128 bytes (4.3494 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:11:57.415 | [INDEXING] Computing Summary Vectors (Sketches) for 200 clusters...
+2026-06-05 23:11:58.418 | [PROFILER_STOP] computing_summaries: 1005 ms (0.01675 minutes)
+2026-06-05 23:11:58.418 | [PROFILER_MEM] computing_summaries start=4670128128 bytes (4.3494 GB) stop=4670128128 bytes (4.3494 GB) delta=0 bytes (0 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:11:58.424 | 
+2026-06-05 23:11:58.424 | [RUN] k=200 itr=3nb=60 nd=180 md=30000
+2026-06-05 23:11:58.424 | 
+2026-06-05 23:11:58.424 | --- Indexing | nb = 60 | nd = 180 ---
+2026-06-05 23:11:58.424 | [PROFILER_START] building_index memory_start=4670128128 bytes (4.3494 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:11:58.424 | [INDEXING] buildInvertedIndex start: n_docs=2681468 n_dims=30522 nonzeros=572792070 max_blocks_per_dimension=60 max_docs_per_block=180 max_docs_to_visit=30000
+2026-06-05 23:11:58.424 | [MEMORY_ESTIMATE] Estimated build memory=16.8281 GB. Proceeding with index build regardless of system limits.
+2026-06-05 23:11:58.424 | [INDEXING] Building inverted index from summary vectors (simple approach)...
+2026-06-05 23:15:24.716 | [INDEX_PROFILE] total_blocks=1664033 total_docs_in_blocks=107223107 avg_docs_per_block=64.4357 avg_blocks_per_dimension=54.5191 empty_dimensions=1783
+2026-06-05 23:15:27.057 | [PROFILER_STOP] building_index: 208632 ms (3.4772 minutes)
+2026-06-05 23:15:27.057 | [PROFILER_MEM] building_index start=4670128128 bytes (4.3494 GB) stop=11097366528 bytes (10.3352 GB) delta=6427238400 bytes (5.98583 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:15:27.057 | Total Summary Vectors: 200
+2026-06-05 23:15:27.057 | Total Concepts indexed: 30522
+2026-06-05 23:15:27.060 | 
+2026-06-05 23:15:27.060 | --- SEARCH PHASE ---
+2026-06-05 23:15:27.060 | [PROFILER_START] search_phase memory_start=11097366528 bytes (10.3352 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:15:27.060 | 
+2026-06-05 23:15:27.060 | --- Evaluating Recall@30 ---
+2026-06-05 23:15:27.060 | [PROFILER_START] search_phase_top_n_30 memory_start=11097366528 bytes (10.3352 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:15:27.116 |   Processed 0/3452 queries...
+2026-06-05 23:15:49.898 |   Processed 1000/3452 queries...
+2026-06-05 23:16:11.451 |   Processed 2000/3452 queries...
+2026-06-05 23:16:32.800 |   Processed 3000/3452 queries...
+2026-06-05 23:16:41.726 | [PROFILER_STOP] search_phase_top_n_30: 74666 ms (1.24443 minutes)
+2026-06-05 23:16:41.727 | [PROFILER_MEM] search_phase_top_n_30 start=11097366528 bytes (10.3352 GB) stop=11100880896 bytes (10.3385 GB) delta=3514368 bytes (0.00327301 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:16:41.727 | ====================================================
+2026-06-05 23:16:41.727 |   Average Recall@30 = 0.870554
+2026-06-05 23:16:41.727 |   STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+2026-06-05 23:16:41.727 | ====================================================
+2026-06-05 23:16:41.727 | [PROFILER_STOP] search_phase: 74666 ms (1.24443 minutes)
+2026-06-05 23:16:41.727 | [PROFILER_MEM] search_phase start=11097366528 bytes (10.3352 GB) stop=11100880896 bytes (10.3385 GB) delta=3514368 bytes (0.00327301 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:16:41.727 | [SEARCH_DEBUG_AVG] avg_blocks_entered=232.253 avg_blocks_skipped=0.248552 avg_docs_examined=30000 avg_docs_popped=110.195
+2026-06-05 23:16:41.727 | 
+2026-06-05 23:16:41.727 | [TIME-QUERY] Average Time per Query: 21.6298 ms
+2026-06-05 23:16:41.727 | 
+2026-06-05 23:16:41.727 | [OK] Results saved to "results/clusters.csv"
+2026-06-05 23:16:43.002 | 
+2026-06-05 23:16:43.002 | =====================
+2026-06-05 23:16:43.002 | [CONFIG] Running config: config/clusters/config_k_2.json
+2026-06-05 23:16:43.003 | [PARAMS] k=500 itr=3 (base values)
+2026-06-05 23:16:43.003 | 
+2026-06-05 23:16:43.003 | --- Clustering | k = 500 | iterations = 3 ---
+2026-06-05 23:16:43.003 | [PROFILER_START] clustering memory_start=9165725696 bytes (8.53625 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:16:43.011 | Initializing 500 clusters... with 2681468 documents with 30522 dimensions
+2026-06-05 23:16:43.042 | 
+2026-06-05 23:16:43.042 | --- Iteration 1/3 ---
+2026-06-05 23:16:43.042 | [PROFILER_START] clustering_iteration_1 memory_start=9165725696 bytes (8.53625 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:16:43.042 | Assigning 2681468 documents to clusters (8 threads)...
+2026-06-05 23:20:09.465 | Grouping documents by cluster assignments...
+2026-06-05 23:20:09.490 | Updating cluster centroid shapes in parallel...
+2026-06-05 23:20:09.896 | Centroids updated successfully!
+2026-06-05 23:20:09.896 | [PROFILER_STOP] clustering_iteration_1: 206853 ms (3.44755 minutes)
+2026-06-05 23:20:09.896 | [PROFILER_MEM] clustering_iteration_1 start=9165725696 bytes (8.53625 GB) stop=9165725696 bytes (8.53625 GB) delta=0 bytes (0 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:20:09.896 | 
+2026-06-05 23:20:09.896 | --- Iteration 2/3 ---
+2026-06-05 23:20:09.896 | [PROFILER_START] clustering_iteration_2 memory_start=9165725696 bytes (8.53625 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:20:09.896 | Assigning 2681468 documents to clusters (8 threads)...
+2026-06-05 23:23:21.291 | Grouping documents by cluster assignments...
+2026-06-05 23:23:21.315 | Updating cluster centroid shapes in parallel...
+2026-06-05 23:23:21.684 | Centroids updated successfully!
+2026-06-05 23:23:21.684 | [PROFILER_STOP] clustering_iteration_2: 191787 ms (3.19645 minutes)
+2026-06-05 23:23:21.684 | [PROFILER_MEM] clustering_iteration_2 start=9165725696 bytes (8.53625 GB) stop=9165725696 bytes (8.53625 GB) delta=0 bytes (0 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:23:21.684 | 
+2026-06-05 23:23:21.684 | --- Iteration 3/3 ---
+2026-06-05 23:23:21.684 | [PROFILER_START] clustering_iteration_3 memory_start=9165725696 bytes (8.53625 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:23:21.684 | Assigning 2681468 documents to clusters (8 threads)...
+2026-06-05 23:26:37.575 | Grouping documents by cluster assignments...
+2026-06-05 23:26:37.599 | Updating cluster centroid shapes in parallel...
+2026-06-05 23:26:37.964 | Centroids updated successfully!
+2026-06-05 23:26:37.964 | [PROFILER_STOP] clustering_iteration_3: 196279 ms (3.27132 minutes)
+2026-06-05 23:26:37.964 | [PROFILER_MEM] clustering_iteration_3 start=9165725696 bytes (8.53625 GB) stop=9165725696 bytes (8.53625 GB) delta=0 bytes (0 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:26:37.964 | [PROFILER_STOP] clustering: 594961 ms (9.91602 minutes)
+2026-06-05 23:26:37.964 | [PROFILER_MEM] clustering start=9165725696 bytes (8.53625 GB) stop=9165725696 bytes (8.53625 GB) delta=0 bytes (0 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:26:37.964 | 
+2026-06-05 23:26:37.964 | Clustering complete. Sample cluster sizes:
+2026-06-05 23:26:39.829 | 
+2026-06-05 23:26:39.829 | --- Evaluate clustering (relating docs information) ---
+2026-06-05 23:26:39.829 | Objective Average Cluster Size: 5362.94
+2026-06-05 23:26:39.829 | Median Cluster Size: 4954
+2026-06-05 23:26:39.829 | Largest Cluster Size: 37483
+2026-06-05 23:26:39.829 | Smallest Cluster Size: 424
+2026-06-05 23:26:39.829 | Empty Clusters: 0
+2026-06-05 23:26:39.829 | Cluster Size Deviation: 2898.82
+2026-06-05 23:26:39.829 | Avg Similarity (Docs and its cluster assignments with dot product): 4.47245
+2026-06-05 23:26:39.829 | 
+2026-06-05 23:26:39.829 | --- Summary Vectors for each cluster & Indexing ---
+2026-06-05 23:26:39.829 | [PROFILER_START] computing_summaries memory_start=9165725696 bytes (8.53625 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:26:39.837 | [INDEXING] Computing Summary Vectors (Sketches) for 500 clusters...
+2026-06-05 23:26:41.775 | [PROFILER_STOP] computing_summaries: 1945 ms (0.0324167 minutes)
+2026-06-05 23:26:41.775 | [PROFILER_MEM] computing_summaries start=9165725696 bytes (8.53625 GB) stop=9165725696 bytes (8.53625 GB) delta=0 bytes (0 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:26:41.781 | 
+2026-06-05 23:26:41.781 | [RUN] k=500 itr=3nb=60 nd=180 md=30000
+2026-06-05 23:26:41.781 | 
+2026-06-05 23:26:41.781 | --- Indexing | nb = 60 | nd = 180 ---
+2026-06-05 23:26:41.781 | [PROFILER_START] building_index memory_start=9165725696 bytes (8.53625 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:26:41.781 | [INDEXING] buildInvertedIndex start: n_docs=2681468 n_dims=30522 nonzeros=572792070 max_blocks_per_dimension=60 max_docs_per_block=180 max_docs_to_visit=30000
+2026-06-05 23:26:41.781 | [MEMORY_ESTIMATE] Estimated build memory=42.0702 GB. Proceeding with index build regardless of system limits.
+2026-06-05 23:26:41.781 | [INDEXING] Building inverted index from summary vectors (simple approach)...
+2026-06-05 23:30:44.280 | [INDEX_PROFILE] total_blocks=1669962 total_docs_in_blocks=84284123 avg_docs_per_block=50.4707 avg_blocks_per_dimension=54.7134 empty_dimensions=1783
+2026-06-05 23:30:50.125 | [PROFILER_STOP] building_index: 248343 ms (4.13905 minutes)
+2026-06-05 23:30:50.125 | [PROFILER_MEM] building_index start=9165725696 bytes (8.53625 GB) stop=11734188032 bytes (10.9283 GB) delta=2568462336 bytes (2.39207 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:30:50.125 | Total Summary Vectors: 500
+2026-06-05 23:30:50.125 | Total Concepts indexed: 30522
+2026-06-05 23:30:50.127 | 
+2026-06-05 23:30:50.127 | --- SEARCH PHASE ---
+2026-06-05 23:30:50.127 | [PROFILER_START] search_phase memory_start=11734446080 bytes (10.9286 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:30:50.127 | 
+2026-06-05 23:30:50.127 | --- Evaluating Recall@30 ---
+2026-06-05 23:30:50.127 | [PROFILER_START] search_phase_top_n_30 memory_start=11734446080 bytes (10.9286 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:30:50.163 |   Processed 0/3452 queries...
+2026-06-05 23:31:12.299 |   Processed 1000/3452 queries...
+2026-06-05 23:31:31.382 |   Processed 2000/3452 queries...
+2026-06-05 23:31:51.795 |   Processed 3000/3452 queries...
+2026-06-05 23:32:00.452 | [PROFILER_STOP] search_phase_top_n_30: 70324 ms (1.17207 minutes)
+2026-06-05 23:32:00.452 | [PROFILER_MEM] search_phase_top_n_30 start=11734446080 bytes (10.9286 GB) stop=11740663808 bytes (10.9343 GB) delta=6217728 bytes (0.00579071 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:32:00.452 | ====================================================
+2026-06-05 23:32:00.452 |   Average Recall@30 = 0.826011
+2026-06-05 23:32:00.452 |   STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+2026-06-05 23:32:00.452 | ====================================================
+2026-06-05 23:32:00.452 | [PROFILER_STOP] search_phase: 70324 ms (1.17207 minutes)
+2026-06-05 23:32:00.452 | [PROFILER_MEM] search_phase start=11734446080 bytes (10.9286 GB) stop=11740663808 bytes (10.9343 GB) delta=6217728 bytes (0.00579071 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:32:00.452 | [SEARCH_DEBUG_AVG] avg_blocks_entered=264.318 avg_blocks_skipped=1.87486 avg_docs_examined=30000 avg_docs_popped=115.576
+2026-06-05 23:32:00.452 | 
+2026-06-05 23:32:00.452 | [TIME-QUERY] Average Time per Query: 20.372 ms
+2026-06-05 23:32:00.452 | 
+2026-06-05 23:32:00.452 | [OK] Results saved to "results/clusters.csv"
+2026-06-05 23:32:01.626 | 
+2026-06-05 23:32:01.626 | =====================
+2026-06-05 23:32:01.626 | [CONFIG] Running config: config/clusters/config_k_3.json
+2026-06-05 23:32:01.627 | [PARAMS] k=1500 itr=3 (base values)
+2026-06-05 23:32:01.627 | 
+2026-06-05 23:32:01.627 | --- Clustering | k = 1500 | iterations = 3 ---
+2026-06-05 23:32:01.627 | [PROFILER_START] clustering memory_start=11243782144 bytes (10.4716 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:32:01.645 | Initializing 1500 clusters... with 2681468 documents with 30522 dimensions
+2026-06-05 23:32:01.690 | 
+2026-06-05 23:32:01.690 | --- Iteration 1/3 ---
+2026-06-05 23:32:01.690 | [PROFILER_START] clustering_iteration_1 memory_start=11243782144 bytes (10.4716 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:32:01.690 | Assigning 2681468 documents to clusters (8 threads)...
+2026-06-05 23:52:41.016 | Grouping documents by cluster assignments...
+2026-06-05 23:52:41.046 | Updating cluster centroid shapes in parallel...
+2026-06-05 23:52:41.512 | Centroids updated successfully!
+2026-06-05 23:52:41.512 | [PROFILER_STOP] clustering_iteration_1: 1239822 ms (20.6637 minutes)
+2026-06-05 23:52:41.512 | [PROFILER_MEM] clustering_iteration_1 start=11243782144 bytes (10.4716 GB) stop=11243782144 bytes (10.4716 GB) delta=0 bytes (0 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:52:41.513 | 
+2026-06-05 23:52:41.513 | --- Iteration 2/3 ---
+2026-06-05 23:52:41.513 | [PROFILER_START] clustering_iteration_2 memory_start=11243782144 bytes (10.4716 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-05 23:52:41.513 | Assigning 2681468 documents to clusters (8 threads)...
+2026-06-06 00:11:32.481 | Grouping documents by cluster assignments...
+2026-06-06 00:11:32.511 | Updating cluster centroid shapes in parallel...
+2026-06-06 00:11:32.897 | Centroids updated successfully!
+2026-06-06 00:11:32.897 | [PROFILER_STOP] clustering_iteration_2: 1131384 ms (18.8564 minutes)
+2026-06-06 00:11:32.897 | [PROFILER_MEM] clustering_iteration_2 start=11243782144 bytes (10.4716 GB) stop=11244032000 bytes (10.4718 GB) delta=249856 bytes (0.000232697 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 00:11:32.898 | 
+2026-06-06 00:11:32.898 | --- Iteration 3/3 ---
+2026-06-06 00:11:32.898 | [PROFILER_START] clustering_iteration_3 memory_start=11244032000 bytes (10.4718 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 00:11:32.898 | Assigning 2681468 documents to clusters (8 threads)...
+2026-06-06 00:30:06.800 | Grouping documents by cluster assignments...
+2026-06-06 00:30:06.836 | Updating cluster centroid shapes in parallel...
+2026-06-06 00:30:07.238 | Centroids updated successfully!
+2026-06-06 00:30:07.239 | [PROFILER_STOP] clustering_iteration_3: 1114340 ms (18.5723 minutes)
+2026-06-06 00:30:07.239 | [PROFILER_MEM] clustering_iteration_3 start=11244032000 bytes (10.4718 GB) stop=11244032000 bytes (10.4718 GB) delta=0 bytes (0 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 00:30:07.239 | [PROFILER_STOP] clustering: 3485612 ms (58.0935 minutes)
+2026-06-06 00:30:07.239 | [PROFILER_MEM] clustering start=11243782144 bytes (10.4716 GB) stop=11244032000 bytes (10.4718 GB) delta=249856 bytes (0.000232697 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 00:30:07.239 | 
+2026-06-06 00:30:07.239 | Clustering complete. Sample cluster sizes:
+2026-06-06 00:30:09.524 | 
+2026-06-06 00:30:09.524 | --- Evaluate clustering (relating docs information) ---
+2026-06-06 00:30:09.524 | Objective Average Cluster Size: 1787.65
+2026-06-06 00:30:09.524 | Median Cluster Size: 1638
+2026-06-06 00:30:09.524 | Largest Cluster Size: 10828
+2026-06-06 00:30:09.524 | Smallest Cluster Size: 55
+2026-06-06 00:30:09.524 | Empty Clusters: 0
+2026-06-06 00:30:09.524 | Cluster Size Deviation: 967.674
+2026-06-06 00:30:09.524 | Avg Similarity (Docs and its cluster assignments with dot product): 4.90824
+2026-06-06 00:30:09.524 | 
+2026-06-06 00:30:09.524 | --- Summary Vectors for each cluster & Indexing ---
+2026-06-06 00:30:09.524 | [PROFILER_START] computing_summaries memory_start=11244032000 bytes (10.4718 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 00:30:10.100 | [INDEXING] Computing Summary Vectors (Sketches) for 1500 clusters...
+2026-06-06 00:30:12.648 | [PROFILER_STOP] computing_summaries: 3124 ms (0.0520667 minutes)
+2026-06-06 00:30:12.648 | [PROFILER_MEM] computing_summaries start=11244032000 bytes (10.4718 GB) stop=11244032000 bytes (10.4718 GB) delta=0 bytes (0 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 00:30:12.667 | 
+2026-06-06 00:30:12.667 | [RUN] k=1500 itr=3nb=60 nd=180 md=30000
+2026-06-06 00:30:12.667 | 
+2026-06-06 00:30:12.667 | --- Indexing | nb = 60 | nd = 180 ---
+2026-06-06 00:30:12.667 | [PROFILER_START] building_index memory_start=11244032000 bytes (10.4718 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 00:30:12.667 | [INDEXING] buildInvertedIndex start: n_docs=2681468 n_dims=30522 nonzeros=572792070 max_blocks_per_dimension=60 max_docs_per_block=180 max_docs_to_visit=30000
+2026-06-06 00:30:12.667 | [MEMORY_ESTIMATE] Estimated build memory=126.211 GB. Proceeding with index build regardless of system limits.
+2026-06-06 00:30:12.667 | [INDEXING] Building inverted index from summary vectors (simple approach)...
+2026-06-06 00:35:09.548 | [INDEX_PROFILE] total_blocks=1676371 total_docs_in_blocks=59603690 avg_docs_per_block=35.5552 avg_blocks_per_dimension=54.9234 empty_dimensions=1783
+2026-06-06 00:35:24.064 | [PROFILER_STOP] building_index: 311396 ms (5.18993 minutes)
+2026-06-06 00:35:24.064 | [PROFILER_MEM] building_index start=11244032000 bytes (10.4718 GB) stop=13151866880 bytes (12.2486 GB) delta=1907834880 bytes (1.77681 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 00:35:24.064 | Total Summary Vectors: 1500
+2026-06-06 00:35:24.064 | Total Concepts indexed: 30522
+2026-06-06 00:35:24.067 | 
+2026-06-06 00:35:24.067 | --- SEARCH PHASE ---
+2026-06-06 00:35:24.067 | [PROFILER_START] search_phase memory_start=13151866880 bytes (12.2486 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 00:35:24.067 | 
+2026-06-06 00:35:24.067 | --- Evaluating Recall@30 ---
+2026-06-06 00:35:24.067 | [PROFILER_START] search_phase_top_n_30 memory_start=13151866880 bytes (12.2486 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 00:35:24.098 |   Processed 0/3452 queries...
+2026-06-06 00:35:45.382 |   Processed 1000/3452 queries...
+2026-06-06 00:36:03.280 |   Processed 2000/3452 queries...
+2026-06-06 00:36:22.649 |   Processed 3000/3452 queries...
+2026-06-06 00:36:30.762 | [PROFILER_STOP] search_phase_top_n_30: 66695 ms (1.11158 minutes)
+2026-06-06 00:36:30.762 | [PROFILER_MEM] search_phase_top_n_30 start=13151866880 bytes (12.2486 GB) stop=13155381248 bytes (12.2519 GB) delta=3514368 bytes (0.00327301 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 00:36:30.763 | ====================================================
+2026-06-06 00:36:30.763 |   Average Recall@30 = 0.771755
+2026-06-06 00:36:30.763 |   STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+2026-06-06 00:36:30.763 | ====================================================
+2026-06-06 00:36:30.763 | [PROFILER_STOP] search_phase: 66695 ms (1.11158 minutes)
+2026-06-06 00:36:30.763 | [PROFILER_MEM] search_phase start=13151866880 bytes (12.2486 GB) stop=13155381248 bytes (12.2519 GB) delta=3514368 bytes (0.00327301 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 00:36:30.763 | [SEARCH_DEBUG_AVG] avg_blocks_entered=330.781 avg_blocks_skipped=14.2755 avg_docs_examined=29999.8 avg_docs_popped=112.324
+2026-06-06 00:36:30.763 | 
+2026-06-06 00:36:30.763 | [TIME-QUERY] Average Time per Query: 19.3207 ms
+2026-06-06 00:36:30.763 | 
+2026-06-06 00:36:30.763 | [OK] Results saved to "results/clusters.csv"
+2026-06-06 00:36:31.674 | 
+2026-06-06 00:36:31.674 | =====================
+2026-06-06 00:36:31.674 | [CONFIG] Running config: config/clusters/config_k_4.json
+2026-06-06 00:36:31.675 | [PARAMS] k=2000 itr=3 (base values)
+2026-06-06 00:36:31.675 | 
+2026-06-06 00:36:31.675 | --- Clustering | k = 2000 | iterations = 3 ---
+2026-06-06 00:36:31.675 | [PROFILER_START] clustering memory_start=13064957952 bytes (12.1677 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 00:36:31.698 | Initializing 2000 clusters... with 2681468 documents with 30522 dimensions
+2026-06-06 00:36:31.750 | 
+2026-06-06 00:36:31.750 | --- Iteration 1/3 ---
+2026-06-06 00:36:31.750 | [PROFILER_START] clustering_iteration_1 memory_start=13064957952 bytes (12.1677 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 00:36:31.750 | Assigning 2681468 documents to clusters (8 threads)...
+2026-06-06 01:04:32.970 | Grouping documents by cluster assignments...
+2026-06-06 01:04:33.016 | Updating cluster centroid shapes in parallel...
+2026-06-06 01:04:33.414 | Centroids updated successfully!
+2026-06-06 01:04:33.414 | [PROFILER_STOP] clustering_iteration_1: 1681663 ms (28.0277 minutes)
+2026-06-06 01:04:33.414 | [PROFILER_MEM] clustering_iteration_1 start=13064957952 bytes (12.1677 GB) stop=12816855040 bytes (11.9366 GB) delta=-248102912 bytes (0.231064 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 01:04:33.414 | 
+2026-06-06 01:04:33.414 | --- Iteration 2/3 ---
+2026-06-06 01:04:33.414 | [PROFILER_START] clustering_iteration_2 memory_start=12816855040 bytes (11.9366 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 01:04:33.415 | Assigning 2681468 documents to clusters (8 threads)...
+2026-06-06 01:32:39.822 | Grouping documents by cluster assignments...
+2026-06-06 01:32:39.850 | Updating cluster centroid shapes in parallel...
+2026-06-06 01:32:40.224 | Centroids updated successfully!
+2026-06-06 01:32:40.224 | [PROFILER_STOP] clustering_iteration_2: 1686809 ms (28.1135 minutes)
+2026-06-06 01:32:40.224 | [PROFILER_MEM] clustering_iteration_2 start=12816855040 bytes (11.9366 GB) stop=12816855040 bytes (11.9366 GB) delta=0 bytes (0 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 01:32:40.225 | 
+2026-06-06 01:32:40.225 | --- Iteration 3/3 ---
+2026-06-06 01:32:40.225 | [PROFILER_START] clustering_iteration_3 memory_start=12816855040 bytes (11.9366 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 01:32:40.225 | Assigning 2681468 documents to clusters (8 threads)...
+2026-06-06 02:00:56.099 | Grouping documents by cluster assignments...
+2026-06-06 02:00:56.128 | Updating cluster centroid shapes in parallel...
+2026-06-06 02:00:56.492 | Centroids updated successfully!
+2026-06-06 02:00:56.492 | [PROFILER_STOP] clustering_iteration_3: 1696267 ms (28.2711 minutes)
+2026-06-06 02:00:56.492 | [PROFILER_MEM] clustering_iteration_3 start=12816855040 bytes (11.9366 GB) stop=12817235968 bytes (11.937 GB) delta=380928 bytes (0.000354767 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 02:00:56.493 | [PROFILER_STOP] clustering: 5064817 ms (84.4136 minutes)
+2026-06-06 02:00:56.493 | [PROFILER_MEM] clustering start=13064957952 bytes (12.1677 GB) stop=12817235968 bytes (11.937 GB) delta=-247721984 bytes (0.230709 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 02:00:56.493 | 
+2026-06-06 02:00:56.493 | Clustering complete. Sample cluster sizes:
+2026-06-06 02:00:58.908 | 
+2026-06-06 02:00:58.908 | --- Evaluate clustering (relating docs information) ---
+2026-06-06 02:00:58.908 | Objective Average Cluster Size: 1340.73
+2026-06-06 02:00:58.908 | Median Cluster Size: 1224
+2026-06-06 02:00:58.908 | Largest Cluster Size: 9401
+2026-06-06 02:00:58.908 | Smallest Cluster Size: 52
+2026-06-06 02:00:58.908 | Empty Clusters: 0
+2026-06-06 02:00:58.908 | Cluster Size Deviation: 800.001
+2026-06-06 02:00:58.908 | Avg Similarity (Docs and its cluster assignments with dot product): 5.02342
+2026-06-06 02:00:58.908 | 
+2026-06-06 02:00:58.908 | --- Summary Vectors for each cluster & Indexing ---
+2026-06-06 02:00:58.908 | [PROFILER_START] computing_summaries memory_start=12817235968 bytes (11.937 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 02:00:58.938 | [INDEXING] Computing Summary Vectors (Sketches) for 2000 clusters...
+2026-06-06 02:01:01.630 | [PROFILER_STOP] computing_summaries: 2721 ms (0.04535 minutes)
+2026-06-06 02:01:01.630 | [PROFILER_MEM] computing_summaries start=12817235968 bytes (11.937 GB) stop=12817235968 bytes (11.937 GB) delta=0 bytes (0 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 02:01:01.631 | 
+2026-06-06 02:01:01.631 | [RUN] k=2000 itr=3nb=60 nd=180 md=30000
+2026-06-06 02:01:01.631 | 
+2026-06-06 02:01:01.631 | --- Indexing | nb = 60 | nd = 180 ---
+2026-06-06 02:01:01.631 | [PROFILER_START] building_index memory_start=12817235968 bytes (11.937 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 02:01:01.631 | [INDEXING] buildInvertedIndex start: n_docs=2681468 n_dims=30522 nonzeros=572792070 max_blocks_per_dimension=60 max_docs_per_block=180 max_docs_to_visit=30000
+2026-06-06 02:01:01.631 | [MEMORY_ESTIMATE] Estimated build memory=168.281 GB. Proceeding with index build regardless of system limits.
+2026-06-06 02:01:01.631 | [INDEXING] Building inverted index from summary vectors (simple approach)...
+2026-06-06 02:04:54.035 | [INDEX_PROFILE] total_blocks=1676996 total_docs_in_blocks=54811575 avg_docs_per_block=32.6844 avg_blocks_per_dimension=54.9438 empty_dimensions=1783
+2026-06-06 02:05:12.378 | [PROFILER_STOP] building_index: 250746 ms (4.1791 minutes)
+2026-06-06 02:05:12.378 | [PROFILER_MEM] building_index start=12817235968 bytes (11.937 GB) stop=13690314752 bytes (12.7501 GB) delta=873078784 bytes (0.813118 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 02:05:12.378 | Total Summary Vectors: 2000
+2026-06-06 02:05:12.378 | Total Concepts indexed: 30522
+2026-06-06 02:05:12.380 | 
+2026-06-06 02:05:12.380 | --- SEARCH PHASE ---
+2026-06-06 02:05:12.380 | [PROFILER_START] search_phase memory_start=13690314752 bytes (12.7501 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 02:05:12.380 | 
+2026-06-06 02:05:12.380 | --- Evaluating Recall@30 ---
+2026-06-06 02:05:12.380 | [PROFILER_START] search_phase_top_n_30 memory_start=13690314752 bytes (12.7501 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 02:05:12.411 |   Processed 0/3452 queries...
+2026-06-06 02:05:33.827 |   Processed 1000/3452 queries...
+2026-06-06 02:05:53.229 |   Processed 2000/3452 queries...
+2026-06-06 02:06:11.366 |   Processed 3000/3452 queries...
+2026-06-06 02:06:19.619 | [PROFILER_STOP] search_phase_top_n_30: 67238 ms (1.12063 minutes)
+2026-06-06 02:06:19.619 | [PROFILER_MEM] search_phase_top_n_30 start=13690314752 bytes (12.7501 GB) stop=13691666432 bytes (12.7514 GB) delta=1351680 bytes (0.00125885 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 02:06:19.619 | ====================================================
+2026-06-06 02:06:19.619 |   Average Recall@30 = 0.763779
+2026-06-06 02:06:19.619 |   STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+2026-06-06 02:06:19.619 | ====================================================
+2026-06-06 02:06:19.619 | [PROFILER_STOP] search_phase: 67238 ms (1.12063 minutes)
+2026-06-06 02:06:19.619 | [PROFILER_MEM] search_phase start=13690314752 bytes (12.7501 GB) stop=13691666432 bytes (12.7514 GB) delta=1351680 bytes (0.00125885 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 02:06:19.619 | [SEARCH_DEBUG_AVG] avg_blocks_entered=349.386 avg_blocks_skipped=23.2025 avg_docs_examined=29994.7 avg_docs_popped=113.56
+2026-06-06 02:06:19.619 | 
+2026-06-06 02:06:19.619 | [TIME-QUERY] Average Time per Query: 19.478 ms
+2026-06-06 02:06:19.619 | 
+2026-06-06 02:06:19.619 | [OK] Results saved to "results/clusters.csv"
+2026-06-06 02:06:21.894 | 
+2026-06-06 02:06:21.894 | =====================
+2026-06-06 02:06:21.894 | [CONFIG] Running config: config/clusters/config_k_5.json
+2026-06-06 02:06:21.894 | [PARAMS] k=2500 itr=3 (base values)
+2026-06-06 02:06:21.894 | 
+2026-06-06 02:06:21.894 | --- Clustering | k = 2500 | iterations = 3 ---
+2026-06-06 02:06:21.894 | [PROFILER_START] clustering memory_start=13625090048 bytes (12.6894 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 02:06:21.925 | Initializing 2500 clusters... with 2681468 documents with 30522 dimensions
+2026-06-06 02:06:21.986 | 
+2026-06-06 02:06:21.986 | --- Iteration 1/3 ---
+2026-06-06 02:06:21.986 | [PROFILER_START] clustering_iteration_1 memory_start=13625356288 bytes (12.6896 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 02:06:21.986 | Assigning 2681468 documents to clusters (8 threads)...
+2026-06-06 02:44:16.702 | Grouping documents by cluster assignments...
+2026-06-06 02:44:16.733 | Updating cluster centroid shapes in parallel...
+2026-06-06 02:44:17.129 | Centroids updated successfully!
+2026-06-06 02:44:17.129 | [PROFILER_STOP] clustering_iteration_1: 2275143 ms (37.919 minutes)
+2026-06-06 02:44:17.129 | [PROFILER_MEM] clustering_iteration_1 start=13625356288 bytes (12.6896 GB) stop=13625356288 bytes (12.6896 GB) delta=0 bytes (0 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 02:44:17.129 | 
+2026-06-06 02:44:17.129 | --- Iteration 2/3 ---
+2026-06-06 02:44:17.129 | [PROFILER_START] clustering_iteration_2 memory_start=13625356288 bytes (12.6896 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 02:44:17.129 | Assigning 2681468 documents to clusters (8 threads)...
+2026-06-06 03:21:58.798 | Grouping documents by cluster assignments...
+2026-06-06 03:21:58.827 | Updating cluster centroid shapes in parallel...
+2026-06-06 03:21:59.208 | Centroids updated successfully!
+2026-06-06 03:21:59.208 | [PROFILER_STOP] clustering_iteration_2: 2262078 ms (37.7013 minutes)
+2026-06-06 03:21:59.208 | [PROFILER_MEM] clustering_iteration_2 start=13625356288 bytes (12.6896 GB) stop=13625483264 bytes (12.6897 GB) delta=126976 bytes (0.000118256 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 03:21:59.208 | 
+2026-06-06 03:21:59.208 | --- Iteration 3/3 ---
+2026-06-06 03:21:59.209 | [PROFILER_START] clustering_iteration_3 memory_start=13625483264 bytes (12.6897 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 03:21:59.209 | Assigning 2681468 documents to clusters (8 threads)...
+2026-06-06 03:59:45.031 | Grouping documents by cluster assignments...
+2026-06-06 03:59:45.060 | Updating cluster centroid shapes in parallel...
+2026-06-06 03:59:45.442 | Centroids updated successfully!
+2026-06-06 03:59:45.442 | [PROFILER_STOP] clustering_iteration_3: 2266233 ms (37.7706 minutes)
+2026-06-06 03:59:45.442 | [PROFILER_MEM] clustering_iteration_3 start=13625483264 bytes (12.6897 GB) stop=13625483264 bytes (12.6897 GB) delta=0 bytes (0 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 03:59:45.442 | [PROFILER_STOP] clustering: 6803548 ms (113.392 minutes)
+2026-06-06 03:59:45.442 | [PROFILER_MEM] clustering start=13625090048 bytes (12.6894 GB) stop=13625483264 bytes (12.6897 GB) delta=393216 bytes (0.000366211 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 03:59:45.442 | 
+2026-06-06 03:59:45.442 | Clustering complete. Sample cluster sizes:
+2026-06-06 03:59:47.919 | 
+2026-06-06 03:59:47.919 | --- Evaluate clustering (relating docs information) ---
+2026-06-06 03:59:47.919 | Objective Average Cluster Size: 1072.59
+2026-06-06 03:59:47.919 | Median Cluster Size: 970
+2026-06-06 03:59:47.919 | Largest Cluster Size: 4959
+2026-06-06 03:59:47.919 | Smallest Cluster Size: 18
+2026-06-06 03:59:47.919 | Empty Clusters: 0
+2026-06-06 03:59:47.919 | Cluster Size Deviation: 617.91
+2026-06-06 03:59:47.919 | Avg Similarity (Docs and its cluster assignments with dot product): 5.10474
+2026-06-06 03:59:47.919 | 
+2026-06-06 03:59:47.919 | --- Summary Vectors for each cluster & Indexing ---
+2026-06-06 03:59:47.919 | [PROFILER_START] computing_summaries memory_start=13625483264 bytes (12.6897 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 03:59:47.953 | [INDEXING] Computing Summary Vectors (Sketches) for 2500 clusters...
+2026-06-06 03:59:50.787 | [PROFILER_STOP] computing_summaries: 2867 ms (0.0477833 minutes)
+2026-06-06 03:59:50.787 | [PROFILER_MEM] computing_summaries start=13625483264 bytes (12.6897 GB) stop=13625483264 bytes (12.6897 GB) delta=0 bytes (0 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 03:59:50.788 | 
+2026-06-06 03:59:50.788 | [RUN] k=2500 itr=3nb=60 nd=180 md=30000
+2026-06-06 03:59:50.788 | 
+2026-06-06 03:59:50.788 | --- Indexing | nb = 60 | nd = 180 ---
+2026-06-06 03:59:50.788 | [PROFILER_START] building_index memory_start=13625483264 bytes (12.6897 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 03:59:50.788 | [INDEXING] buildInvertedIndex start: n_docs=2681468 n_dims=30522 nonzeros=572792070 max_blocks_per_dimension=60 max_docs_per_block=180 max_docs_to_visit=30000
+2026-06-06 03:59:50.788 | [MEMORY_ESTIMATE] Estimated build memory=210.351 GB. Proceeding with index build regardless of system limits.
+2026-06-06 03:59:50.788 | [INDEXING] Building inverted index from summary vectors (simple approach)...
+2026-06-06 04:03:52.597 | [INDEX_PROFILE] total_blocks=1677310 total_docs_in_blocks=50704253 avg_docs_per_block=30.2295 avg_blocks_per_dimension=54.9541 empty_dimensions=1783
+2026-06-06 04:04:15.536 | [PROFILER_STOP] building_index: 264747 ms (4.41245 minutes)
+2026-06-06 04:04:15.536 | [PROFILER_MEM] building_index start=13625483264 bytes (12.6897 GB) stop=14163845120 bytes (13.1911 GB) delta=538361856 bytes (0.501389 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 04:04:15.536 | Total Summary Vectors: 2500
+2026-06-06 04:04:15.536 | Total Concepts indexed: 30522
+2026-06-06 04:04:15.538 | 
+2026-06-06 04:04:15.538 | --- SEARCH PHASE ---
+2026-06-06 04:04:15.538 | [PROFILER_START] search_phase memory_start=14163845120 bytes (13.1911 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 04:04:15.538 | 
+2026-06-06 04:04:15.538 | --- Evaluating Recall@30 ---
+2026-06-06 04:04:15.539 | [PROFILER_START] search_phase_top_n_30 memory_start=14163845120 bytes (13.1911 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 04:04:15.566 |   Processed 0/3452 queries...
+2026-06-06 04:04:36.822 |   Processed 1000/3452 queries...
+2026-06-06 04:04:54.739 |   Processed 2000/3452 queries...
+2026-06-06 04:05:14.083 |   Processed 3000/3452 queries...
+2026-06-06 04:05:22.182 | [PROFILER_STOP] search_phase_top_n_30: 66642 ms (1.1107 minutes)
+2026-06-06 04:05:22.182 | [PROFILER_MEM] search_phase_top_n_30 start=14163845120 bytes (13.1911 GB) stop=14164926464 bytes (13.1921 GB) delta=1081344 bytes (0.00100708 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 04:05:22.182 | ====================================================
+2026-06-06 04:05:22.182 |   Average Recall@30 = 0.753447
+2026-06-06 04:05:22.182 |   STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+2026-06-06 04:05:22.182 | ====================================================
+2026-06-06 04:05:22.182 | [PROFILER_STOP] search_phase: 66643 ms (1.11072 minutes)
+2026-06-06 04:05:22.182 | [PROFILER_MEM] search_phase start=14163845120 bytes (13.1911 GB) stop=14164926464 bytes (13.1921 GB) delta=1081344 bytes (0.00100708 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 04:05:22.182 | [SEARCH_DEBUG_AVG] avg_blocks_entered=370.029 avg_blocks_skipped=33.0759 avg_docs_examined=29987.5 avg_docs_popped=112.445
+2026-06-06 04:05:22.182 | 
+2026-06-06 04:05:22.182 | [TIME-QUERY] Average Time per Query: 19.3056 ms
+2026-06-06 04:05:22.182 | 
+2026-06-06 04:05:22.182 | [OK] Results saved to "results/clusters.csv"
+2026-06-06 04:05:23.069 | 
+2026-06-06 04:05:23.069 | =====================
+2026-06-06 04:05:23.069 | [CONFIG] Running config: config/clusters/config_k_6.json
+2026-06-06 04:05:23.069 | [PARAMS] k=3000 itr=3 (base values)
+2026-06-06 04:05:23.069 | 
+2026-06-06 04:05:23.069 | --- Clustering | k = 3000 | iterations = 3 ---
+2026-06-06 04:05:23.069 | [PROFILER_START] clustering memory_start=14164926464 bytes (13.1921 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 04:05:23.102 | Initializing 3000 clusters... with 2681468 documents with 30522 dimensions
+2026-06-06 04:05:23.170 | 
+2026-06-06 04:05:23.170 | --- Iteration 1/3 ---
+2026-06-06 04:05:23.170 | [PROFILER_START] clustering_iteration_1 memory_start=14164926464 bytes (13.1921 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 04:05:23.170 | Assigning 2681468 documents to clusters (8 threads)...
+2026-06-06 04:52:46.554 | Grouping documents by cluster assignments...
+2026-06-06 04:52:46.596 | Updating cluster centroid shapes in parallel...
+2026-06-06 04:52:46.993 | Centroids updated successfully!
+2026-06-06 04:52:46.993 | [PROFILER_STOP] clustering_iteration_1: 2843823 ms (47.3971 minutes)
+2026-06-06 04:52:46.993 | [PROFILER_MEM] clustering_iteration_1 start=14164926464 bytes (13.1921 GB) stop=13978234880 bytes (13.0182 GB) delta=-186691584 bytes (0.17387 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 04:52:46.994 | 
+2026-06-06 04:52:46.994 | --- Iteration 2/3 ---
+2026-06-06 04:52:46.994 | [PROFILER_START] clustering_iteration_2 memory_start=13978234880 bytes (13.0182 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 04:52:46.994 | Assigning 2681468 documents to clusters (8 threads)...
+2026-06-06 05:40:12.327 | Grouping documents by cluster assignments...
+2026-06-06 05:40:12.356 | Updating cluster centroid shapes in parallel...
+2026-06-06 05:40:12.741 | Centroids updated successfully!
+2026-06-06 05:40:12.741 | [PROFILER_STOP] clustering_iteration_2: 2845747 ms (47.4291 minutes)
+2026-06-06 05:40:12.741 | [PROFILER_MEM] clustering_iteration_2 start=13978234880 bytes (13.0182 GB) stop=13978488832 bytes (13.0185 GB) delta=253952 bytes (0.000236511 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 05:40:12.742 | 
+2026-06-06 05:40:12.742 | --- Iteration 3/3 ---
+2026-06-06 05:40:12.742 | [PROFILER_START] clustering_iteration_3 memory_start=13978488832 bytes (13.0185 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 05:40:12.742 | Assigning 2681468 documents to clusters (8 threads)...
+2026-06-06 06:27:44.985 | Grouping documents by cluster assignments...
+2026-06-06 06:27:45.015 | Updating cluster centroid shapes in parallel...
+2026-06-06 06:27:45.396 | Centroids updated successfully!
+2026-06-06 06:27:45.396 | [PROFILER_STOP] clustering_iteration_3: 2852654 ms (47.5442 minutes)
+2026-06-06 06:27:45.396 | [PROFILER_MEM] clustering_iteration_3 start=13978488832 bytes (13.0185 GB) stop=13978423296 bytes (13.0184 GB) delta=-65536 bytes (6.10352e-05 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 06:27:45.397 | [PROFILER_STOP] clustering: 8542327 ms (142.372 minutes)
+2026-06-06 06:27:45.397 | [PROFILER_MEM] clustering start=14164926464 bytes (13.1921 GB) stop=13978423296 bytes (13.0184 GB) delta=-186503168 bytes (0.173695 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 06:27:45.397 | 
+2026-06-06 06:27:45.397 | Clustering complete. Sample cluster sizes:
+2026-06-06 06:27:47.965 | 
+2026-06-06 06:27:47.965 | --- Evaluate clustering (relating docs information) ---
+2026-06-06 06:27:47.965 | Objective Average Cluster Size: 893.823
+2026-06-06 06:27:47.965 | Median Cluster Size: 802
+2026-06-06 06:27:47.965 | Largest Cluster Size: 6858
+2026-06-06 06:27:47.965 | Smallest Cluster Size: 12
+2026-06-06 06:27:47.965 | Empty Clusters: 0
+2026-06-06 06:27:47.965 | Cluster Size Deviation: 553.024
+2026-06-06 06:27:47.965 | Avg Similarity (Docs and its cluster assignments with dot product): 5.17344
+2026-06-06 06:27:47.965 | 
+2026-06-06 06:27:47.965 | --- Summary Vectors for each cluster & Indexing ---
+2026-06-06 06:27:47.965 | [PROFILER_START] computing_summaries memory_start=13978423296 bytes (13.0184 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 06:27:48.009 | [INDEXING] Computing Summary Vectors (Sketches) for 3000 clusters...
+2026-06-06 06:27:52.469 | [PROFILER_STOP] computing_summaries: 4504 ms (0.0750667 minutes)
+2026-06-06 06:27:52.469 | [PROFILER_MEM] computing_summaries start=13978423296 bytes (13.0184 GB) stop=13978423296 bytes (13.0184 GB) delta=0 bytes (0 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 06:27:52.470 | 
+2026-06-06 06:27:52.470 | [RUN] k=3000 itr=3nb=60 nd=180 md=30000
+2026-06-06 06:27:52.470 | 
+2026-06-06 06:27:52.470 | --- Indexing | nb = 60 | nd = 180 ---
+2026-06-06 06:27:52.470 | [PROFILER_START] building_index memory_start=13978423296 bytes (13.0184 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 06:27:52.470 | [INDEXING] buildInvertedIndex start: n_docs=2681468 n_dims=30522 nonzeros=572792070 max_blocks_per_dimension=60 max_docs_per_block=180 max_docs_to_visit=30000
+2026-06-06 06:27:52.470 | [MEMORY_ESTIMATE] Estimated build memory=252.421 GB. Proceeding with index build regardless of system limits.
+2026-06-06 06:27:52.470 | [INDEXING] Building inverted index from summary vectors (simple approach)...
+2026-06-06 06:32:05.826 | [INDEX_PROFILE] total_blocks=1678437 total_docs_in_blocks=48008690 avg_docs_per_block=28.6032 avg_blocks_per_dimension=54.9911 empty_dimensions=1783
+2026-06-06 06:32:30.548 | [PROFILER_STOP] building_index: 278077 ms (4.63462 minutes)
+2026-06-06 06:32:30.548 | [PROFILER_MEM] building_index start=13978423296 bytes (13.0184 GB) stop=14620835840 bytes (13.6167 GB) delta=642412544 bytes (0.598293 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 06:32:30.548 | Total Summary Vectors: 3000
+2026-06-06 06:32:30.548 | Total Concepts indexed: 30522
+2026-06-06 06:32:30.550 | 
+2026-06-06 06:32:30.550 | --- SEARCH PHASE ---
+2026-06-06 06:32:30.550 | [PROFILER_START] search_phase memory_start=14620835840 bytes (13.6167 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 06:32:30.550 | 
+2026-06-06 06:32:30.550 | --- Evaluating Recall@30 ---
+2026-06-06 06:32:30.550 | [PROFILER_START] search_phase_top_n_30 memory_start=14620835840 bytes (13.6167 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 06:32:30.578 |   Processed 0/3452 queries...
+2026-06-06 06:32:51.951 |   Processed 1000/3452 queries...
+2026-06-06 06:33:11.289 |   Processed 2000/3452 queries...
+2026-06-06 06:33:29.187 |   Processed 3000/3452 queries...
+2026-06-06 06:33:38.726 | [PROFILER_STOP] search_phase_top_n_30: 68175 ms (1.13625 minutes)
+2026-06-06 06:33:38.726 | [PROFILER_MEM] search_phase_top_n_30 start=14620835840 bytes (13.6167 GB) stop=14621646848 bytes (13.6175 GB) delta=811008 bytes (0.00075531 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 06:33:38.726 | ====================================================
+2026-06-06 06:33:38.726 |   Average Recall@30 = 0.752618
+2026-06-06 06:33:38.726 |   STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+2026-06-06 06:33:38.726 | ====================================================
+2026-06-06 06:33:38.726 | [PROFILER_STOP] search_phase: 68175 ms (1.13625 minutes)
+2026-06-06 06:33:38.726 | [PROFILER_MEM] search_phase start=14620835840 bytes (13.6167 GB) stop=14621646848 bytes (13.6175 GB) delta=811008 bytes (0.00075531 GB) limit=16734400512 bytes (15.5851 GB)
+2026-06-06 06:33:38.726 | [SEARCH_DEBUG_AVG] avg_blocks_entered=380.184 avg_blocks_skipped=42.909 avg_docs_examined=29981.5 avg_docs_popped=112.549
+2026-06-06 06:33:38.726 | 
+2026-06-06 06:33:38.726 | [TIME-QUERY] Average Time per Query: 19.7494 ms
+2026-06-06 06:33:38.726 | 
+2026-06-06 06:33:38.726 | [OK] Results saved to "results/clusters.csv"
