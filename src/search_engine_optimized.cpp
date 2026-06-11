@@ -14,9 +14,7 @@ std::vector<std::pair<float, int>> SearchEngineOptimized::search(
     const struct ExecConfig& config
 ) {
     int max_docs_to_visit = config.max_docs_to_visit;
-    // Use a tuned pruning factor since summary_vectors now represent a cluster-average estimate,
-    // not a strict maximum bound. Lower values increase pruning aggressiveness.
-    float heap_factor = 0.60f;
+    float heap_factor = config.heap_factor;
     int num_clusters = summary_vectors.size();
     int n_docs = train.rows();
     int n_dims = train.cols();

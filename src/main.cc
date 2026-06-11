@@ -55,6 +55,39 @@ static int parseJsonInt(const std::string& json, const std::string& key, int def
     }
 }
 
+static float parseJsonFloat(const std::string& json, const std::string& key, float defaultValue) {
+    if (json.empty()) {
+        return defaultValue;
+    }
+
+    std::string quotedKey = "\"" + key + "\"";
+    auto pos = json.find(quotedKey);
+    if (pos == std::string::npos) {
+        pos = json.find(key);
+        if (pos == std::string::npos) {
+            return defaultValue;
+        }
+    }
+
+    auto colon = json.find(':', pos);
+    if (colon == std::string::npos) {
+        return defaultValue;
+    }
+
+    auto start = json.find_first_of("-0123456789.", colon + 1);
+    if (start == std::string::npos) {
+        return defaultValue;
+    }
+
+    auto end = json.find_first_not_of("0123456789.", start + 1);
+    std::string token = json.substr(start, end == std::string::npos ? json.size() - start : end - start);
+    try {
+        return std::stof(token);
+    } catch (...) {
+        return defaultValue;
+    }
+}
+
 static std::vector<int> parseJsonIntArray(const std::string& json, const std::string& key) {
     std::vector<int> values;
     if (json.empty()) {
@@ -114,6 +147,7 @@ static std::vector<ExecConfig> loadConfigSetFromFile(const std::string& filepath
 
     baseConfig.num_clusters = parseJsonInt(json_content, "k", 200);
     baseConfig.max_iterations = parseJsonInt(json_content, "itr", 3);
+    baseConfig.heap_factor = parseJsonFloat(json_content, "heap_factor", 0.60f);
 
     auto nbs = parseJsonIntArray(json_content, "nb");
     if (nbs.empty()) {

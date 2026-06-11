@@ -1,0 +1,186 @@
+[SISAP] Running task3 on dataset: data/nq.h5
+[CONFIG] Executing 6 config file(s) from `config/clusters`
+
+--- Read data (data/nq.h5) ---
+train: 2681468 x 30522
+query: 3452 x 30522
+
+=====================
+[CONFIG] Running config: config/clusters/config_k_1.json
+[PARAMS] k=1000 itr=25 (base values)
+
+--- Clustering | k = 1000 | iterations = 25 ---
+[PROFILER_START] clustering memory_start=4609069056 bytes (4.29253 GB) limit=16734404608 bytes (15.5851 GB)
+Initializing 1000 clusters... with 2681468 documents with 30522 dimensions
+
+[PROFILER_STOP] clustering: 15286056 ms (254.768 minutes)
+[PROFILER_MEM] clustering start=4609069056 bytes (4.29253 GB) stop=4772982784 bytes (4.44519 GB) delta=163913728 bytes (0.152657 GB) limit=16734404608 bytes (15.5851 GB)
+
+Clustering complete. Sample cluster sizes:
+
+--- Evaluate clustering (relating docs information) ---
+Objective Average Cluster Size: 2681.47
+Median Cluster Size: 2520
+Largest Cluster Size: 9113
+Smallest Cluster Size: 102
+Empty Clusters: 0
+Cluster Size Deviation: 1106.88
+Avg Similarity (Docs and its cluster assignments with dot product): 4.8956
+
+--- Summary Vectors for each cluster & Indexing ---
+
+[RUN] k=1000 itr=25nb=150 nd=80 md=30000
+
+--- Indexing | nb = 150 | nd = 80 ---
+[INDEXING] buildInvertedIndex start: n_docs=2681468 n_dims=30522 nonzeros=572792070 max_blocks_per_dimension=150 max_docs_per_block=80 max_docs_to_visit=30000
+
+[INDEXING] Building inverted index from summary vectors (simple approach)...
+[INDEX_PROFILE] total_blocks=4102793 total_docs_in_blocks=129838336 avg_docs_per_block=31.6463 avg_blocks_per_dimension=134.421 empty_dimensions=1783
+
+Total Summary Vectors: 1000
+Total Concepts indexed: 30522
+
+--- Evaluating Recall@30 ---
+====================================================
+  Average Recall@30 = 0.315459
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[SEARCH_DEBUG_AVG] avg_blocks_entered=8.91744 avg_blocks_skipped=4040.46 avg_docs_examined=568.123 avg_docs_popped=86.124
+
+[TIME-QUERY] Average Time per Query: 1.04171 ms
+
+[OK] Results saved to "results/clusters.csv"
+
+=====================
+[CONFIG] Running config: config/clusters/config_k_2.json
+[PARAMS] k=1000 itr=30 (base values)
+
+--- Clustering | k = 1000 | iterations = 30 ---
+Initializing 1000 clusters... with 2681468 documents with 30522 dimensions
+
+Clustering complete. Sample cluster sizes:
+
+--- Evaluate clustering (relating docs information) ---
+Objective Average Cluster Size: 2681.47
+Median Cluster Size: 2547
+Largest Cluster Size: 8222
+Smallest Cluster Size: 312
+Empty Clusters: 0
+Cluster Size Deviation: 1030.04
+Avg Similarity (Docs and its cluster assignments with dot product): 4.89915
+
+--- Summary Vectors for each cluster & Indexing ---
+[INDEXING] Computing Summary Vectors (Sketches) for 1000 clusters...
+
+[RUN] k=1000 itr=30nb=150 nd=80 md=30000
+
+--- Indexing | nb = 150 | nd = 80 ---
+[INDEXING] buildInvertedIndex start: n_docs=2681468 n_dims=30522 nonzeros=572792070 max_blocks_per_dimension=150 max_docs_per_block=80 max_docs_to_visit=30000
+
+[INDEXING] Building inverted index from summary vectors (simple approach)...
+[INDEX_PROFILE] total_blocks=4104228 total_docs_in_blocks=130182626 avg_docs_per_block=31.7192 avg_blocks_per_dimension=134.468 empty_dimensions=1783
+Total Summary Vectors: 1000
+Total Concepts indexed: 30522
+
+--- Evaluating Recall@30 ---
+====================================================
+  Average Recall@30 = 0.315247
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[SEARCH_DEBUG_AVG] avg_blocks_entered=9.61674 avg_blocks_skipped=4039.78 avg_docs_examined=609.543 avg_docs_popped=86.6521
+
+[TIME-QUERY] Average Time per Query: 1.01101 ms
+
+[OK] Results saved to "results/clusters.csv"
+
+=====================
+[CONFIG] Running config: config/clusters/config_k_3.json
+[PARAMS] k=2000 itr=25 (base values)
+
+--- Clustering | k = 2000 | iterations = 25 ---
+Initializing 2000 clusters... with 2681468 documents with 30522 dimensions
+
+Clustering complete. Sample cluster sizes:
+
+--- Evaluate clustering (relating docs information) ---
+Objective Average Cluster Size: 1340.73
+Median Cluster Size: 1264
+Largest Cluster Size: 5259
+Smallest Cluster Size: 103
+Empty Clusters: 0
+Cluster Size Deviation: 575.011
+Avg Similarity (Docs and its cluster assignments with dot product): 5.15978
+
+--- Summary Vectors for each cluster & Indexing ---
+[INDEXING] Computing Summary Vectors (Sketches) for 2000 clusters...
+
+[RUN] k=2000 itr=25nb=150 nd=80 md=30000
+
+--- Indexing | nb = 150 | nd = 80 ---
+[INDEXING] buildInvertedIndex start: n_docs=2681468 n_dims=30522 nonzeros=572792070 max_blocks_per_dimension=150 max_docs_per_block=80 max_docs_to_visit=30000
+
+[INDEXING] Building inverted index from summary vectors (simple approach)...
+[INDEX_PROFILE] total_blocks=4124616 total_docs_in_blocks=122123660 avg_docs_per_block=29.6085 avg_blocks_per_dimension=135.136 empty_dimensions=1783
+Total Summary Vectors: 2000
+Total Concepts indexed: 30522
+
+--- Evaluating Recall@30 ---
+====================================================
+  Average Recall@30 = 0.377722
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[PROFILER_STOP] search_phase: 4200 ms (0.07 minutes)
+[PROFILER_MEM] search_phase start=13702549504 bytes (12.7615 GB) stop=13704196096 bytes (12.763 GB) delta=1646592 bytes (0.00153351 GB) limit=16734404608 bytes (15.5851 GB)
+[SEARCH_DEBUG_AVG] avg_blocks_entered=16.5177 avg_blocks_skipped=4033.11 avg_docs_examined=927.105 avg_docs_popped=98.8137
+
+[TIME-QUERY] Average Time per Query: 1.21669 ms
+
+[OK] Results saved to "results/clusters.csv"
+
+=====================
+[CONFIG] Running config: config/clusters/config_k_4.json
+[PARAMS] k=2000 itr=30 (base values)
+
+--- Clustering | k = 2000 | iterations = 30 ---
+[PROFILER_START] clustering memory_start=13550469120 bytes (12.6199 GB) limit=16734404608 bytes (15.5851 GB)
+Initializing 2000 clusters... with 2681468 documents with 30522 dimensions
+
+Clustering complete. Sample cluster sizes:
+
+--- Evaluate clustering (relating docs information) ---
+Objective Average Cluster Size: 1340.73
+Median Cluster Size: 1276
+Largest Cluster Size: 4439
+Smallest Cluster Size: 5
+Empty Clusters: 0
+Cluster Size Deviation: 553.041
+Avg Similarity (Docs and its cluster assignments with dot product): 5.16226
+
+--- Summary Vectors for each cluster & Indexing ---
+[INDEXING] Computing Summary Vectors (Sketches) for 2000 clusters...
+
+[RUN] k=2000 itr=30nb=150 nd=80 md=30000
+
+--- Indexing | nb = 150 | nd = 80 ---
+[INDEXING] buildInvertedIndex start: n_docs=2681468 n_dims=30522 nonzeros=572792070 max_blocks_per_dimension=150 max_docs_per_block=80 max_docs_to_visit=30000
+
+[INDEXING] Building inverted index from summary vectors (simple approach)...
+[INDEX_PROFILE] total_blocks=4124614 total_docs_in_blocks=122403374 avg_docs_per_block=29.6763 avg_blocks_per_dimension=135.136 empty_dimensions=1783
+Total Summary Vectors: 2000
+Total Concepts indexed: 30522
+
+--- Evaluating Recall@30 ---
+====================================================
+  Average Recall@30 = 0.377346
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[PROFILER_STOP] search_phase: 3955 ms (0.0659167 minutes)
+[PROFILER_MEM] search_phase start=13733089280 bytes (12.7899 GB) stop=13733900288 bytes (12.7907 GB) delta=811008 bytes (0.00075531 GB) limit=16734404608 bytes (15.5851 GB)
+[SEARCH_DEBUG_AVG] avg_blocks_entered=18.3056 avg_blocks_skipped=4031.32 avg_docs_examined=1017.21 avg_docs_popped=99.6298
+
+[TIME-QUERY] Average Time per Query: 1.14571 ms
+
+[OK] Results saved to "results/clusters.csv"
+
+=====================
+[CONFIG] Running config: config/clusters/config_k_5.json...
