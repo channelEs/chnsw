@@ -148,6 +148,63 @@ def plot_search_pruning_diagnosis(baseline_df: pd.DataFrame, optimized_df: pd.Da
     plt.close(fig)
 
 
+def plot_k_effect_on_baseline(df: pd.DataFrame) -> None:
+    """Show how increasing k affects recall and latency in clusters_v3.csv."""
+    plt.style.use("seaborn-v0_8-whitegrid")
+
+    summary = (
+        df.groupby("k", as_index=False)
+        .agg(
+            Recall_Mean=("Recall@30", "mean"),
+            Recall_Std=("Recall@30", "std"),
+            Latency_Mean=("Avg_Time_Per_Query_ms", "mean"),
+            Latency_Std=("Avg_Time_Per_Query_ms", "std"),
+            Search_Time_Mean=("Search_Time_s", "mean"),
+        )
+        .sort_values("k")
+    )
+
+    fig, axes = plt.subplots(1, 2, figsize=(12, 5), constrained_layout=False)
+
+    axes[0].errorbar(
+        summary["k"],
+        summary["Recall_Mean"],
+        yerr=summary["Recall_Std"],
+        fmt="o-",
+        color="#2ca02c",
+        linewidth=2,
+        capsize=4,
+        label="Mean Recall@30",
+    )
+    axes[0].axhline(0.90, color="black", linestyle="--", linewidth=1.5, label="Target 0.90")
+    axes[0].set_title("Effect of Increasing k on Recall@30")
+    axes[0].set_xlabel("k (number of clusters)")
+    axes[0].set_ylabel("Recall@30")
+    axes[0].grid(True, alpha=0.35)
+    axes[0].legend(loc="best")
+
+    axes[1].errorbar(
+        summary["k"],
+        summary["Latency_Mean"],
+        yerr=summary["Latency_Std"],
+        fmt="o-",
+        color="#ff7f0e",
+        linewidth=2,
+        capsize=4,
+        label="Mean Avg_Time_Per_Query_ms",
+    )
+    axes[1].set_title("Effect of Increasing k on Query Latency")
+    axes[1].set_xlabel("k (number of clusters)")
+    axes[1].set_ylabel("Avg_Time_Per_Query_ms")
+    axes[1].grid(True, alpha=0.35)
+    axes[1].legend(loc="best")
+
+    fig.suptitle("Baseline clusters_v3.csv: Effect of Increasing k", fontsize=13, weight="bold")
+    fig.tight_layout(rect=[0, 0, 1, 0.96])
+    fig.savefig(FIGURES_DIR / "04_k_effect_clusters_v3.png", dpi=200, bbox_inches="tight")
+    plt.close(fig)
+
+
 def plot_max_docs_parameter_heatmaps(df: pd.DataFrame) -> None:
     """Show how nb and nd affect recall and latency for the optimized search run."""
     plt.style.use("seaborn-v0_8-whitegrid")
@@ -205,11 +262,13 @@ def main() -> None:
 
         plot_recall_vs_latency(baseline_df, optimized_df)
         plot_search_pruning_diagnosis(baseline_df, optimized_df)
+        plot_k_effect_on_baseline(baseline_df)
         plot_max_docs_parameter_heatmaps(optimized_df)
 
         print("Generated:")
         print("  -", FIGURES_DIR / "01_recall_vs_latency.png")
         print("  -", FIGURES_DIR / "02_search_pruning_diagnosis.png")
+        print("  -", FIGURES_DIR / "04_k_effect_clusters_v3.png")
         print("  -", FIGURES_DIR / "03_nb_nd_heatmaps.png")
 
     except Exception as exc:

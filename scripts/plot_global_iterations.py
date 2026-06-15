@@ -104,6 +104,41 @@ def plot_recall(df, k, itr, md, outpath):
     plt.close(fig)
 
 
+def plot_combined(df, k, itr, md, outpath):
+    if df.empty:
+        raise ValueError("No rows to plot for the requested k/itr/md")
+
+    x = df["nd"]
+    y = df["nb"]
+    c_time = df["Avg_Time_Per_Query_ms"] if "Avg_Time_Per_Query_ms" in df.columns else None
+    r = df["Recall@30"] if "Recall@30" in df.columns else None
+
+    fig, axes = plt.subplots(1, 2, figsize=(14, 5.5))
+
+    time_cmap = plt.get_cmap("RdYlGn_r")
+    time_norm = mcolors.Normalize(vmin=c_time.min(), vmax=c_time.max())
+    sc1 = axes[0].scatter(x, y, c=c_time, cmap=time_cmap, norm=time_norm, s=90, edgecolor="k")
+    fig.colorbar(sc1, ax=axes[0], fraction=0.046, pad=0.04).set_label("Avg_Time_Per_Query_ms")
+    axes[0].set_xlabel("nd")
+    axes[0].set_ylabel("nb")
+    axes[0].set_title("Avg time per query (ms)")
+    axes[0].grid(True, linestyle="--", alpha=0.3)
+
+    recall_cmap = plt.get_cmap("RdYlGn")
+    recall_norm = mcolors.Normalize(vmin=0.6, vmax=0.9, clip=True)
+    sc2 = axes[1].scatter(x, y, c=r, cmap=recall_cmap, norm=recall_norm, s=90, edgecolor="k")
+    fig.colorbar(sc2, ax=axes[1], fraction=0.046, pad=0.04).set_label("Recall@30")
+    axes[1].set_xlabel("nd")
+    axes[1].set_ylabel("nb")
+    axes[1].set_title("Recall@30")
+    axes[1].grid(True, linestyle="--", alpha=0.3)
+
+    fig.suptitle(f"Global iterations summary — k={k}, itr={itr}" + (f", md={int(md)}" if md is not None else ""), fontsize=12, weight="bold")
+    fig.tight_layout(rect=[0, 0, 1, 0.95])
+    fig.savefig(outpath, dpi=200)
+    plt.close(fig)
+
+
 def main():
     p = argparse.ArgumentParser(description="Plot global iterations results")
     p.add_argument("--csv", required=True, help="Path to global iterations CSV")
@@ -130,15 +165,17 @@ def main():
     md_suffix = f"_md{int(md)}" if md is not None else ""
     time_out = os.path.join(outdir, f"global_iterations_k{int(k)}_itr{int(itr)}{md_suffix}_time.png")
     recall_out = os.path.join(outdir, f"global_iterations_k{int(k)}_itr{int(itr)}{md_suffix}_recall.png")
+    combined_out = os.path.join(outdir, f"global_iterations_k{int(k)}_itr{int(itr)}{md_suffix}_combined.png")
 
     try:
         plot_time(df, k, itr, md, time_out)
         plot_recall(df, k, itr, md, recall_out)
+        plot_combined(df, k, itr, md, combined_out)
     except Exception as e:
         print("Error while plotting:", e)
         sys.exit(2)
 
-    print("Plots saved:", time_out, recall_out)
+    print("Plots saved:", time_out, recall_out, combined_out)
 
 
 if __name__ == "__main__":
