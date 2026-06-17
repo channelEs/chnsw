@@ -628,3 +628,363 @@ Centroids updated successfully!
 --- Iteration 5/25 ---
 [PROFILER_START] clustering_iteration_5 memory_start=13760081920 bytes (12.8151 GB) limit=16734404608 bytes (15.5851 GB)
 Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_5: 1723723 ms (28.7287 minutes)
+[PROFILER_MEM] clustering_iteration_5 start=13760081920 bytes (12.8151 GB) stop=13760081920 bytes (12.8151 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 6/25 ---
+[PROFILER_START] clustering_iteration_6 memory_start=13760081920 bytes (12.8151 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_6: 1758987 ms (29.3164 minutes)
+[PROFILER_MEM] clustering_iteration_6 start=13760081920 bytes (12.8151 GB) stop=13758877696 bytes (12.814 GB) delta=-1204224 bytes (0.00112152 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 7/25 ---
+[PROFILER_START] clustering_iteration_7 memory_start=13758877696 bytes (12.814 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_7: 1703301 ms (28.3883 minutes)
+[PROFILER_MEM] clustering_iteration_7 start=13758877696 bytes (12.814 GB) stop=13758877696 bytes (12.814 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 8/25 ---
+[PROFILER_START] clustering_iteration_8 memory_start=13758877696 bytes (12.814 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_8: 1697781 ms (28.2964 minutes)
+[PROFILER_MEM] clustering_iteration_8 start=13758877696 bytes (12.814 GB) stop=13758877696 bytes (12.814 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 9/25 ---
+[PROFILER_START] clustering_iteration_9 memory_start=13758877696 bytes (12.814 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_9: 1701101 ms (28.3517 minutes)
+[PROFILER_MEM] clustering_iteration_9 start=13758877696 bytes (12.814 GB) stop=13758877696 bytes (12.814 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 10/25 ---
+[PROFILER_START] clustering_iteration_10 memory_start=13758877696 bytes (12.814 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_10: 1702932 ms (28.3822 minutes)
+[PROFILER_MEM] clustering_iteration_10 start=13758877696 bytes (12.814 GB) stop=13759234048 bytes (12.8143 GB) delta=356352 bytes (0.000331879 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 11/25 ---
+[PROFILER_START] clustering_iteration_11 memory_start=13759234048 bytes (12.8143 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_11: 1693284 ms (28.2214 minutes)
+[PROFILER_MEM] clustering_iteration_11 start=13759234048 bytes (12.8143 GB) stop=13759234048 bytes (12.8143 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 12/25 ---
+[PROFILER_START] clustering_iteration_12 memory_start=13759234048 bytes (12.8143 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_12: 1695588 ms (28.2598 minutes)
+[PROFILER_MEM] clustering_iteration_12 start=13759234048 bytes (12.8143 GB) stop=13759234048 bytes (12.8143 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 13/25 ---
+[PROFILER_START] clustering_iteration_13 memory_start=13759234048 bytes (12.8143 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_13: 1695731 ms (28.2622 minutes)
+[PROFILER_MEM] clustering_iteration_13 start=13759234048 bytes (12.8143 GB) stop=13759234048 bytes (12.8143 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 14/25 ---
+[PROFILER_START] clustering_iteration_14 memory_start=13759234048 bytes (12.8143 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_14: 1687118 ms (28.1186 minutes)
+[PROFILER_MEM] clustering_iteration_14 start=13759234048 bytes (12.8143 GB) stop=13759234048 bytes (12.8143 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 15/25 ---
+[PROFILER_START] clustering_iteration_15 memory_start=13759234048 bytes (12.8143 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_15: 1692045 ms (28.2007 minutes)
+[PROFILER_MEM] clustering_iteration_15 start=13759234048 bytes (12.8143 GB) stop=13759234048 bytes (12.8143 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 16/25 ---
+[PROFILER_START] clustering_iteration_16 memory_start=13759234048 bytes (12.8143 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_16: 1689972 ms (28.1662 minutes)
+[PROFILER_MEM] clustering_iteration_16 start=13759234048 bytes (12.8143 GB) stop=13759234048 bytes (12.8143 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 17/25 ---
+[PROFILER_START] clustering_iteration_17 memory_start=13759234048 bytes (12.8143 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_17: 1686413 ms (28.1069 minutes)
+[PROFILER_MEM] clustering_iteration_17 start=13759234048 bytes (12.8143 GB) stop=13759234048 bytes (12.8143 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 18/25 ---
+[PROFILER_START] clustering_iteration_18 memory_start=13759234048 bytes (12.8143 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_18: 1684785 ms (28.0798 minutes)
+[PROFILER_MEM] clustering_iteration_18 start=13759234048 bytes (12.8143 GB) stop=13759234048 bytes (12.8143 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 19/25 ---
+[PROFILER_START] clustering_iteration_19 memory_start=13759234048 bytes (12.8143 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_19: 1691375 ms (28.1896 minutes)
+[PROFILER_MEM] clustering_iteration_19 start=13759234048 bytes (12.8143 GB) stop=13759234048 bytes (12.8143 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 20/25 ---
+[PROFILER_START] clustering_iteration_20 memory_start=13759234048 bytes (12.8143 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_20: 1692549 ms (28.2092 minutes)
+[PROFILER_MEM] clustering_iteration_20 start=13759234048 bytes (12.8143 GB) stop=13759234048 bytes (12.8143 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 21/25 ---
+[PROFILER_START] clustering_iteration_21 memory_start=13759234048 bytes (12.8143 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_21: 1691595 ms (28.1932 minutes)
+[PROFILER_MEM] clustering_iteration_21 start=13759234048 bytes (12.8143 GB) stop=13759234048 bytes (12.8143 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 22/25 ---
+[PROFILER_START] clustering_iteration_22 memory_start=13759234048 bytes (12.8143 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_22: 1693106 ms (28.2184 minutes)
+[PROFILER_MEM] clustering_iteration_22 start=13759234048 bytes (12.8143 GB) stop=13759234048 bytes (12.8143 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 23/25 ---
+[PROFILER_START] clustering_iteration_23 memory_start=13759234048 bytes (12.8143 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_23: 1694176 ms (28.2363 minutes)
+[PROFILER_MEM] clustering_iteration_23 start=13759234048 bytes (12.8143 GB) stop=13759234048 bytes (12.8143 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 24/25 ---
+[PROFILER_START] clustering_iteration_24 memory_start=13759234048 bytes (12.8143 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_24: 1687334 ms (28.1222 minutes)
+[PROFILER_MEM] clustering_iteration_24 start=13759234048 bytes (12.8143 GB) stop=13759234048 bytes (12.8143 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 25/25 ---
+[PROFILER_START] clustering_iteration_25 memory_start=13759234048 bytes (12.8143 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_25: 1690956 ms (28.1826 minutes)
+[PROFILER_MEM] clustering_iteration_25 start=13759234048 bytes (12.8143 GB) stop=13759234048 bytes (12.8143 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+[PROFILER_STOP] clustering: 42343237 ms (705.721 minutes)
+[PROFILER_MEM] clustering start=13760081920 bytes (12.8151 GB) stop=13759234048 bytes (12.8143 GB) delta=-847872 bytes (0.000789642 GB) limit=16734404608 bytes (15.5851 GB)
+
+Clustering complete. Sample cluster sizes:
+
+--- Evaluate clustering (relating docs information) ---
+Objective Average Cluster Size: 1340.73
+Median Cluster Size: 1270
+Largest Cluster Size: 5036
+Smallest Cluster Size: 75
+Empty Clusters: 0
+Cluster Size Deviation: 568.479
+Avg Similarity (Docs and its cluster assignments with dot product): 5.1634
+
+--- Summary Vectors for each cluster & Indexing ---
+[PROFILER_START] computing_summaries memory_start=13759234048 bytes (12.8143 GB) limit=16734404608 bytes (15.5851 GB)
+[INDEXING] Computing Summary Vectors (Sketches) for 2000 clusters...
+[PROFILER_STOP] computing_summaries: 2961 ms (0.04935 minutes)
+[PROFILER_MEM] computing_summaries start=13759234048 bytes (12.8143 GB) stop=13759234048 bytes (12.8143 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+[RUN] k=2000 itr=25nb=500 nd=200 md=50000
+
+--- Indexing | nb = 500 | nd = 200 ---
+[PROFILER_START] building_index memory_start=13761171456 bytes (12.8161 GB) limit=16734404608 bytes (15.5851 GB)
+[INDEXING] buildInvertedIndex start: n_docs=2681468 n_dims=30522 nonzeros=572792070 max_blocks_per_dimension=500 max_docs_per_block=200 max_docs_to_visit=50000
+[MEMORY_ESTIMATE] Estimated build memory=186.473 GB. Proceeding with index build regardless of system limits.
+[INDEXING] Building inverted index from summary vectors (simple approach)...
+[INDEX_PROFILE] total_blocks=12573901 total_docs_in_blocks=324409565 avg_docs_per_block=25.8002 avg_blocks_per_dimension=411.962 empty_dimensions=1783
+[PROFILER_STOP] building_index: 270701 ms (4.51168 minutes)
+[PROFILER_MEM] building_index start=13761171456 bytes (12.8161 GB) stop=13855842304 bytes (12.9043 GB) delta=94670848 bytes (0.0881691 GB) limit=16734404608 bytes (15.5851 GB)
+Total Summary Vectors: 2000
+Total Concepts indexed: 30522
+
+--- SEARCH PHASE ---
+[PROFILER_START] search_phase memory_start=13855842304 bytes (12.9043 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Evaluating Recall@30 ---
+[PROFILER_START] search_phase_top_n_30 memory_start=13855842304 bytes (12.9043 GB) limit=16734404608 bytes (15.5851 GB)
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_30: 57264 ms (0.9544 minutes)
+[PROFILER_MEM] search_phase_top_n_30 start=13855842304 bytes (12.9043 GB) stop=13856395264 bytes (12.9048 GB) delta=552960 bytes (0.000514984 GB) limit=16734404608 bytes (15.5851 GB)
+====================================================
+  Average Recall@30 = 0.787309
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[PROFILER_STOP] search_phase: 57265 ms (0.954417 minutes)
+[PROFILER_MEM] search_phase start=13855842304 bytes (12.9043 GB) stop=13856395264 bytes (12.9048 GB) delta=552960 bytes (0.000514984 GB) limit=16734404608 bytes (15.5851 GB)
+[SEARCH_DEBUG_AVG] avg_blocks_entered=385.449 avg_blocks_skipped=9950.03 avg_docs_examined=30703.2 avg_docs_popped=148.328
+
+[TIME-QUERY] Average Time per Query: 16.5889 ms
+
+[OK] Results saved to "results/new_engine_experiments_v1.csv"
+
+=====================
+[CONFIG] Running config: config/new_engine_experiments_v1/config_exp_I_middle_300_120_0_25.json
+[PARAMS] k=2000 itr=25 (base values)
+
+--- Clustering | k = 2000 | iterations = 25 ---
+[PROFILER_START] clustering memory_start=13761736704 bytes (12.8166 GB) limit=16734404608 bytes (15.5851 GB)
+Initializing 2000 clusters... with 2681468 documents with 30522 dimensions
+
+--- Iteration 1/25 ---
+[PROFILER_START] clustering_iteration_1 memory_start=13761736704 bytes (12.8166 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_1: 1763453 ms (29.3909 minutes)
+[PROFILER_MEM] clustering_iteration_1 start=13761736704 bytes (12.8166 GB) stop=13761736704 bytes (12.8166 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 2/25 ---
+[PROFILER_START] clustering_iteration_2 memory_start=13761736704 bytes (12.8166 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_2: 1738569 ms (28.9762 minutes)
+[PROFILER_MEM] clustering_iteration_2 start=13761736704 bytes (12.8166 GB) stop=13761736704 bytes (12.8166 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 3/25 ---
+[PROFILER_START] clustering_iteration_3 memory_start=13761736704 bytes (12.8166 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_3: 1691643 ms (28.1941 minutes)
+[PROFILER_MEM] clustering_iteration_3 start=13761736704 bytes (12.8166 GB) stop=13761736704 bytes (12.8166 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 4/25 ---
+[PROFILER_START] clustering_iteration_4 memory_start=13761736704 bytes (12.8166 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_4: 1694866 ms (28.2478 minutes)
+[PROFILER_MEM] clustering_iteration_4 start=13761736704 bytes (12.8166 GB) stop=13761736704 bytes (12.8166 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 5/25 ---
+[PROFILER_START] clustering_iteration_5 memory_start=13761736704 bytes (12.8166 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_5: 1703790 ms (28.3965 minutes)
+[PROFILER_MEM] clustering_iteration_5 start=13761736704 bytes (12.8166 GB) stop=13761736704 bytes (12.8166 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 6/25 ---
+[PROFILER_START] clustering_iteration_6 memory_start=13761736704 bytes (12.8166 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_6: 1693892 ms (28.2315 minutes)
+[PROFILER_MEM] clustering_iteration_6 start=13761736704 bytes (12.8166 GB) stop=13761736704 bytes (12.8166 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 7/25 ---
+[PROFILER_START] clustering_iteration_7 memory_start=13761736704 bytes (12.8166 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_7: 1725217 ms (28.7536 minutes)
+[PROFILER_MEM] clustering_iteration_7 start=13761736704 bytes (12.8166 GB) stop=13761736704 bytes (12.8166 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 8/25 ---
+[PROFILER_START] clustering_iteration_8 memory_start=13761736704 bytes (12.8166 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_8: 1744867 ms (29.0811 minutes)
+[PROFILER_MEM] clustering_iteration_8 start=13761736704 bytes (12.8166 GB) stop=13761736704 bytes (12.8166 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 9/25 ---
+[PROFILER_START] clustering_iteration_9 memory_start=13761736704 bytes (12.8166 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_9: 1815218 ms (30.2536 minutes)
+[PROFILER_MEM] clustering_iteration_9 start=13761736704 bytes (12.8166 GB) stop=13761736704 bytes (12.8166 GB) delta=0 bytes (0 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 10/25 ---
+[PROFILER_START] clustering_iteration_10 memory_start=13761736704 bytes (12.8166 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_10: 1832398 ms (30.54 minutes)
+[PROFILER_MEM] clustering_iteration_10 start=13761736704 bytes (12.8166 GB) stop=13757906944 bytes (12.813 GB) delta=-3829760 bytes (0.00356674 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 11/25 ---
+[PROFILER_START] clustering_iteration_11 memory_start=13759447040 bytes (12.8145 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_11: 1874279 ms (31.238 minutes)
+[PROFILER_MEM] clustering_iteration_11 start=13759447040 bytes (12.8145 GB) stop=13758472192 bytes (12.8136 GB) delta=-974848 bytes (0.000907898 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 12/25 ---
+[PROFILER_START] clustering_iteration_12 memory_start=13758472192 bytes (12.8136 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_12: 1878319 ms (31.3053 minutes)
+[PROFILER_MEM] clustering_iteration_12 start=13758472192 bytes (12.8136 GB) stop=13758676992 bytes (12.8138 GB) delta=204800 bytes (0.000190735 GB) limit=16734404608 bytes (15.5851 GB)
+
+--- Iteration 13/25 ---
+[PROFILER_START] clustering_iteration_13 memory_start=13758676992 bytes (12.8138 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...

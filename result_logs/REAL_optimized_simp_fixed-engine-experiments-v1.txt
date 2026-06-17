@@ -1,0 +1,19 @@
+[SISAP] Running task3 on dataset: data/nq.h5
+[CONFIG] Executing 3 config file(s) from `config/fixed_engine_experiments_v1`
+
+--- Read data (data/nq.h5) ---
+train: 2681468 x 30522
+query: 3452 x 30522
+
+=====================
+[CONFIG] Running config: config/fixed_engine_experiments_v1/config_F1_best_base.json
+[PROFILER_START] total_run_config_F1_best_base.json memory_start=4611616768 bytes (4.2949 GB) limit=16734404608 bytes (15.5851 GB)
+[PARAMS] k=2000 itr=6 (base values)
+
+--- Clustering | k = 2000 | iterations = 6 ---
+[PROFILER_START] clustering memory_start=4611616768 bytes (4.2949 GB) limit=16734404608 bytes (15.5851 GB)
+Initializing 2000 clusters... with 2681468 documents with 30522 dimensions
+
+--- Iteration 1/6 ---
+[PROFILER_START] clustering_iteration_1 memory_start=4876484608 bytes (4.54158 GB) limit=16734404608 bytes (15.5851 GB)
+Assigning 2681468 documents to clusters (8 threads)...

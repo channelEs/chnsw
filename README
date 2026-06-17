@@ -1,9 +1,35 @@
-# CHNSW – Setup and Build Guide
+# Project for the SISAP challenge 2026
+**Team:** Seed 42
+
+## Task 3: Indexing very sparse high-dimensional vectors
+
+This repository contains the implementation for the SISAP 2026 Task 3 challenge.
+
+Learned sparse models bridge traditional inverted indexing and neural retrieval. However, their high dimensionality and learned term distributions challenge classical IR data structures.
+
+The task investigates scalable, memory-efficient indexing methods for very high-dimensional, sparse representations under realistic hardware constraints.
+
+- Container: 8 virtual CPUs, 24 GB RAM
+- Dataset: NQ (Natural Questions) with 2.68M documents and 30,522 sparse dimensions in `nq.h5`
+- Similarity: dot product
+- Goal: return k=30 nearest neighbors with average recall ≥ 0.9
+- Evaluation: index preprocessing phase, then search phase
+
+## Brief description of the implementation
+
+This implementation uses a hybrid sparse indexing approach tuned for SPLADE-v3 embeddings and the SISAP constraints.
+
+- Documents are grouped into clusters using an iterative sparse clustering engine with parallel assignments and centroid updates.
+- For each cluster, a dense summary vector stores the maximum weight seen for every sparse dimension, enabling fast upper-bound scoring.
+- The inverted index is partitioned by concept and then by cluster blocks; each block keeps only the strongest documents per concept and cluster to save memory.
+- Search uses query-driven pruning: it computes cluster upper bounds from summary vectors, visits only promising blocks, and computes exact dot products for candidate documents.
+
+# Setup and Build Guide
 
 ## Project Structure
 
 ```text
-chnsw/
+root/
 ├── build/               # Generated build files
 ├── data/                # HDF5 datasets
 ├── include/             # Header files (.h)
@@ -187,28 +213,6 @@ k,itr,nb,nd,md,Avg_Cluster_Size,Median_Cluster_Size,Avg_Cluster_Similarity,Clust
 200,3,100,50,50000,17.8957,11,5.22518,45234,12567,0.8524,123.45,567890
 ```
 
-**Running multiple experiments:**
-
-Create different config files and run sequentially:
-
-```bash
-# Experiment 1
-docker run -it --cpus=8 --memory=24g \
-  --volume $(pwd)/data:/sisap2026/data:ro \
-  --volume $(pwd)/results:/sisap2026/results:rw \
-  --volume $(pwd)/config1.json:/sisap2026/config1.json:ro \
-  chnsw --task task3 --dataset nq --params config1.json
-
-# Experiment 2
-docker run -it --cpus=8 --memory=24g \
-  --volume $(pwd)/data:/sisap2026/data:ro \
-  --volume $(pwd)/results:/sisap2026/results:rw \
-  --volume $(pwd)/config2.json:/sisap2026/config2.json:ro \
-  chnsw --task task3 --dataset nq --params config2.json
-```
-
-Results from all runs will accumulate in `results/results.csv` for easy comparison. 
-
 ---
 
 # Plotting Results
@@ -246,50 +250,5 @@ python scripts/plot_global_iterations.py --csv results/global_iterations_test.cs
 This will create two plots in the `figures/` directory:
 1. **`global_iterations_k1500_itr3_time.png`** – Scatter plot of `nd` vs `nb` colored by average query time (green = fast, red = slow)
 2. **`global_iterations_k1500_itr3_recall.png`** – Scatter plot of `nd` vs `nb` with recall gradient (red = 0.6 or worse, green = 0.9 or better)
-
----
-
-# Notes
-
-## Cleaning the current build version
-
-To remove generated build files:
-
-```bash
-rm -rf build
-```
-
-Then rebuild:
-
-```bash
-./build.sh
-```
-
----
-
-## Dependency Management
-
-Dependencies are declared in:
-
-```text
-vcpkg.json
-```
-
-Example:
-
-```json
-{
-  "name": "chnsw",
-  "version": "0.1.0",
-  "dependencies": [
-    "eigen3",
-    "hdf5"
-  ]
-}
-```
-
-You normally do NOT need to manually install dependencies.
-
-vcpkg installs them automatically during CMake configuration.
 
 ---
