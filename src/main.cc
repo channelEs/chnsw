@@ -240,7 +240,7 @@ int main(int argc, char* argv[]) {
         }
 
         if (new_results_file) {
-            csv_file << "k,itr,nb,nd,md,"
+            csv_file << "k,itr,nb,nd,md,heap_factor,"
                      << "Avg_Cluster_Size,Median_Cluster_Size,Avg_Cluster_Similarity,"
                      << "Avg_Blocks_Entered,Avg_Blocks_Skipped,Avg_Docs_Examined,Avg_Docs_Popped,"
                      << "Clustering_Time_s,Indexing_Time_s,"
@@ -270,6 +270,8 @@ int main(int argc, char* argv[]) {
                 std::cerr << "[SKIP] No valid configurations could be parsed from " << config_path.string() << "\n";
                 continue;
             }
+            ExecutionProfiler exec_profiler;
+            exec_profiler.start("total_run_" + config_path.filename().string());
 
             const ExecConfig base_config = exec_configs.front();
             std::cout << "[PARAMS] k=" << base_config.num_clusters
@@ -383,6 +385,7 @@ int main(int argc, char* argv[]) {
                              << exec_config.max_blocks_per_dimension << ","
                              << exec_config.max_docs_per_block << ","
                              << exec_config.max_docs_to_visit << ","
+                             << exec_config.heap_factor << ","
                              << clustering_metrics.avg_cluster_size << ","
                              << clustering_metrics.median_cluster_size << ","
                              << clustering_metrics.avg_intra_cluster_similarity << ","
@@ -410,6 +413,7 @@ int main(int argc, char* argv[]) {
                     throw;
                 }
             }
+            exec_profiler.stop("total_run_" + config_path.filename().string());
         }
     } catch (const std::bad_alloc& e) {
         std::cerr << "Out of memory: " << e.what() << "\n";

@@ -1,0 +1,636 @@
+[SISAP] Running task3 on dataset: data/nq.h5
+[CONFIG] Executing 3 config file(s) from `config/new_engine_experiments_v3`
+
+--- Read data (data/nq.h5) ---
+train: 2681468 x 30522
+query: 3452 x 30522
+
+=====================
+[CONFIG] Running config: config/new_engine_experiments_v3/config_exp_X.json
+[PROFILER_START] total_run_config_exp_X.json memory_start=4609503232 bytes (4.29293 GB) limit=25769803776 bytes (24 GB)
+[PARAMS] k=3000 itr=4 (base values)
+
+--- Clustering | k = 3000 | iterations = 4 ---
+[PROFILER_START] clustering memory_start=4609503232 bytes (4.29293 GB) limit=25769803776 bytes (24 GB)
+Initializing 3000 clusters... with 2681468 documents with 30522 dimensions
+
+--- Iteration 1/4 ---
+[PROFILER_START] clustering_iteration_1 memory_start=4996427776 bytes (4.65329 GB) limit=25769803776 bytes (24 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_1: 2437632 ms (40.6272 minutes)
+[PROFILER_MEM] clustering_iteration_1 start=4996427776 bytes (4.65329 GB) stop=5012549632 bytes (4.6683 GB) delta=16121856 bytes (0.0150146 GB) limit=25769803776 bytes (24 GB)
+
+--- Iteration 2/4 ---
+[PROFILER_START] clustering_iteration_2 memory_start=5012549632 bytes (4.6683 GB) limit=25769803776 bytes (24 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_2: 2441696 ms (40.6949 minutes)
+[PROFILER_MEM] clustering_iteration_2 start=5012549632 bytes (4.6683 GB) stop=5013336064 bytes (4.66903 GB) delta=786432 bytes (0.000732422 GB) limit=25769803776 bytes (24 GB)
+
+--- Iteration 3/4 ---
+[PROFILER_START] clustering_iteration_3 memory_start=5013336064 bytes (4.66903 GB) limit=25769803776 bytes (24 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_3: 2424847 ms (40.4141 minutes)
+[PROFILER_MEM] clustering_iteration_3 start=5013336064 bytes (4.66903 GB) stop=5013532672 bytes (4.66922 GB) delta=196608 bytes (0.000183105 GB) limit=25769803776 bytes (24 GB)
+
+--- Iteration 4/4 ---
+[PROFILER_START] clustering_iteration_4 memory_start=5013532672 bytes (4.66922 GB) limit=25769803776 bytes (24 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_4: 2427598 ms (40.46 minutes)
+[PROFILER_MEM] clustering_iteration_4 start=5013532672 bytes (4.66922 GB) stop=5013925888 bytes (4.66958 GB) delta=393216 bytes (0.000366211 GB) limit=25769803776 bytes (24 GB)
+[PROFILER_STOP] clustering: 9731949 ms (162.199 minutes)
+[PROFILER_MEM] clustering start=4609503232 bytes (4.29293 GB) stop=5013925888 bytes (4.66958 GB) delta=404422656 bytes (0.376648 GB) limit=25769803776 bytes (24 GB)
+
+Clustering complete. Sample cluster sizes:
+
+--- Evaluate clustering (relating docs information) ---
+Objective Average Cluster Size: 893.823
+Median Cluster Size: 829
+Largest Cluster Size: 5704
+Smallest Cluster Size: 9
+Empty Clusters: 0
+Cluster Size Deviation: 499.189
+Avg Similarity (Docs and its cluster assignments with dot product): 5.21985
+
+--- Summary Vectors for each cluster & Indexing ---
+[PROFILER_START] computing_summaries memory_start=5013925888 bytes (4.66958 GB) limit=25769803776 bytes (24 GB)
+[INDEXING] Computing Summary Vectors (Sketches) for 3000 clusters...
+[PROFILER_STOP] computing_summaries: 2736 ms (0.0456 minutes)
+[PROFILER_MEM] computing_summaries start=5013925888 bytes (4.66958 GB) stop=5353271296 bytes (4.98562 GB) delta=339345408 bytes (0.31604 GB) limit=25769803776 bytes (24 GB)
+
+[RUN] k=3000 itr=4nb=300 nd=150 md=60000
+
+--- Indexing | nb = 300 | nd = 150 ---
+[PROFILER_START] building_index memory_start=5354844160 bytes (4.98709 GB) limit=25769803776 bytes (24 GB)
+[INDEXING] buildInvertedIndex start: n_docs=2681468 n_dims=30522 nonzeros=572792070 max_blocks_per_dimension=300 max_docs_per_block=150 max_docs_to_visit=60000
+[MEMORY_ESTIMATE] Estimated build memory=211.488 GB. Proceeding with index build regardless of system limits.
+[INDEXING] Building inverted index from summary vectors (simple approach)...
+[INDEX_PROFILE] total_blocks=8041273 total_docs_in_blocks=221735630 avg_docs_per_block=27.5747 avg_blocks_per_dimension=263.458 empty_dimensions=1783
+[PROFILER_STOP] building_index: 120570 ms (2.0095 minutes)
+[PROFILER_MEM] building_index start=5354844160 bytes (4.98709 GB) stop=14925131776 bytes (13.9001 GB) delta=9570287616 bytes (8.91302 GB) limit=25769803776 bytes (24 GB)
+Total Summary Vectors: 3000
+Total Concepts indexed: 30522
+
+--- SEARCH PHASE ---
+[PROFILER_START] search_phase memory_start=14925524992 bytes (13.9005 GB) limit=25769803776 bytes (24 GB)
+
+--- Evaluating Recall@30 ---
+[PROFILER_START] search_phase_top_n_30 memory_start=14925524992 bytes (13.9005 GB) limit=25769803776 bytes (24 GB)
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_30: 116268 ms (1.9378 minutes)
+[PROFILER_MEM] search_phase_top_n_30 start=14925524992 bytes (13.9005 GB) stop=14925328384 bytes (13.9003 GB) delta=-196608 bytes (0.000183105 GB) limit=25769803776 bytes (24 GB)
+====================================================
+  Average Recall@30 = 0.84121
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[PROFILER_STOP] search_phase: 116272 ms (1.93787 minutes)
+[PROFILER_MEM] search_phase start=14925524992 bytes (13.9005 GB) stop=14925918208 bytes (13.9008 GB) delta=393216 bytes (0.000366211 GB) limit=25769803776 bytes (24 GB)
+[SEARCH_DEBUG_AVG] avg_blocks_entered=703.974 avg_blocks_skipped=1852.31 avg_docs_examined=57020.9 avg_docs_popped=155.363
+
+[TIME-QUERY] Average Time per Query: 33.6825 ms
+
+[OK] Results saved to "results/new_engine_experiments_v3.csv"
+
+[RUN] k=3000 itr=4nb=300 nd=200 md=60000
+
+--- Indexing | nb = 300 | nd = 200 ---
+[PROFILER_START] building_index memory_start=14603837440 bytes (13.6009 GB) limit=25769803776 bytes (24 GB)
+[INDEXING] buildInvertedIndex start: n_docs=2681468 n_dims=30522 nonzeros=572792070 max_blocks_per_dimension=300 max_docs_per_block=200 max_docs_to_visit=60000
+[MEMORY_ESTIMATE] Estimated build memory=279.71 GB. Proceeding with index build regardless of system limits.
+[INDEXING] Building inverted index from summary vectors (simple approach)...
+[INDEX_PROFILE] total_blocks=8041273 total_docs_in_blocks=243678934 avg_docs_per_block=30.3035 avg_blocks_per_dimension=263.458 empty_dimensions=1783
+[PROFILER_STOP] building_index: 115582 ms (1.92637 minutes)
+[PROFILER_MEM] building_index start=14603837440 bytes (13.6009 GB) stop=14973853696 bytes (13.9455 GB) delta=370016256 bytes (0.344604 GB) limit=25769803776 bytes (24 GB)
+Total Summary Vectors: 3000
+Total Concepts indexed: 30522
+
+--- SEARCH PHASE ---
+[PROFILER_START] search_phase memory_start=14974050304 bytes (13.9457 GB) limit=25769803776 bytes (24 GB)
+
+--- Evaluating Recall@30 ---
+[PROFILER_START] search_phase_top_n_30 memory_start=14974050304 bytes (13.9457 GB) limit=25769803776 bytes (24 GB)
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_30: 115129 ms (1.91882 minutes)
+[PROFILER_MEM] search_phase_top_n_30 start=14974050304 bytes (13.9457 GB) stop=14973657088 bytes (13.9453 GB) delta=-393216 bytes (0.000366211 GB) limit=25769803776 bytes (24 GB)
+====================================================
+  Average Recall@30 = 0.792032
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[PROFILER_STOP] search_phase: 115133 ms (1.91888 minutes)
+[PROFILER_MEM] search_phase start=14974050304 bytes (13.9457 GB) stop=14974050304 bytes (13.9457 GB) delta=0 bytes (0 GB) limit=25769803776 bytes (24 GB)
+[SEARCH_DEBUG_AVG] avg_blocks_entered=570.576 avg_blocks_skipped=1605.18 avg_docs_examined=57534.1 avg_docs_popped=153.736
+
+[TIME-QUERY] Average Time per Query: 33.3525 ms
+
+[OK] Results saved to "results/new_engine_experiments_v3.csv"
+
+[RUN] k=3000 itr=4nb=400 nd=150 md=60000
+
+--- Indexing | nb = 400 | nd = 150 ---
+[PROFILER_START] building_index memory_start=14634098688 bytes (13.6291 GB) limit=25769803776 bytes (24 GB)
+[INDEXING] buildInvertedIndex start: n_docs=2681468 n_dims=30522 nonzeros=572792070 max_blocks_per_dimension=400 max_docs_per_block=150 max_docs_to_visit=60000
+[MEMORY_ESTIMATE] Estimated build memory=211.488 GB. Proceeding with index build regardless of system limits.
+[INDEXING] Building inverted index from summary vectors (simple approach)...
+[INDEX_PROFILE] total_blocks=10486897 total_docs_in_blocks=254409366 avg_docs_per_block=24.2597 avg_blocks_per_dimension=343.585 empty_dimensions=1783
+[PROFILER_STOP] building_index: 117312 ms (1.9552 minutes)
+[PROFILER_MEM] building_index start=14634098688 bytes (13.6291 GB) stop=15008833536 bytes (13.9781 GB) delta=374734848 bytes (0.348999 GB) limit=25769803776 bytes (24 GB)
+Total Summary Vectors: 3000
+Total Concepts indexed: 30522
+
+--- SEARCH PHASE ---
+[PROFILER_START] search_phase memory_start=15008833536 bytes (13.9781 GB) limit=25769803776 bytes (24 GB)
+
+--- Evaluating Recall@30 ---
+[PROFILER_START] search_phase_top_n_30 memory_start=15008833536 bytes (13.9781 GB) limit=25769803776 bytes (24 GB)
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_30: 117667 ms (1.96112 minutes)
+[PROFILER_MEM] search_phase_top_n_30 start=15008833536 bytes (13.9781 GB) stop=15009226752 bytes (13.9784 GB) delta=393216 bytes (0.000366211 GB) limit=25769803776 bytes (24 GB)
+====================================================
+  Average Recall@30 = 0.806139
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[PROFILER_STOP] search_phase: 117669 ms (1.96115 minutes)
+[PROFILER_MEM] search_phase start=15008833536 bytes (13.9781 GB) stop=15009226752 bytes (13.9784 GB) delta=393216 bytes (0.000366211 GB) limit=25769803776 bytes (24 GB)
+[SEARCH_DEBUG_AVG] avg_blocks_entered=733.331 avg_blocks_skipped=2416.92 avg_docs_examined=57161.9 avg_docs_popped=152.027
+
+[TIME-QUERY] Average Time per Query: 34.0872 ms
+
+[OK] Results saved to "results/new_engine_experiments_v3.csv"
+
+[RUN] k=3000 itr=4nb=400 nd=200 md=60000
+
+--- Indexing | nb = 400 | nd = 200 ---
+[PROFILER_START] building_index memory_start=14619926528 bytes (13.6159 GB) limit=25769803776 bytes (24 GB)
+[INDEXING] buildInvertedIndex start: n_docs=2681468 n_dims=30522 nonzeros=572792070 max_blocks_per_dimension=400 max_docs_per_block=200 max_docs_to_visit=60000
+[MEMORY_ESTIMATE] Estimated build memory=279.71 GB. Proceeding with index build regardless of system limits.
+[INDEXING] Building inverted index from summary vectors (simple approach)...
+[INDEX_PROFILE] total_blocks=10486897 total_docs_in_blocks=277601935 avg_docs_per_block=26.4713 avg_blocks_per_dimension=343.585 empty_dimensions=1783
+[PROFILER_STOP] building_index: 117224 ms (1.95373 minutes)
+[PROFILER_MEM] building_index start=14619926528 bytes (13.6159 GB) stop=15025135616 bytes (13.9932 GB) delta=405209088 bytes (0.37738 GB) limit=25769803776 bytes (24 GB)
+Total Summary Vectors: 3000
+Total Concepts indexed: 30522
+
+--- SEARCH PHASE ---
+[PROFILER_START] search_phase memory_start=15025135616 bytes (13.9932 GB) limit=25769803776 bytes (24 GB)
+
+--- Evaluating Recall@30 ---
+[PROFILER_START] search_phase_top_n_30 memory_start=15025135616 bytes (13.9932 GB) limit=25769803776 bytes (24 GB)
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_30: 116930 ms (1.94883 minutes)
+[PROFILER_MEM] search_phase_top_n_30 start=15025135616 bytes (13.9932 GB) stop=15024939008 bytes (13.9931 GB) delta=-196608 bytes (0.000183105 GB) limit=25769803776 bytes (24 GB)
+====================================================
+  Average Recall@30 = 0.786305
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[PROFILER_STOP] search_phase: 116933 ms (1.94888 minutes)
+[PROFILER_MEM] search_phase start=15025135616 bytes (13.9932 GB) stop=15024939008 bytes (13.9931 GB) delta=-196608 bytes (0.000183105 GB) limit=25769803776 bytes (24 GB)
+[SEARCH_DEBUG_AVG] avg_blocks_entered=614.502 avg_blocks_skipped=2121.56 avg_docs_examined=57624.3 avg_docs_popped=151.924
+
+[TIME-QUERY] Average Time per Query: 33.874 ms
+
+[OK] Results saved to "results/new_engine_experiments_v3.csv"
+[PROFILER_STOP] total_run_config_exp_X.json: 10686450 ms (178.107 minutes)
+[PROFILER_MEM] total_run_config_exp_X.json start=4609503232 bytes (4.29293 GB) stop=14619611136 bytes (13.6156 GB) delta=10010107904 bytes (9.32264 GB) limit=25769803776 bytes (24 GB)
+
+=====================
+[CONFIG] Running config: config/new_engine_experiments_v3/config_exp_Y.json
+[PROFILER_START] total_run_config_exp_Y.json memory_start=14619807744 bytes (13.6158 GB) limit=25769803776 bytes (24 GB)
+[PARAMS] k=4000 itr=4 (base values)
+
+--- Clustering | k = 4000 | iterations = 4 ---
+[PROFILER_START] clustering memory_start=14619807744 bytes (13.6158 GB) limit=25769803776 bytes (24 GB)
+Initializing 4000 clusters... with 2681468 documents with 30522 dimensions
+
+--- Iteration 1/4 ---
+[PROFILER_START] clustering_iteration_1 memory_start=14620004352 bytes (13.6159 GB) limit=25769803776 bytes (24 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_1: 3494643 ms (58.2441 minutes)
+[PROFILER_MEM] clustering_iteration_1 start=14620004352 bytes (13.6159 GB) stop=14620397568 bytes (13.6163 GB) delta=393216 bytes (0.000366211 GB) limit=25769803776 bytes (24 GB)
+
+--- Iteration 2/4 ---
+[PROFILER_START] clustering_iteration_2 memory_start=14620397568 bytes (13.6163 GB) limit=25769803776 bytes (24 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_2: 3459255 ms (57.6542 minutes)
+[PROFILER_MEM] clustering_iteration_2 start=14620397568 bytes (13.6163 GB) stop=14620397568 bytes (13.6163 GB) delta=0 bytes (0 GB) limit=25769803776 bytes (24 GB)
+
+--- Iteration 3/4 ---
+[PROFILER_START] clustering_iteration_3 memory_start=14620397568 bytes (13.6163 GB) limit=25769803776 bytes (24 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_3: 3465110 ms (57.7518 minutes)
+[PROFILER_MEM] clustering_iteration_3 start=14620397568 bytes (13.6163 GB) stop=14620004352 bytes (13.6159 GB) delta=-393216 bytes (0.000366211 GB) limit=25769803776 bytes (24 GB)
+
+--- Iteration 4/4 ---
+[PROFILER_START] clustering_iteration_4 memory_start=14620004352 bytes (13.6159 GB) limit=25769803776 bytes (24 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_4: 3463285 ms (57.7214 minutes)
+[PROFILER_MEM] clustering_iteration_4 start=14620004352 bytes (13.6159 GB) stop=14619807744 bytes (13.6158 GB) delta=-196608 bytes (0.000183105 GB) limit=25769803776 bytes (24 GB)
+[PROFILER_STOP] clustering: 13882403 ms (231.373 minutes)
+[PROFILER_MEM] clustering start=14619807744 bytes (13.6158 GB) stop=14619807744 bytes (13.6158 GB) delta=0 bytes (0 GB) limit=25769803776 bytes (24 GB)
+
+Clustering complete. Sample cluster sizes:
+
+--- Evaluate clustering (relating docs information) ---
+Objective Average Cluster Size: 670.367
+Median Cluster Size: 622
+Largest Cluster Size: 3671
+Smallest Cluster Size: 9
+Empty Clusters: 0
+Cluster Size Deviation: 374.144
+Avg Similarity (Docs and its cluster assignments with dot product): 5.33089
+
+--- Summary Vectors for each cluster & Indexing ---
+[PROFILER_START] computing_summaries memory_start=14619807744 bytes (13.6158 GB) limit=25769803776 bytes (24 GB)
+[INDEXING] Computing Summary Vectors (Sketches) for 4000 clusters...
+[PROFILER_STOP] computing_summaries: 2818 ms (0.0469667 minutes)
+[PROFILER_MEM] computing_summaries start=14619807744 bytes (13.6158 GB) stop=14619807744 bytes (13.6158 GB) delta=0 bytes (0 GB) limit=25769803776 bytes (24 GB)
+
+[RUN] k=4000 itr=4nb=300 nd=150 md=60000
+
+--- Indexing | nb = 300 | nd = 150 ---
+[PROFILER_START] building_index memory_start=14622167040 bytes (13.618 GB) limit=25769803776 bytes (24 GB)
+[INDEXING] buildInvertedIndex start: n_docs=2681468 n_dims=30522 nonzeros=572792070 max_blocks_per_dimension=300 max_docs_per_block=150 max_docs_to_visit=60000
+[MEMORY_ESTIMATE] Estimated build memory=281.984 GB. Proceeding with index build regardless of system limits.
+[INDEXING] Building inverted index from summary vectors (simple approach)...
+[INDEX_PROFILE] total_blocks=8070371 total_docs_in_blocks=212408963 avg_docs_per_block=26.3196 avg_blocks_per_dimension=264.412 empty_dimensions=1783
+[PROFILER_STOP] building_index: 135488 ms (2.25813 minutes)
+[PROFILER_MEM] building_index start=14622167040 bytes (13.618 GB) stop=15833468928 bytes (14.7461 GB) delta=1211301888 bytes (1.12811 GB) limit=25769803776 bytes (24 GB)
+Total Summary Vectors: 4000
+Total Concepts indexed: 30522
+
+--- SEARCH PHASE ---
+[PROFILER_START] search_phase memory_start=15834058752 bytes (14.7466 GB) limit=25769803776 bytes (24 GB)
+
+--- Evaluating Recall@30 ---
+[PROFILER_START] search_phase_top_n_30 memory_start=15834058752 bytes (14.7466 GB) limit=25769803776 bytes (24 GB)
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_30: 134370 ms (2.2395 minutes)
+[PROFILER_MEM] search_phase_top_n_30 start=15834058752 bytes (14.7466 GB) stop=15834648576 bytes (14.7472 GB) delta=589824 bytes (0.000549316 GB) limit=25769803776 bytes (24 GB)
+====================================================
+  Average Recall@30 = 0.82659
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[PROFILER_STOP] search_phase: 134388 ms (2.2398 minutes)
+[PROFILER_MEM] search_phase start=15834058752 bytes (14.7466 GB) stop=15835238400 bytes (14.7477 GB) delta=1179648 bytes (0.00109863 GB) limit=25769803776 bytes (24 GB)
+[SEARCH_DEBUG_AVG] avg_blocks_entered=729.103 avg_blocks_skipped=1645.36 avg_docs_examined=57440.7 avg_docs_popped=154.479
+
+[TIME-QUERY] Average Time per Query: 38.9305 ms
+
+[OK] Results saved to "results/new_engine_experiments_v3.csv"
+
+[RUN] k=4000 itr=4nb=300 nd=200 md=60000
+
+--- Indexing | nb = 300 | nd = 200 ---
+[PROFILER_START] building_index memory_start=15396499456 bytes (14.3391 GB) limit=25769803776 bytes (24 GB)
+[INDEXING] buildInvertedIndex start: n_docs=2681468 n_dims=30522 nonzeros=572792070 max_blocks_per_dimension=300 max_docs_per_block=200 max_docs_to_visit=60000
+[MEMORY_ESTIMATE] Estimated build memory=372.947 GB. Proceeding with index build regardless of system limits.
+[INDEXING] Building inverted index from summary vectors (simple approach)...
+[INDEX_PROFILE] total_blocks=8070371 total_docs_in_blocks=232409284 avg_docs_per_block=28.7978 avg_blocks_per_dimension=264.412 empty_dimensions=1783
+[PROFILER_STOP] building_index: 144849 ms (2.41415 minutes)
+[PROFILER_MEM] building_index start=15396499456 bytes (14.3391 GB) stop=15851450368 bytes (14.7628 GB) delta=454950912 bytes (0.423706 GB) limit=25769803776 bytes (24 GB)
+Total Summary Vectors: 4000
+Total Concepts indexed: 30522
+
+--- SEARCH PHASE ---
+[PROFILER_START] search_phase memory_start=15851646976 bytes (14.763 GB) limit=25769803776 bytes (24 GB)
+
+--- Evaluating Recall@30 ---
+[PROFILER_START] search_phase_top_n_30 memory_start=15851843584 bytes (14.7632 GB) limit=25769803776 bytes (24 GB)
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_30: 151245 ms (2.52075 minutes)
+[PROFILER_MEM] search_phase_top_n_30 start=15851843584 bytes (14.7632 GB) stop=15851253760 bytes (14.7626 GB) delta=-589824 bytes (0.000549316 GB) limit=25769803776 bytes (24 GB)
+====================================================
+  Average Recall@30 = 0.780811
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[PROFILER_STOP] search_phase: 151780 ms (2.52967 minutes)
+[PROFILER_MEM] search_phase start=15851646976 bytes (14.763 GB) stop=15852040192 bytes (14.7634 GB) delta=393216 bytes (0.000366211 GB) limit=25769803776 bytes (24 GB)
+[SEARCH_DEBUG_AVG] avg_blocks_entered=592.144 avg_blocks_skipped=1416.36 avg_docs_examined=57872.1 avg_docs_popped=153.129
+
+[TIME-QUERY] Average Time per Query: 43.9687 ms
+
+[OK] Results saved to "results/new_engine_experiments_v3.csv"
+
+[RUN] k=4000 itr=4nb=400 nd=150 md=60000
+
+--- Indexing | nb = 400 | nd = 150 ---
+[PROFILER_START] building_index memory_start=15386103808 bytes (14.3294 GB) limit=25769803776 bytes (24 GB)
+[INDEXING] buildInvertedIndex start: n_docs=2681468 n_dims=30522 nonzeros=572792070 max_blocks_per_dimension=400 max_docs_per_block=150 max_docs_to_visit=60000
+[MEMORY_ESTIMATE] Estimated build memory=281.984 GB. Proceeding with index build regardless of system limits.
+[INDEXING] Building inverted index from summary vectors (simple approach)...
+[INDEX_PROFILE] total_blocks=10551204 total_docs_in_blocks=244298274 avg_docs_per_block=23.1536 avg_blocks_per_dimension=345.692 empty_dimensions=1783
+[PROFILER_STOP] building_index: 140598 ms (2.3433 minutes)
+[PROFILER_MEM] building_index start=15386103808 bytes (14.3294 GB) stop=15933067264 bytes (14.8388 GB) delta=546963456 bytes (0.509399 GB) limit=25769803776 bytes (24 GB)
+Total Summary Vectors: 4000
+Total Concepts indexed: 30522
+
+--- SEARCH PHASE ---
+[PROFILER_START] search_phase memory_start=15933853696 bytes (14.8396 GB) limit=25769803776 bytes (24 GB)
+
+--- Evaluating Recall@30 ---
+[PROFILER_START] search_phase_top_n_30 memory_start=15934050304 bytes (14.8397 GB) limit=25769803776 bytes (24 GB)
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_30: 174826 ms (2.91377 minutes)
+[PROFILER_MEM] search_phase_top_n_30 start=15934050304 bytes (14.8397 GB) stop=15933263872 bytes (14.839 GB) delta=-786432 bytes (0.000732422 GB) limit=25769803776 bytes (24 GB)
+====================================================
+  Average Recall@30 = 0.790612
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[PROFILER_STOP] search_phase: 174897 ms (2.91495 minutes)
+[PROFILER_MEM] search_phase start=15933853696 bytes (14.8396 GB) stop=15934246912 bytes (14.8399 GB) delta=393216 bytes (0.000366211 GB) limit=25769803776 bytes (24 GB)
+[SEARCH_DEBUG_AVG] avg_blocks_entered=758.036 avg_blocks_skipped=2134.2 avg_docs_examined=57561.6 avg_docs_popped=151.258
+
+[TIME-QUERY] Average Time per Query: 50.6654 ms
+
+[OK] Results saved to "results/new_engine_experiments_v3.csv"
+
+[RUN] k=4000 itr=4nb=400 nd=200 md=60000
+
+--- Indexing | nb = 400 | nd = 200 ---
+[PROFILER_START] building_index memory_start=15417970688 bytes (14.3591 GB) limit=25769803776 bytes (24 GB)
+[INDEXING] buildInvertedIndex start: n_docs=2681468 n_dims=30522 nonzeros=572792070 max_blocks_per_dimension=400 max_docs_per_block=200 max_docs_to_visit=60000
+[MEMORY_ESTIMATE] Estimated build memory=372.947 GB. Proceeding with index build regardless of system limits.
+[INDEXING] Building inverted index from summary vectors (simple approach)...
+[INDEX_PROFILE] total_blocks=10551204 total_docs_in_blocks=265477709 avg_docs_per_block=25.1609 avg_blocks_per_dimension=345.692 empty_dimensions=1783
+[PROFILER_STOP] building_index: 134746 ms (2.24577 minutes)
+[PROFILER_MEM] building_index start=15417970688 bytes (14.3591 GB) stop=15941931008 bytes (14.8471 GB) delta=523960320 bytes (0.487976 GB) limit=25769803776 bytes (24 GB)
+Total Summary Vectors: 4000
+Total Concepts indexed: 30522
+
+--- SEARCH PHASE ---
+[PROFILER_START] search_phase memory_start=15942127616 bytes (14.8473 GB) limit=25769803776 bytes (24 GB)
+
+--- Evaluating Recall@30 ---
+[PROFILER_START] search_phase_top_n_30 memory_start=15942717440 bytes (14.8478 GB) limit=25769803776 bytes (24 GB)
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_30: 141846 ms (2.3641 minutes)
+[PROFILER_MEM] search_phase_top_n_30 start=15942717440 bytes (14.8478 GB) stop=15942324224 bytes (14.8474 GB) delta=-393216 bytes (0.000366211 GB) limit=25769803776 bytes (24 GB)
+====================================================
+  Average Recall@30 = 0.771039
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[PROFILER_STOP] search_phase: 142027 ms (2.36712 minutes)
+[PROFILER_MEM] search_phase start=15942127616 bytes (14.8473 GB) stop=15942914048 bytes (14.848 GB) delta=786432 bytes (0.000732422 GB) limit=25769803776 bytes (24 GB)
+[SEARCH_DEBUG_AVG] avg_blocks_entered=638.615 avg_blocks_skipped=1877.09 avg_docs_examined=57948.4 avg_docs_popped=150.874
+
+[TIME-QUERY] Average Time per Query: 41.1434 ms
+
+[OK] Results saved to "results/new_engine_experiments_v3.csv"
+[PROFILER_STOP] total_run_config_exp_Y.json: 15060930 ms (251.016 minutes)
+[PROFILER_MEM] total_run_config_exp_Y.json start=14619807744 bytes (13.6158 GB) stop=15415889920 bytes (14.3572 GB) delta=796082176 bytes (0.741409 GB) limit=25769803776 bytes (24 GB)
+
+=====================
+[CONFIG] Running config: config/new_engine_experiments_v3/config_exp_Z.json
+[PROFILER_START] total_run_config_exp_Z.json memory_start=15416676352 bytes (14.3579 GB) limit=25769803776 bytes (24 GB)
+[PARAMS] k=3000 itr=4 (base values)
+
+--- Clustering | k = 3000 | iterations = 4 ---
+[PROFILER_START] clustering memory_start=15416676352 bytes (14.3579 GB) limit=25769803776 bytes (24 GB)
+Initializing 3000 clusters... with 2681468 documents with 30522 dimensions
+
+--- Iteration 1/4 ---
+[PROFILER_START] clustering_iteration_1 memory_start=15416676352 bytes (14.3579 GB) limit=25769803776 bytes (24 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_1: 2455612 ms (40.9269 minutes)
+[PROFILER_MEM] clustering_iteration_1 start=15416676352 bytes (14.3579 GB) stop=15233224704 bytes (14.187 GB) delta=-183451648 bytes (0.170853 GB) limit=25769803776 bytes (24 GB)
+
+--- Iteration 2/4 ---
+[PROFILER_START] clustering_iteration_2 memory_start=15233814528 bytes (14.1876 GB) limit=25769803776 bytes (24 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_2: 2456743 ms (40.9457 minutes)
+[PROFILER_MEM] clustering_iteration_2 start=15233814528 bytes (14.1876 GB) stop=15233224704 bytes (14.187 GB) delta=-589824 bytes (0.000549316 GB) limit=25769803776 bytes (24 GB)
+
+--- Iteration 3/4 ---
+[PROFILER_START] clustering_iteration_3 memory_start=15233617920 bytes (14.1874 GB) limit=25769803776 bytes (24 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_3: 2460834 ms (41.0139 minutes)
+[PROFILER_MEM] clustering_iteration_3 start=15233617920 bytes (14.1874 GB) stop=15233224704 bytes (14.187 GB) delta=-393216 bytes (0.000366211 GB) limit=25769803776 bytes (24 GB)
+
+--- Iteration 4/4 ---
+[PROFILER_START] clustering_iteration_4 memory_start=15233814528 bytes (14.1876 GB) limit=25769803776 bytes (24 GB)
+Assigning 2681468 documents to clusters (8 threads)...
+Grouping documents by cluster assignments...
+Updating cluster centroid shapes in parallel...
+Centroids updated successfully!
+[PROFILER_STOP] clustering_iteration_4: 2440407 ms (40.6735 minutes)
+[PROFILER_MEM] clustering_iteration_4 start=15233814528 bytes (14.1876 GB) stop=15233224704 bytes (14.187 GB) delta=-589824 bytes (0.000549316 GB) limit=25769803776 bytes (24 GB)
+[PROFILER_STOP] clustering: 9813706 ms (163.562 minutes)
+[PROFILER_MEM] clustering start=15416676352 bytes (14.3579 GB) stop=15233617920 bytes (14.1874 GB) delta=-183058432 bytes (0.170486 GB) limit=25769803776 bytes (24 GB)
+
+Clustering complete. Sample cluster sizes:
+
+--- Evaluate clustering (relating docs information) ---
+Objective Average Cluster Size: 893.823
+Median Cluster Size: 827
+Largest Cluster Size: 5843
+Smallest Cluster Size: 30
+Empty Clusters: 0
+Cluster Size Deviation: 496.154
+Avg Similarity (Docs and its cluster assignments with dot product): 5.22135
+
+--- Summary Vectors for each cluster & Indexing ---
+[PROFILER_START] computing_summaries memory_start=15233814528 bytes (14.1876 GB) limit=25769803776 bytes (24 GB)
+[INDEXING] Computing Summary Vectors (Sketches) for 3000 clusters...
+[PROFILER_STOP] computing_summaries: 2667 ms (0.04445 minutes)
+[PROFILER_MEM] computing_summaries start=15233814528 bytes (14.1876 GB) stop=15233814528 bytes (14.1876 GB) delta=0 bytes (0 GB) limit=25769803776 bytes (24 GB)
+
+[RUN] k=3000 itr=4nb=300 nd=150 md=60000
+
+--- Indexing | nb = 300 | nd = 150 ---
+[PROFILER_START] building_index memory_start=15235780608 bytes (14.1894 GB) limit=25769803776 bytes (24 GB)
+[INDEXING] buildInvertedIndex start: n_docs=2681468 n_dims=30522 nonzeros=572792070 max_blocks_per_dimension=300 max_docs_per_block=150 max_docs_to_visit=60000
+[MEMORY_ESTIMATE] Estimated build memory=211.488 GB. Proceeding with index build regardless of system limits.
+[INDEXING] Building inverted index from summary vectors (simple approach)...
+[INDEX_PROFILE] total_blocks=8042359 total_docs_in_blocks=221598580 avg_docs_per_block=27.5539 avg_blocks_per_dimension=263.494 empty_dimensions=1783
+[PROFILER_STOP] building_index: 117113 ms (1.95188 minutes)
+[PROFILER_MEM] building_index start=15235780608 bytes (14.1894 GB) stop=15235780608 bytes (14.1894 GB) delta=0 bytes (0 GB) limit=25769803776 bytes (24 GB)
+Total Summary Vectors: 3000
+Total Concepts indexed: 30522
+
+--- SEARCH PHASE ---
+[PROFILER_START] search_phase memory_start=15235780608 bytes (14.1894 GB) limit=25769803776 bytes (24 GB)
+
+--- Evaluating Recall@30 ---
+[PROFILER_START] search_phase_top_n_30 memory_start=15235780608 bytes (14.1894 GB) limit=25769803776 bytes (24 GB)
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_30: 4756 ms (0.0792667 minutes)
+[PROFILER_MEM] search_phase_top_n_30 start=15235780608 bytes (14.1894 GB) stop=15235977216 bytes (14.1896 GB) delta=196608 bytes (0.000183105 GB) limit=25769803776 bytes (24 GB)
+====================================================
+  Average Recall@30 = 0.223696
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[PROFILER_STOP] search_phase: 4756 ms (0.0792667 minutes)
+[PROFILER_MEM] search_phase start=15235780608 bytes (14.1894 GB) stop=15235977216 bytes (14.1896 GB) delta=196608 bytes (0.000183105 GB) limit=25769803776 bytes (24 GB)
+[SEARCH_DEBUG_AVG] avg_blocks_entered=2.89919 avg_blocks_skipped=8094.2 avg_docs_examined=308.332 avg_docs_popped=74.7109
+
+[TIME-QUERY] Average Time per Query: 1.37775 ms
+
+[OK] Results saved to "results/new_engine_experiments_v3.csv"
+
+[RUN] k=3000 itr=4nb=300 nd=200 md=60000
+
+--- Indexing | nb = 300 | nd = 200 ---
+[PROFILER_START] building_index memory_start=15235977216 bytes (14.1896 GB) limit=25769803776 bytes (24 GB)
+[INDEXING] buildInvertedIndex start: n_docs=2681468 n_dims=30522 nonzeros=572792070 max_blocks_per_dimension=300 max_docs_per_block=200 max_docs_to_visit=60000
+[MEMORY_ESTIMATE] Estimated build memory=279.71 GB. Proceeding with index build regardless of system limits.
+[INDEXING] Building inverted index from summary vectors (simple approach)...
+[INDEX_PROFILE] total_blocks=8042359 total_docs_in_blocks=243485847 avg_docs_per_block=30.2754 avg_blocks_per_dimension=263.494 empty_dimensions=1783
+[PROFILER_STOP] building_index: 117477 ms (1.95795 minutes)
+[PROFILER_MEM] building_index start=15235977216 bytes (14.1896 GB) stop=15233421312 bytes (14.1872 GB) delta=-2555904 bytes (0.00238037 GB) limit=25769803776 bytes (24 GB)
+Total Summary Vectors: 3000
+Total Concepts indexed: 30522
+
+--- SEARCH PHASE ---
+[PROFILER_START] search_phase memory_start=15233617920 bytes (14.1874 GB) limit=25769803776 bytes (24 GB)
+
+--- Evaluating Recall@30 ---
+[PROFILER_START] search_phase_top_n_30 memory_start=15233617920 bytes (14.1874 GB) limit=25769803776 bytes (24 GB)
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_30: 4890 ms (0.0815 minutes)
+[PROFILER_MEM] search_phase_top_n_30 start=15233617920 bytes (14.1874 GB) stop=15233617920 bytes (14.1874 GB) delta=0 bytes (0 GB) limit=25769803776 bytes (24 GB)
+====================================================
+  Average Recall@30 = 0.230851
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[PROFILER_STOP] search_phase: 4892 ms (0.0815333 minutes)
+[PROFILER_MEM] search_phase start=15233617920 bytes (14.1874 GB) stop=15233617920 bytes (14.1874 GB) delta=0 bytes (0 GB) limit=25769803776 bytes (24 GB)
+[SEARCH_DEBUG_AVG] avg_blocks_entered=2.82387 avg_blocks_skipped=8094.27 avg_docs_examined=380.13 avg_docs_popped=77.7039
+
+[TIME-QUERY] Average Time per Query: 1.41715 ms
+
+[OK] Results saved to "results/new_engine_experiments_v3.csv"
+
+[RUN] k=3000 itr=4nb=400 nd=150 md=60000
+
+--- Indexing | nb = 400 | nd = 150 ---
+[PROFILER_START] building_index memory_start=15233617920 bytes (14.1874 GB) limit=25769803776 bytes (24 GB)
+[INDEXING] buildInvertedIndex start: n_docs=2681468 n_dims=30522 nonzeros=572792070 max_blocks_per_dimension=400 max_docs_per_block=150 max_docs_to_visit=60000
+[MEMORY_ESTIMATE] Estimated build memory=211.488 GB. Proceeding with index build regardless of system limits.
+[INDEXING] Building inverted index from summary vectors (simple approach)...
+[INDEX_PROFILE] total_blocks=10489696 total_docs_in_blocks=254180154 avg_docs_per_block=24.2314 avg_blocks_per_dimension=343.677 empty_dimensions=1783
+[PROFILER_STOP] building_index: 119482 ms (1.99137 minutes)
+[PROFILER_MEM] building_index start=15233617920 bytes (14.1874 GB) stop=15232831488 bytes (14.1867 GB) delta=-786432 bytes (0.000732422 GB) limit=25769803776 bytes (24 GB)
+Total Summary Vectors: 3000
+Total Concepts indexed: 30522
+
+--- SEARCH PHASE ---
+[PROFILER_START] search_phase memory_start=15232831488 bytes (14.1867 GB) limit=25769803776 bytes (24 GB)
+
+--- Evaluating Recall@30 ---
+[PROFILER_START] search_phase_top_n_30 memory_start=15232831488 bytes (14.1867 GB) limit=25769803776 bytes (24 GB)
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_30: 5220 ms (0.087 minutes)
+[PROFILER_MEM] search_phase_top_n_30 start=15232831488 bytes (14.1867 GB) stop=15232831488 bytes (14.1867 GB) delta=0 bytes (0 GB) limit=25769803776 bytes (24 GB)
+====================================================
+  Average Recall@30 = 0.226284
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[PROFILER_STOP] search_phase: 5221 ms (0.0870167 minutes)
+[PROFILER_MEM] search_phase start=15232831488 bytes (14.1867 GB) stop=15232831488 bytes (14.1867 GB) delta=0 bytes (0 GB) limit=25769803776 bytes (24 GB)
+[SEARCH_DEBUG_AVG] avg_blocks_entered=2.97914 avg_blocks_skipped=10788.9 avg_docs_examined=307.028 avg_docs_popped=74.3667
+
+[TIME-QUERY] Average Time per Query: 1.51246 ms
+
+[OK] Results saved to "results/new_engine_experiments_v3.csv"
+
+[RUN] k=3000 itr=4nb=400 nd=200 md=60000
+
+--- Indexing | nb = 400 | nd = 200 ---
+[PROFILER_START] building_index memory_start=15232831488 bytes (14.1867 GB) limit=25769803776 bytes (24 GB)
+[INDEXING] buildInvertedIndex start: n_docs=2681468 n_dims=30522 nonzeros=572792070 max_blocks_per_dimension=400 max_docs_per_block=200 max_docs_to_visit=60000
+[MEMORY_ESTIMATE] Estimated build memory=279.71 GB. Proceeding with index build regardless of system limits.
+[INDEXING] Building inverted index from summary vectors (simple approach)...
+[INDEX_PROFILE] total_blocks=10489696 total_docs_in_blocks=277312142 avg_docs_per_block=26.4366 avg_blocks_per_dimension=343.677 empty_dimensions=1783
+[PROFILER_STOP] building_index: 119364 ms (1.9894 minutes)
+[PROFILER_MEM] building_index start=15232831488 bytes (14.1867 GB) stop=15232831488 bytes (14.1867 GB) delta=0 bytes (0 GB) limit=25769803776 bytes (24 GB)
+Total Summary Vectors: 3000
+Total Concepts indexed: 30522
+
+--- SEARCH PHASE ---
+[PROFILER_START] search_phase memory_start=15232831488 bytes (14.1867 GB) limit=25769803776 bytes (24 GB)
+
+--- Evaluating Recall@30 ---
+[PROFILER_START] search_phase_top_n_30 memory_start=15232831488 bytes (14.1867 GB) limit=25769803776 bytes (24 GB)
+  Processed 0/3452 queries...
+  Processed 1000/3452 queries...
+  Processed 2000/3452 queries...
+  Processed 3000/3452 queries...
+[PROFILER_STOP] search_phase_top_n_30: 5356 ms (0.0892667 minutes)
+[PROFILER_MEM] search_phase_top_n_30 start=15232831488 bytes (14.1867 GB) stop=15232831488 bytes (14.1867 GB) delta=0 bytes (0 GB) limit=25769803776 bytes (24 GB)
+====================================================
+  Average Recall@30 = 0.232599
+  STATUS: FAIL (Tune pruning hyperparameter/clustering balance)
+====================================================
+[PROFILER_STOP] search_phase: 5356 ms (0.0892667 minutes)
+[PROFILER_MEM] search_phase start=15232831488 bytes (14.1867 GB) stop=15232831488 bytes (14.1867 GB) delta=0 bytes (0 GB) limit=25769803776 bytes (24 GB)
+[SEARCH_DEBUG_AVG] avg_blocks_entered=2.90238 avg_blocks_skipped=10788.9 avg_docs_examined=377.751 avg_docs_popped=77.2987
+
+[TIME-QUERY] Average Time per Query: 1.55156 ms
+
+[OK] Results saved to "results/new_engine_experiments_v3.csv"
+[PROFILER_STOP] total_run_config_exp_Z.json: 10325309 ms (172.088 minutes)
+[PROFILER_MEM] total_run_config_exp_Z.json start=15416676352 bytes (14.3579 GB) stop=15232831488 bytes (14.1867 GB) delta=-183844864 bytes (0.171219 GB) limit=25769803776 bytes (24 GB)
